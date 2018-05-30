@@ -2,22 +2,27 @@
 {{!-- The tag above means: insert everything in this file
 into the {body} of the default.hbs template --}}
 
+{{> side-nav}}
+
 {{!-- The big featured header, it uses blog cover image as a BG if available --}}
 <header class="site-header outer {{#if @blog.cover_image}}" style="background-image: url({{@blog.cover_image}}){{else}}no-cover{{/if}}">
     <div class="inner">
         <div class="site-header-content">
-            <h1 class="site-title">
-                {{#if @blog.logo}}
+            <div>
+                <a href="https://duckduckgo.com/">
                     <img class="site-logo" src="{{@blog.logo}}" alt="{{@blog.title}}" />
-                {{else}}
-                    {{@blog.title}}
-                {{/if}}
+                </a>
+            </div>
+            <h1 class="site-title">
+                {{@blog.title}}
             </h1>
             <h2 class="site-description">{{@blog.description}}</h2>
         </div>
         {{> "site-nav"}}
     </div>
 </header>
+
+{{> mobile-nav}}
 
 {{!-- The main content area --}}
 <main id="site-main" class="site-main outer">
