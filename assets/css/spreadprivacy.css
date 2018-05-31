@@ -76,6 +76,23 @@ a:focus {
     font-weight: 400;
 }
 
+.site-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    padding: 10px;
+}
+
+.site-menu svg {
+    width: 17px;
+    height: 17px;
+}
+
+.site-menu svg path {
+    fill: white;
+}
+
 @media (max-width: 590px) {
     .site-logo {
         height: 80px;
