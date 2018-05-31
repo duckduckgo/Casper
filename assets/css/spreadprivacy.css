@@ -66,7 +66,7 @@ a:focus {
 }
 
 .site-logo {
-    max-height: 144px;
+    max-height: 104px;
     margin-bottom: 24px;
 }
 
@@ -74,6 +74,16 @@ a:focus {
     margin: 0 0 1em 0;
     font-size: 2rem;
     font-weight: 400;
+}
+
+@media (max-width: 590px) {
+    .site-logo {
+        height: 80px;
+    }
+
+    .site-title {
+        font-size: 3.4rem;
+    }
 }
 
 @media (max-width: 320px) {
