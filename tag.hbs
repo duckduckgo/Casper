@@ -3,10 +3,21 @@
 
 {{!-- The big featured header, it uses blog cover image as a BG if available --}}
 {{#tag}}
+<nav class="side-nav">
+    <a href="#" class="side-menu">
+        {{> "icons/menu"}}
+    </a>
+</nav>
+
 <header class="site-header outer {{#if feature_image}}" style="background-image: url({{feature_image}}){{else}}no-cover{{/if}}">
     <div class="inner">
         {{> "site-nav"}}
         <div class="site-header-content">
+            <div>
+                <a href="/">
+                    <img class="site-logo" src="{{@blog.logo}}" alt="{{@blog.title}}" />
+                </a>
+            </div>
             <h1 class="site-title">{{name}}</h1>
             <h2 class="site-description">
                 {{#if description}}
@@ -18,6 +29,15 @@
         </div>
     </div>
 </header>
+
+<nav class="mobile-nav">
+    <ul class="nav" role="menu">
+        <li class="nav-device-privacy-tips" role="menuitem"><a href="/tag/device-privacy-tips/">Tips</a></li>
+        <li class="nav-privacy-newsletter" role="menuitem"><a href="/tag/privacy-newsletter/">Newsletter</a></li>
+        <li class="nav-privacy-research" role="menuitem"><a href="/tag/research/">Research</a></li>
+        <li class="nav-duckduckgo-news" role="menuitem"><a href="/tag/duckduckgo/">News</a></li>
+    </ul>
+</nav>
 {{/tag}}
 
 {{!-- The main content area --}}

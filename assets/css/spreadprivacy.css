@@ -104,6 +104,28 @@ a:focus {
     padding: 18px 10px 0 10px;
 }
 
+.mobile-nav {
+    display: none;
+}
+
+.mobile-nav li a {
+    color: #333;
+    padding: 10px 0px;
+}
+
+.mobile-nav .nav {
+    justify-content: space-around;
+    margin: 0;
+    padding: 0 13px;
+    font-size: 1.3rem;
+}
+
+@media (max-width: 640px) {
+    .mobile-nav {
+        display: block;
+    }
+}
+
 @media (max-width: 590px) {
     .site-logo {
         height: 80px;

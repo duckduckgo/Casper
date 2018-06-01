@@ -13,7 +13,8 @@ into the {body} of the default.hbs template --}}
     <div class="inner">
         <div class="site-header-content">
             <div>
-                <img class="site-logo" src="{{@blog.logo}}" alt="{{@blog.title}}" />
+                    <img class="site-logo" src="{{@blog.logo}}" alt="{{@blog.title}}" />
+                </a>
             </div>
             <h1 class="site-title">
                 {{@blog.title}}
@@ -23,6 +24,15 @@ into the {body} of the default.hbs template --}}
         {{> "site-nav"}}
     </div>
 </header>
+
+<nav class="mobile-nav">
+    <ul class="nav" role="menu">
+        <li class="nav-device-privacy-tips" role="menuitem"><a href="/tag/device-privacy-tips/">Tips</a></li>
+        <li class="nav-privacy-newsletter" role="menuitem"><a href="/tag/privacy-newsletter/">Newsletter</a></li>
+        <li class="nav-privacy-research" role="menuitem"><a href="/tag/research/">Research</a></li>
+        <li class="nav-duckduckgo-news" role="menuitem"><a href="/tag/duckduckgo/">News</a></li>
+    </ul>
+</nav>
 
 {{!-- The main content area --}}
 <main id="site-main" class="site-main outer">
