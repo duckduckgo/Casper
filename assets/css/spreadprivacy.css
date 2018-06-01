@@ -76,21 +76,32 @@ a:focus {
     font-weight: 400;
 }
 
-.site-menu {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1;
-    padding: 10px;
+.side-menu {
+    border-radius: 3px;
+    height: 33px;
+    width: 33px;
+    text-align: center;
+    float: right;
+    padding-top: 3px;
+    padding-left: 1px;
 }
 
-.site-menu svg {
+.side-menu:hover, .side-menu:active {
+    background-color: rgba(0,0,0,0.15);
+}
+
+.side-menu svg {
     width: 17px;
     height: 17px;
 }
 
-.site-menu svg path {
+.side-menu svg path {
     fill: white;
+}
+
+.side-nav {
+    background: #60a5da;
+    padding: 18px 10px 0 10px;
 }
 
 @media (max-width: 590px) {
