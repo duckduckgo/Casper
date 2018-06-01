@@ -40,19 +40,9 @@ a:focus {
 /* 4. Site Header
 /* ---------------------------------------------------------- */
 
-@media (max-width: 1040px) {
-    .outer {
-        padding: 0 1vw;
-    }
-    .home-template .outer {
-        padding: 0 4vw;
-    }
-}
-
 .site-header {
     background: var(--lightblue);
-    padding-bottom: 0;
-    padding-top: 0;
+    padding: 0 4vw;
 }
 
 .site-header:before,
@@ -200,10 +190,6 @@ a:focus {
 @media (max-width: 840px) {
     .nav {
         margin: 0 0 0 -1vw;
-    }
-    .site-header {
-        padding-left: 0;
-        padding-right: 0;
     }
     .site-nav {
         font-size: 1.1rem;
