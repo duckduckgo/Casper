@@ -1,0 +1,16 @@
+<nav class="side-nav">
+    {{#is "post"}}
+        <a href="/">
+            <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="nav-logo"/>
+        </a>
+    {{/is}}
+    {{#is "author"}}
+        <a href="/">
+            <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="nav-logo"/>
+        </a>
+    {{/is}}
+
+    <a href="#" class="side-menu">
+        {{> "icons/menu"}}
+    </a>
+</nav>
