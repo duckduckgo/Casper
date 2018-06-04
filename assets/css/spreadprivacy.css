@@ -58,6 +58,10 @@ a:focus {
     padding: 7vw 4vw;
 }
 
+.site-header-content .author-profile-image {
+    z-index: 0;
+}
+
 .site-title {
     font-size: 4rem;
     font-weight: 500;
@@ -209,6 +213,12 @@ a:focus {
     background-color: rgba(242,242,242,0.975);
     height: 100%;
     box-shadow: -1px 0 1px rgba(0,0,0,0.2);
+    transition: transform .3s ease-in-out 0s;
+    transform: translateX(100%);
+}
+
+.side-bar.show {
+    transform: translateX(0);
 }
 
 .side-bar .side-bar-list {
