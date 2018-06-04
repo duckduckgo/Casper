@@ -1,4 +1,4 @@
-<nav class="side-nav">
+<div class="side-nav">
     {{#is "post"}}
         <a href="/">
             <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="nav-logo"/>
@@ -13,4 +13,47 @@
     <a href="#" class="side-menu">
         {{> "icons/menu"}}
     </a>
+</div>
+
+<nav class="side-bar">
+    <ul class="side-bar-list">
+        <li class="side-bar-title">Menu</li>
+        <li>
+            <a href="https://duckduckgo.com/about">About</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/settings">Settings</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/bangs">Bangs</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/spread">Spread</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/hiring">Careers</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/press">Press</a>
+        </li>
+
+        <li class="side-bar-title">Privacy</li>
+        <li>
+            <a href="https://spreadprivacy.com/">Blog</a>
+        </li>
+        <li>
+            <a href="https://donttrack.us">DontTrack.us</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/privacy">Policy</a>
+        </li>
+
+        <li class="side-bar-title">Keep In Touch</li>
+        <li>
+            <a href="https://twitter.com/duckduckgo">Twitter</a>
+        </li>
+        <li>
+            <a href="https://reddit.com/r/duckduckgo">Reddit</a>
+        </li>
+    </ul>
 </nav>
