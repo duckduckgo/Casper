@@ -1,9 +1,18 @@
 <div class="side-nav">
     {{#is "post"}}
-        <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="nav-logo"/>
+        <a href="https://duckduckgo.com/">
+            <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="nav-logo"/>
+        </a>
     {{/is}}
     {{#is "author"}}
-        <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="nav-logo"/>
+        <a href="https://duckduckgo.com/">
+            <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="nav-logo"/>
+        </a>
+    {{/is}}
+    {{#is "tag"}}
+        <a href="https://duckduckgo.com/">
+            <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="nav-logo"/>
+        </a>
     {{/is}}
 
     <a href="#" class="side-menu">

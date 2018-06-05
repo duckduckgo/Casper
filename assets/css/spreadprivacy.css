@@ -57,10 +57,45 @@ a:focus {
 .site-header-content {
     padding: 7vw 4vw;
     padding-top: 0;
+    min-height: initial;
+    padding-top: 7px;
 }
 
 .site-header-content .author-profile-image {
     z-index: 0;
+}
+
+.tag-template .site-header {
+    background: initial;
+}
+
+.tag-template .site-header-content {
+    align-items: start;
+    color: #333;
+    padding-bottom: 0;
+}
+
+@media (min-width: 700px) {
+    .tag-template .site-header-content {
+        align-items: center;
+    }
+
+    .tag-template .site-header-content {
+        padding: 7vw 4vw;
+    }
+}
+
+.tag-template .site-nav {
+    display: none;
+}
+
+.tag-template .site-header-content .site-description {
+    color: #6c6c6c;
+    margin-bottom: 0;
+}
+
+.tag-template .post-feed {
+    padding-top: 22px;
 }
 
 .site-title {
@@ -79,6 +114,10 @@ a:focus {
     font-size: 2rem;
     font-weight: 400;
     z-index: 0;
+}
+
+.tag-template .site-title, .tag-template .site-description {
+    text-align: left;
 }
 
 .side-menu {
@@ -113,6 +152,14 @@ a:focus {
     display: none;
 }
 
+.post-template .mobile-nav {
+    background: #fff;
+}
+
+.post-template .mobile-nav, .tag-template .mobile-nav {
+    display: block;
+}
+
 .mobile-nav li a {
     color: #333;
     padding: 10px 0px;
@@ -123,6 +170,8 @@ a:focus {
     margin: 0;
     padding: 0 13px;
     font-size: 1.3rem;
+    max-width: 1040px;
+    margin: 0 auto;
 }
 
 @media (max-width: 640px) {
@@ -264,6 +313,10 @@ a:focus {
     text-transform: capitalize;
 }
 
+.mobile-nav {
+    padding-top: 16px;
+}
+
 .side-bar-close:hover svg path {
     fill: #575757;
 }
@@ -319,9 +372,6 @@ a:focus {
 .post-full-image {
     background-color: #fff;
     background-repeat: no-repeat;
-    background-size: contain;
-    margin: 0 -4vw 0;
-    max-height: 500px;
 }
 
 .post-full-content:before,
