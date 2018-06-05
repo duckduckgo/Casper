@@ -243,6 +243,26 @@ a:focus {
     color: #888;
 }
 
+.side-bar-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2em 1em 1em;
+}
+
+.side-bar-close svg {
+    height: 18px;
+}
+
+.side-bar-close svg path {
+    fill: #bfbfbf;
+    transition: fill .15s ease-in-out 0s;
+}
+
+.side-bar-close:hover svg path {
+    fill: #575757;
+}
+
 @media (max-width: 980px) {
     .site-nav-right {
         display: none;
