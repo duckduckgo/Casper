@@ -260,6 +260,10 @@ a:focus {
     transition: fill .15s ease-in-out 0s;
 }
 
+.mobile-nav .nav li {
+    text-transform: capitalize;
+}
+
 .side-bar-close:hover svg path {
     fill: #575757;
 }
@@ -283,7 +287,7 @@ a:focus {
 }
 
 @media (max-width: 740px) {
-    .site-nav .nav-home, .site-nav .nav-about {
+    .site-nav .nav-about {
         display: none;
     }
 }
