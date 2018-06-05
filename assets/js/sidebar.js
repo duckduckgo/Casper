@@ -1,4 +1,6 @@
 $(function() {
+    'use strict';
+
     var $body = $('body');
     var $sidemenu = $('.side-menu');
     var $sidebar = $('.side-bar');
