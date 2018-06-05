@@ -1,8 +1,8 @@
 $(function() {
-    var $sidenav = $('.side-nav');
+    var $sidemenu = $('.side-menu');
     var $sidebar = $('.side-bar');
 
-    $sidenav.click(function() {
+    $sidemenu.click(function() {
         $sidebar.addClass('show');
     });
 });
