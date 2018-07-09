@@ -2,10 +2,12 @@
 {{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
 
 {{#author}}
+
+{{> side-nav}}
+
 {{!-- Everything inside the #author tags pulls data from the author --}}
 <header class="site-header outer {{#if cover_image}}" style="background-image: url({{cover_image}}){{else}}no-cover{{/if}}">
     <div class="inner">
-        {{> "site-nav"}}
         <div class="site-header-content">
             {{#if profile_image}}
                 <img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" />
@@ -33,9 +35,12 @@
                 <a class="social-link social-link-rss" href="https://feedly.com/i/subscription/feed/{{url absolute="true"}}rss/" target="_blank" rel="noopener">{{> "icons/rss"}}</a>
             </div>
         </div>
+        {{> "site-nav"}}
     </div>
 </header>
 {{/author}}
+
+{{> mobile-nav}}
 
 {{!-- The main content area --}}
 <main id="site-main" class="site-main outer">
