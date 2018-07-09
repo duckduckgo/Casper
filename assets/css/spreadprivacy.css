@@ -7,6 +7,11 @@
     /* Colours */
     --lightblue: #60a5da;
     --blue: #3eb0ef; /* Use same as in global.css */
+
+    /* Mobile Navigation */
+    --nav-fontsize: 1.3rem;
+    --nav-color: #333;
+    --nav-separator: #e9e9ea;
 }
 
 /* ==========================================================================
@@ -148,30 +153,35 @@ a:focus {
     padding: 18px 10px;
 }
 
+/* Mobile Navigation
+   ----------------------------
+
+   Mobile navigation has the styles for the mobile version
+   of the local nav. This includes links to "Home" and the 
+   various tags.
+*/
+
 .mobile-nav {
+    border-bottom: 1px solid var(--nav-separator);
+    background: white;
     display: none;
 }
 
-.post-template .mobile-nav {
-    background: #fff;
+.mobile-nav .nav {
+    font-size: var(--nav-fontsize);
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 0 13px;
+    max-width: 1040px;
+}
+
+.mobile-nav li a {
+    color: var(--nav-color);
+    padding: 10px 0px;
 }
 
 .post-template .mobile-nav, .tag-template .mobile-nav {
     display: block;
-}
-
-.mobile-nav li a {
-    color: #333;
-    padding: 10px 0px;
-}
-
-.mobile-nav .nav {
-    justify-content: space-around;
-    margin: 0;
-    padding: 0 13px;
-    font-size: 1.3rem;
-    max-width: 1040px;
-    margin: 0 auto;
 }
 
 .post-full-header .post-full-meta-date {
@@ -319,10 +329,6 @@ a:focus {
 
 .mobile-nav .nav li {
     text-transform: capitalize;
-}
-
-.mobile-nav {
-    padding-top: 16px;
 }
 
 .side-bar-close:hover svg path {
