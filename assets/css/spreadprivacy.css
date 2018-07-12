@@ -10,13 +10,15 @@
     /* Colors */
     --lightblue: #60a5da;
     --blue: #3eb0ef;
-    --grey: #999;
+    --secondary-text: #999;
+    --primary-text: #333;
 
-    /* Mobile Navigation */
+    /* Navigation */
     --nav-fontsize: 1.3rem;
     --nav-color: #333;
-    --nav-separator: #e9e9ea;
+    --nav-separator: #e5e5e5;
     --nav-bottom-spacing: 2rem;
+    --nav-max-width: 1040px;
 
     /* Site Header */
     --header-bottom-spacing: 2rem;
@@ -41,6 +43,76 @@
     padding: 3vw 4vw;
     padding-top: 0;
     min-height: initial;
+}
+
+/*
+   Desktop Navigation
+   ----------------------------
+
+   This is the navigation on bigger screen widths.
+   This replaces the mobile navigation below when the
+   screen size increases.
+*/
+
+.site-nav {
+    background: white;
+    color: var(--primary-text);
+    border-bottom: 1px solid var(--nav-separator);
+    padding: 0 4vw;
+    width: 100%;
+    z-index: 0;
+    margin-bottom: var(--header-bottom-spacing);
+}
+
+.site-nav-container {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    max-width: var(--nav-max-width);
+}
+
+.site-nav-right {
+    margin-left: auto;
+}
+
+@media (min-width: 1060px) {
+    .site-nav-container {
+        padding: 0 2vw;
+    }
+}
+
+@media (min-width: 1140px) {
+    .site-nav-container {
+        padding: 0;
+    }
+}
+
+.site-nav .nav li a {
+    color: currentColor; /* Inherit the color from the parent */
+}
+
+/* Remove the margins when we're on the blog post itself.
+   This is because it's adding an extra blue space between
+   the nav and the article. */
+.post-template .site-nav {
+    margin-bottom: 0;
+}
+
+.social-link {
+    color: currentColor;
+}
+
+.social-link svg {
+    height: 1.8rem;
+    fill: currentColor;
+}
+
+.rss-button {
+    color: currentColor;
+}
+
+.rss-button svg {
+    fill: currentColor;
 }
 
 /* Mobile Navigation
@@ -105,7 +177,7 @@ a:focus, a:hover {
     text-transform: uppercase;
     font-size: 1.1rem;
     line-height: 1.5;
-    color: var(--grey);
+    color: var(--secondary-text);
     font-weight: 600;
 }
 
@@ -124,11 +196,6 @@ a:focus, a:hover {
     .home-template .post-feed,
     .tag-template .post-feed {
         margin-top: 0;
-    }
-    .home-template .site-nav {
-        position: relative;
-        top: -20px;
-        z-index: 300;
     }
 }
 
@@ -155,10 +222,6 @@ a:focus, a:hover {
     .tag-template .site-header-content {
         padding: 7vw 4vw;
     }
-}
-
-.tag-template .site-nav {
-    display: none;
 }
 
 .tag-template .site-header-content .site-description {
@@ -252,10 +315,6 @@ a:focus, a:hover {
 
 /* 5. Site Navigation
 /* ---------------------------------------------------------- */
-
-.tag-template .site-nav, .post-template .site-nav {
-    margin-bottom: 20px;
-}
 
 .nav-logo {
     height: 33px;
