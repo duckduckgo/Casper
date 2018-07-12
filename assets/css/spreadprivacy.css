@@ -1,28 +1,116 @@
-/* OVERWRITING GLOBAL.CSS */
+/* Spread Privacy
+   ----------------------------
 
-/* Variables
-/* ---------------------------------------------------------- */
+   This CSS contains all the changes that we want to do to
+   the Casper theme. The modifications here match the styleguide
+   of DuckDuckGo.
+*/
 
 :root {
-    /* Colours */
+    /* Colors */
     --lightblue: #60a5da;
-    --blue: #3eb0ef; /* Use same as in global.css */
+    --blue: #3eb0ef;
+    --grey: #999;
 
     /* Mobile Navigation */
     --nav-fontsize: 1.3rem;
     --nav-color: #333;
     --nav-separator: #e9e9ea;
+    --nav-bottom-spacing: 2rem;
+
+    /* Site Header */
+    --header-bottom-spacing: 2rem;
+
+    /* Post */
+    --post-spacing: 3rem;
 }
 
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
+/* Site Header
+   ----------------------------
+   Spacing between the title & subtitle vs the rest 
+   of the content.
+*/
 
-a:focus {
+.site-header {
+    background: var(--lightblue);
+    padding: 0 4vw;
+    padding-bottom: var(--header-bottom-spacing);
+}
+
+.site-header-content {
+    padding: 3vw 4vw;
+    padding-top: 0;
+    min-height: initial;
+}
+
+/* Mobile Navigation
+   ----------------------------
+
+   Mobile navigation has the styles for the mobile version
+   of the local nav. This includes links to "Home" and the 
+   various tags.
+*/
+
+.mobile-nav {
+    display: none;
+    border-bottom: 1px solid var(--nav-separator);
+    background: white;
+    margin-bottom: var(--nav-bottom-spacing);
+}
+
+.mobile-nav .nav {
+    font-size: var(--nav-fontsize);
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 0 13px;
+    max-width: 1040px;
+}
+
+.mobile-nav li a {
+    color: var(--nav-color);
+    padding: 10px 0px;
+}
+
+/* Remove margin between the nav and the article title */
+.post-template .mobile-nav {
+    margin-bottom: 0;
+}
+
+/* Link styles
+   ----------------------------
+
+   Has styles for link interactions. This includes 
+   considerations for accessibility.
+*/
+
+a:focus, a:hover {
     text-decoration: underline;
 }
 
-/* OVERWRITING SCREEN.CSS */
+/* Post styles
+   ----------------------------
+
+   Styles on the blog posts.
+*/
+
+.post-full-header {
+    padding: var(--post-spacing) 0;
+}
+
+.post-full-content {
+    padding: var(--post-spacing) 0;
+}
+
+.post-full-meta-filed {
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: var(--grey);
+    font-weight: 600;
+}
+
+/* --- */
+
 
 .site-main {
     z-index: 100;
@@ -36,7 +124,6 @@ a:focus {
     .home-template .post-feed,
     .tag-template .post-feed {
         margin-top: 0;
-        padding-top: 40px;
     }
     .home-template .site-nav {
         position: relative;
@@ -45,26 +132,6 @@ a:focus {
     }
 }
 
-
-/* 4. Site Header
-/* ---------------------------------------------------------- */
-
-.site-header {
-    background: var(--lightblue);
-    padding: 0 4vw;
-}
-
-.site-header:before,
-.site-header:after {
-    background: none;
-}
-
-.site-header-content {
-    padding: 3vw 4vw;
-    padding-top: 0;
-    min-height: initial;
-    padding-top: 7px;
-}
 
 .site-header-content .author-profile-image {
     z-index: 0;
@@ -97,10 +164,6 @@ a:focus {
 .tag-template .site-header-content .site-description {
     color: #6c6c6c;
     margin-bottom: 0;
-}
-
-.tag-template .post-feed {
-    padding-top: 22px;
 }
 
 .site-title {
@@ -151,37 +214,6 @@ a:focus {
 .side-nav {
     background: #60a5da;
     padding: 18px 10px;
-}
-
-/* Mobile Navigation
-   ----------------------------
-
-   Mobile navigation has the styles for the mobile version
-   of the local nav. This includes links to "Home" and the 
-   various tags.
-*/
-
-.mobile-nav {
-    border-bottom: 1px solid var(--nav-separator);
-    background: white;
-    display: none;
-}
-
-.mobile-nav .nav {
-    font-size: var(--nav-fontsize);
-    justify-content: space-around;
-    margin: 0 auto;
-    padding: 0 13px;
-    max-width: 1040px;
-}
-
-.mobile-nav li a {
-    color: var(--nav-color);
-    padding: 10px 0px;
-}
-
-.post-template .mobile-nav, .tag-template .mobile-nav {
-    display: block;
 }
 
 .post-full-header .post-full-meta-date {

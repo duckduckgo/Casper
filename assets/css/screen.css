@@ -380,7 +380,6 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     display: flex;
     flex-wrap: wrap;
     margin: 0 -20px;
-    padding: 40px 0 0 0;
 }
 
 .post-card {
@@ -644,9 +643,6 @@ The first (most recent) post in the list is styled to be bigger than the others 
 
 /* Adjust some margins for smaller screens */
 @media (max-width: 650px) {
-    .post-feed {
-        padding-top: 5vw;
-    }
     .post-card {
         margin: 0 20px 5vw;
     }

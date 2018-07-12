@@ -16,14 +16,11 @@ into the {body} of the default.hbs template --}}
         <article class="post-full {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
 
             <header class="post-full-header">
-                <section class="post-full-meta">
-                    <a href="/">Home</a>
-                    {{#primary_tag}}
-                        <span class="date-divider">/</span> <a href="{{url}}">{{name}}</a>
-                    {{/primary_tag}}
-                </section>
                 <h1 class="post-full-title">{{title}}</h1>
-                <time class="post-full-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMMM YYYY"}}</time>
+                <section class="post-full-meta-filed">
+                    <span>Filed under {{#primary_tag}}{{name}}{{/primary_tag}} on </span>
+                    <time class="post-full-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                </section>
             </header>
 
             {{#if feature_image}}
