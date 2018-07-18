@@ -23,8 +23,18 @@
     /* Site Header */
     --header-bottom-spacing: 2rem;
 
-    /* Post */
+    /* Post styling*/
     --post-spacing: 3rem;
+    --title-font-size: 3rem;
+
+    /* Side menu */
+    --sidemenu-icon-background: rgba(0,0,0,0.15);
+    --sidemenu-icon-size: 17px;
+    --sidemenu-button-size: 33px;
+    --sidemenu-close-color: #bfbfbf;
+    --sidemenu-close-focus-color: #575757;
+    --sidemenu-section-color: #888;
+    --sidemenu-background: rgba(242,242,242,0.975);
 }
 
 /* Site Header
@@ -143,6 +153,10 @@
     padding: 10px 0px;
 }
 
+.mobile-nav .nav li {
+    text-transform: capitalize;
+}
+
 /* Remove margin between the nav and the article title */
 .post-template .mobile-nav {
     margin-bottom: 0;
@@ -179,6 +193,123 @@ a:focus, a:hover {
     line-height: 1.5;
     color: var(--secondary-text);
     font-weight: 600;
+}
+
+.post-full-title {
+    font-size: var(--title-font-size);
+    padding-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+    .post-full-title {
+        font-size: 4rem;
+    }
+
+    .post-full-meta-filed {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .post-full-title {
+        font-size: 5rem;
+    }
+}
+
+/* Side menu styles
+   ----------------------------
+
+   Styles for the global side menu.
+*/
+
+.side-menu {
+    border-radius: 3px;
+    height: var(--sidemenu-button-size);
+    width: var(--sidemenu-button-size);
+    text-align: center;
+    float: right;
+    padding-top: 3px;
+    padding-left: 1px;
+}
+
+.side-menu:hover, .side-menu:active {
+    background-color: var(--sidemenu-icon-background);
+}
+
+.side-menu svg {
+    width: var(--sidemenu-icon-size);
+    height: var(--sidemenu-icon-size);
+}
+
+/* We need to be specific to override the <path> prop. */
+.side-menu svg path {
+    fill: white;
+}
+
+.side-nav {
+    background: var(--lightblue);
+    padding: 18px 10px;
+}
+
+.side-bar {
+    position: fixed;
+    z-index: 101;
+    top: 0;
+    bottom: 0;
+    width: 14em;
+    right: 0;
+    background-color: var(--sidemenu-background);
+    height: 100%;
+    box-shadow: -1px 0 1px rgba(0,0,0,0.2);
+    transition: transform .3s ease-in-out 0s;
+    transform: translateX(100%);
+}
+
+.side-bar.show {
+    transform: translateX(0);
+}
+
+.side-bar .side-bar-list {
+    padding-left: 2.160rem;
+    padding-right: 0;
+    list-style: none;
+    font-size: 1.322rem;
+    color: var(--primary-text);
+}
+
+.side-bar .side-bar-list a {
+    color: var(--primary-text);
+}
+
+.side-bar .side-bar-title {
+    font-size: 1.080rem;
+    text-transform: uppercase; 
+
+    padding-top: 3.168rem;
+    padding-bottom: 2.303rem;
+    margin-bottom: -2.160rem;
+    
+    color: var(--sidemenu-section-color);
+}
+
+.side-bar-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2em 1em 1em;
+}
+
+.side-bar-close svg {
+    height: var(--sidemenu-icon-size);
+}
+
+.side-bar-close svg path {
+    fill: var(--sidemenu-close-color);
+    transition: fill .15s ease-in-out 0s;
+}
+
+.side-bar-close:hover svg path {
+    fill: var(--sidemenu-close-focus-color);
 }
 
 /* --- */
@@ -251,40 +382,8 @@ a:focus, a:hover {
     text-align: left;
 }
 
-.side-menu {
-    border-radius: 3px;
-    height: 33px;
-    width: 33px;
-    text-align: center;
-    float: right;
-    padding-top: 3px;
-    padding-left: 1px;
-}
-
-.side-menu:hover, .side-menu:active {
-    background-color: rgba(0,0,0,0.15);
-}
-
-.side-menu svg {
-    width: 17px;
-    height: 17px;
-}
-
-.side-menu svg path {
-    fill: white;
-}
-
-.side-nav {
-    background: #60a5da;
-    padding: 18px 10px;
-}
-
 .post-full-header .post-full-meta-date {
     color: #999;
-}
-
-.post-full-title {
-    padding-bottom: 2rem;
 }
 
 @media (max-width: 640px) {
@@ -361,69 +460,6 @@ a:focus, a:hover {
 
 .rss-button:focus {
     opacity: 1;
-}
-
-.side-bar {
-    position: fixed;
-    z-index: 101;
-    top: 0;
-    bottom: 0;
-    width: 14em;
-    right: 0;
-    background-color: rgba(242,242,242,0.975);
-    height: 100%;
-    box-shadow: -1px 0 1px rgba(0,0,0,0.2);
-    transition: transform .3s ease-in-out 0s;
-    transform: translateX(100%);
-}
-
-.side-bar.show {
-    transform: translateX(0);
-}
-
-.side-bar .side-bar-list {
-    padding-left: 2.160rem;
-    padding-right: 0;
-    list-style: none;
-    font-size: 1.322rem;
-    color: #333;
-}
-
-.side-bar .side-bar-list a {
-    color: #333;
-}
-
-.side-bar .side-bar-title {
-    font-size: 1.080rem;
-    text-transform: uppercase; 
-    padding-top: 3.168rem;
-    padding-bottom: 2.303rem;
-    margin-bottom: -2.160rem;
-    color: #888;
-}
-
-.side-bar-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 2em 1em 1em;
-}
-
-.side-bar-close svg {
-    height: 18px;
-}
-
-.side-bar-close svg path {
-    fill: #bfbfbf;
-    transition: fill .15s ease-in-out 0s;
-}
-
-.mobile-nav .nav li {
-    text-transform: capitalize;
-}
-
-.side-bar-close:hover svg path {
-    fill: #575757;
 }
 
 @media (max-width: 980px) {
