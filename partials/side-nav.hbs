@@ -1,23 +1,25 @@
 <div class="side-nav">
-    {{#is "post"}}
-        <a href="https://duckduckgo.com/">
-            <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="nav-logo"/>
-        </a>
-    {{/is}}
-    {{#is "author"}}
-        <a href="https://duckduckgo.com/">
-            <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="nav-logo"/>
-        </a>
-    {{/is}}
-    {{#is "tag"}}
-        <a href="https://duckduckgo.com/">
-            <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="nav-logo"/>
-        </a>
-    {{/is}}
+    <div class="side-nav-container">
+        {{#is "post"}}
+            <a href="https://duckduckgo.com/" class="nav-logo">
+                {{> "icons/logo-main"}}
+            </a>
+        {{/is}}
+        {{#is "author"}}
+            <a href="https://duckduckgo.com/" class="nav-logo">
+                {{> "icons/logo-main"}}
+            </a>
+        {{/is}}
+        {{#is "tag"}}
+            <a href="https://duckduckgo.com/" class="nav-logo">
+                {{> "icons/logo-main"}}
+            </a>
+        {{/is}}
 
-    <a href="#" class="side-menu">
-        {{> "icons/menu"}}
-    </a>
+        <a href="#" class="side-menu">
+            {{> "icons/menu"}}
+        </a>
+    </div>
 </div>
 
 <nav class="side-bar hide">

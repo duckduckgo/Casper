@@ -15,7 +15,11 @@ $(function() {
 
     // Show the sidemenu when the hamburger menu is clicked.
     $sidemenu.click(function() {
-        $sidebar.addClass('show');
+        if($sidebar.hasClass('show')) {
+            $sidebar.removeClass('show');
+        } else {
+            $sidebar.addClass('show');
+        }
     });
 
     // Hide the sidemenu when the X button is clicked/

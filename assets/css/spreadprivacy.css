@@ -316,6 +316,7 @@ a:focus, a:hover {
     float: right;
     padding-top: 3px;
     padding-left: 1px;
+    margin-top: 8px;
 }
 
 .side-menu:hover, .side-menu:active {
@@ -334,7 +335,40 @@ a:focus, a:hover {
 
 .side-nav {
     background: var(--lightblue);
-    padding: 18px 10px;
+    padding: 8px 4vw;
+}
+
+.side-nav-container {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+.home-template .side-nav-container {
+    max-width: initial;
+}
+
+/* Specific position adjustments for the logo and the
+   side menu. */
+
+.side-menu {
+    margin-right: -7px;
+}
+
+.nav-logo {
+    margin-left: -5px;
+}
+
+/* Reset these adjustments on bigger sizes. */
+
+@media (min-width: 760px) {
+    .home-template .side-menu, .home-template .nav-logo {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .home-template .side-nav {
+        padding: 18px 10px;
+    }
 }
 
 .side-bar {
@@ -448,15 +482,15 @@ a:focus, a:hover {
    Main page styles.
 */
 
+.site-logo {
+    max-height: 104px;
+    margin-bottom: 24px;
+}
+
 .site-title {
     font-size: 4rem;
     font-weight: 500;
     z-index: 10;
-}
-
-.site-logo {
-    max-height: 104px;
-    margin-bottom: 24px;
 }
 
 .site-description {
