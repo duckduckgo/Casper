@@ -89,12 +89,6 @@
     margin-left: auto;
 }
 
-@media (min-width: 1060px) {
-    .site-nav-container {
-        padding: 0 2vw;
-    }
-}
-
 @media (min-width: 1140px) {
     .site-nav-container {
         padding: 0;
@@ -207,9 +201,8 @@
 
 .mobile-nav .nav {
     font-size: var(--nav-fontsize);
-    justify-content: space-around;
-    margin: 0 auto;
-    padding: 0 13px;
+    justify-content: space-between;
+    margin: 0 4vw;
     max-width: 1040px;
 }
 
