@@ -1796,7 +1796,7 @@ Usage (In Ghost editor):
 }
 
 .post-template .kg-card-markdown > p:first-child {
-    font-size: 1.25em;
+    font-size: 1.1em;
     line-height: 1.5em;
 }
 /* ^ .kg-card-markdown will be deprecated */

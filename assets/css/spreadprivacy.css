@@ -21,7 +21,8 @@
     --nav-max-width: 1040px;
 
     /* Site Header */
-    --header-bottom-spacing: 2rem;
+    --header-bottom-spacing: 30px;
+    --tag-template-bottom-spacing: 65px;
 
     /* Post styling*/
     --post-spacing: 3rem;
@@ -54,7 +55,7 @@
 }
 
 .site-header-content {
-    padding: 3vw 4vw;
+    padding: 1vw 4vw;
     padding-top: 0;
     min-height: initial;
 }
@@ -72,10 +73,15 @@
     background: white;
     color: var(--primary-text);
     border-bottom: 1px solid var(--nav-separator);
-    padding: 0 4vw;
+    padding: 10px 4vw;
     width: 100%;
+    height: auto;
     z-index: 0;
     margin-bottom: var(--header-bottom-spacing);
+}
+
+.tag-template .site-nav {
+    margin-bottom: var(--tag-template-bottom-spacing);
 }
 
 .site-nav-container {
@@ -199,6 +205,10 @@
     margin-bottom: var(--nav-bottom-spacing);
 }
 
+.tag-template .mobile-nav {
+    margin-bottom: var(--tag-template-bottom-spacing);
+}
+
 .mobile-nav .nav {
     font-size: var(--nav-fontsize);
     justify-content: space-between;
@@ -244,7 +254,7 @@ a:focus, a:hover {
 */
 
 .post-full-header {
-    padding: var(--post-spacing) 0;
+    padding: var(--tag-template-bottom-spacing) 0;
 }
 
 .post-full-content {
@@ -253,7 +263,7 @@ a:focus, a:hover {
 
 .post-full-meta-filed {
     text-transform: uppercase;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     line-height: 1.5;
     color: var(--secondary-text);
     font-weight: 600;
@@ -261,7 +271,7 @@ a:focus, a:hover {
 
 .post-full-title {
     font-size: var(--title-font-size);
-    padding-bottom: 1rem;
+    padding-bottom: 20px;
 }
 
 .post-card:focus {
@@ -286,9 +296,15 @@ a:focus, a:hover {
     }
 }
 
+@media (min-width: 560px) {
+    .post-full-title {
+        font-size: 4rem
+    }
+}
+
 @media (min-width: 768px) {
     .post-full-title {
-        font-size: 4rem;
+        font-size: 4.5rem
     }
 
     .post-full-meta-filed {
@@ -474,6 +490,7 @@ a:focus, a:hover {
 /* Remove the background on the tag view */
 .tag-template .site-header {
     background: initial;
+    padding-bottom: var(--tag-template-bottom-spacing);
 }
 
 /* Main page
@@ -491,6 +508,14 @@ a:focus, a:hover {
     font-size: 4rem;
     font-weight: 500;
     z-index: 10;
+}
+
+.tag-template .site-title {
+    padding-bottom: 20px;
+}
+
+.tag-template .site-description {
+    padding: 0;
 }
 
 .site-description {
