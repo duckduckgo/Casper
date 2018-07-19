@@ -38,6 +38,7 @@
 
     /* z-index */
     --z-index-main: 100;
+    --z-index-author: 0;
 }
 
 /* Site Header
@@ -226,6 +227,12 @@
     margin-bottom: 0;
 }
 
+@media (max-width: 640px) {
+    .mobile-nav {
+        display: block;
+    }
+}
+
 /* Link styles
    ----------------------------
 
@@ -262,6 +269,28 @@ a:focus, a:hover {
 .post-full-title {
     font-size: var(--title-font-size);
     padding-bottom: 1rem;
+}
+
+.post-card:focus {
+    box-shadow: 0 0 1px rgba(39,44,49,0.10), 0 3px 16px rgba(39, 44, 49,0.07);
+    transition: all 0.3s ease;
+    transform: translate3D(0, -1px, 0);
+}
+
+.post-card-content-link:focus {
+    text-decoration: none;
+}
+
+/* Hide the "Read More" button beside the author to give
+   the description more width to expand. */
+.post-full-footer-right {
+    display: none;
+}
+
+@media (min-width: 495px) {
+    .post-full-footer-right {
+        display: block;
+    }
 }
 
 @media (min-width: 768px) {
@@ -376,6 +405,23 @@ a:focus, a:hover {
     fill: var(--sidemenu-close-focus-color);
 }
 
+/* Tag template
+   ----------------------------
+
+   Style the tag view.
+*/
+
+
+.tag-template .site-header-content {
+    color: var(--primary-text);
+    padding-bottom: 0;
+}
+
+.tag-template .site-header-content .site-description {
+    color: var(--secondary-text);
+    margin-bottom: 0;
+}
+
 /* Overrides
    ----------------------------
 
@@ -383,51 +429,31 @@ a:focus, a:hover {
    in screen.css.
 */
 
-/* Override z-index of .site-main so that it's below the side menu. */
+/* Override z-index of these elements so that they're below the side menu. */
 .site-main {
     z-index: var(--z-index-main);
 }
 
-/* 3. Special Template Styles
-/* ---------------------------------------------------------- */
-
-@media (min-width: 90px) {
-    .author-template .post-feed,
-    .home-template .post-feed,
-    .tag-template .post-feed {
-        margin-top: 0;
-    }
-}
-
-
 .site-header-content .author-profile-image {
-    z-index: 0;
+    z-index: var(--z-index-author);
 }
 
+/* screen.css applies a margin of -70px. We reset that since we moved the
+   component around. */
+.site-main .post-feed {
+    margin-top: 0;
+}
+
+/* Remove the background on the tag view */
 .tag-template .site-header {
     background: initial;
 }
 
-.tag-template .site-header-content {
-    align-items: start;
-    color: #333;
-    padding-bottom: 0;
-}
+/* Main page
+   ----------------------------
 
-@media (min-width: 700px) {
-    .tag-template .site-header-content {
-        align-items: center;
-    }
-
-    .tag-template .site-header-content {
-        padding: 7vw 4vw;
-    }
-}
-
-.tag-template .site-header-content .site-description {
-    color: #6c6c6c;
-    margin-bottom: 0;
-}
+   Main page styles.
+*/
 
 .site-title {
     font-size: 4rem;
@@ -447,18 +473,8 @@ a:focus, a:hover {
     z-index: 0;
 }
 
-.tag-template .site-title, .tag-template .site-description {
-    text-align: left;
-}
-
 .post-full-header .post-full-meta-date {
-    color: #999;
-}
-
-@media (max-width: 640px) {
-    .mobile-nav {
-        display: block;
-    }
+    color: var(--secondary-text);
 }
 
 @media (max-width: 590px) {
@@ -479,21 +495,6 @@ a:focus, a:hover {
         font-size: 1.5rem;
     }
 }
-
-
-/* 6. Post Feed
-/* ---------------------------------------------------------- */
-
-.post-card:focus {
-    box-shadow: 0 0 1px rgba(39,44,49,0.10), 0 3px 16px rgba(39, 44, 49,0.07);
-    transition: all 0.3s ease;
-    transform: translate3D(0, -1px, 0);
-}
-
-.post-card-content-link:focus {
-    text-decoration: none;
-}
-
 
 /* 7. Single Post
 /* ---------------------------------------------------------- */
