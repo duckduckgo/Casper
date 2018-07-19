@@ -607,6 +607,30 @@ a:focus, a:hover {
     text-decoration: none;
 }
 
+.author-template .site-nav {
+    background: transparent;
+    border: none;
+    margin-bottom: 0;
+}
+
+.author-template .site-header {
+    margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+    .author-template .site-header {
+        margin-bottom: 30px;
+    }
+}
+
+.author-template .site-nav {
+    color: white;
+}
+
+.author-template .site-nav .nav li a {
+    color: white;
+}
+
 
 /* 7.4. Related posts
 /* ---------------------------------------------------------- */
