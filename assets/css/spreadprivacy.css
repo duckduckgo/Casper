@@ -35,6 +35,9 @@
     --sidemenu-close-focus-color: #575757;
     --sidemenu-section-color: #888;
     --sidemenu-background: rgba(242,242,242,0.975);
+
+    /* z-index */
+    --z-index-main: 100;
 }
 
 /* Site Header
@@ -108,8 +111,35 @@
     margin-bottom: 0;
 }
 
+/* This is the DDG logo. */
+.nav-logo {
+    height: 33px;
+    margin-left: -5px;
+}
+
+/* Reset the spacing in the navigation since we
+   now have it in a different location. */
+.site-nav-left {
+    margin-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.nav li a:hover,
+.nav li a:focus {
+    text-decoration: underline;
+    opacity: 1;
+}
+
+/* This is the part of the nav with the social icons. */
+
 .social-link {
     color: currentColor;
+    padding: 8px;
+}
+
+.social-link:focus, .social-link:hover {
+    opacity: 1;
 }
 
 .social-link svg {
@@ -117,12 +147,46 @@
     fill: currentColor;
 }
 
-.rss-button {
-    color: currentColor;
+.social-links a:last-of-type {
+    padding-right: 0;
 }
 
-.rss-button svg {
-    fill: currentColor;
+/* Adjust Twitter icon padding so that the icons
+   look like they're spaced out evenly. */
+.social-link-tw {
+    padding-right: 4px;
+}
+
+@media (max-width: 980px) {
+    .nav {
+        margin: 0 0 0 -1vw;
+    }
+
+    .site-nav {
+        font-size: 1.1rem;
+    }
+
+    .site-nav .nav li a {
+        padding: 10px 8px;
+    }
+
+    .site-nav-right {
+        display: none;
+    }
+}
+
+/* Hide the about link at 740px */
+@media (max-width: 740px) {
+    .site-nav .nav-about {
+        display: none;
+    }
+}
+
+/* Hide the whole nav at 640px and replace it */
+@media (max-width: 640px) {
+    .site-nav {
+        display: none;
+    }
 }
 
 /* Mobile Navigation
@@ -312,11 +376,16 @@ a:focus, a:hover {
     fill: var(--sidemenu-close-focus-color);
 }
 
-/* --- */
+/* Overrides
+   ----------------------------
 
+   We use this section to override some of the things defined
+   in screen.css.
+*/
 
+/* Override z-index of .site-main so that it's below the side menu. */
 .site-main {
-    z-index: 100;
+    z-index: var(--z-index-main);
 }
 
 /* 3. Special Template Styles
@@ -408,87 +477,6 @@ a:focus, a:hover {
     }
     .site-description {
         font-size: 1.5rem;
-    }
-}
-
-
-/* 5. Site Navigation
-/* ---------------------------------------------------------- */
-
-.nav-logo {
-    height: 33px;
-    margin-left: -5px;
-}
-
-.site-nav-left {
-    margin-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-}
-
-.site-nav-logo:focus {
-    text-decoration: none;
-}
-
-.nav li a:hover,
-.nav li a:focus {
-    text-decoration: underline;
-    opacity: 1;
-}
-
-.social-link {
-    padding: 8px;
-}
-
-.social-link:focus {
-    opacity: 1;
-}
-
-.social-links a:last-of-type {
-    padding-right: 0;
-}
-
-.social-link-email svg,
-.social-link-reddit svg {
-    height: 1.6rem;
-}
-
-.subscribe-button:focus {
-    text-decoration: none;
-    opacity: 1;
-}
-
-.rss-button:focus {
-    opacity: 1;
-}
-
-@media (max-width: 980px) {
-    .site-nav-right {
-        display: none;
-    }
-}
-
-@media (max-width: 840px) {
-    .nav {
-        margin: 0 0 0 -1vw;
-    }
-    .site-nav {
-        font-size: 1.1rem;
-    }
-    .site-nav .nav li a {
-        padding: 10px 8px;
-    }
-}
-
-@media (max-width: 740px) {
-    .site-nav .nav-about {
-        display: none;
-    }
-}
-
-@media (max-width: 640px) {
-    .site-nav {
-        display: none;
     }
 }
 
