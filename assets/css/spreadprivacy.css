@@ -12,9 +12,10 @@
     --blue: #3eb0ef;
     --secondary-text: #999;
     --primary-text: #333;
+    --link-color: #60A5DA;
 
     /* Navigation */
-    --nav-fontsize: 1.3rem;
+    --nav-fontsize: 1.5rem;
     --nav-color: #333;
     --nav-separator: #e5e5e5;
     --nav-bottom-spacing: 2rem;
@@ -128,8 +129,20 @@
 
 .nav li a:hover,
 .nav li a:focus {
-    text-decoration: underline;
+    color: var(--link-color);
     opacity: 1;
+}
+
+.nav-current {
+    font-weight: bold;
+}
+
+.home-template .nav-home,
+.tag-device-privacy-tips .nav-device-privacy-tips,
+.tag-privacy-newsletter .nav-privacy-newsletter,
+.tag-research .nav-privacy-research,
+.tag-duckduckgo .nav-duckduckgo-news {
+    font-weight: bold;
 }
 
 /* This is the part of the nav with the social icons. */
@@ -137,6 +150,7 @@
 .social-link {
     color: currentColor;
     padding: 8px;
+    padding-top: 11px;
 }
 
 .social-link:focus, .social-link:hover {
@@ -144,8 +158,9 @@
 }
 
 .social-link svg {
-    height: 1.8rem;
+    height: 12px;;
     fill: currentColor;
+    opacity: .5;
 }
 
 .social-links a:last-of-type {
@@ -184,7 +199,7 @@
 }
 
 /* Hide the whole nav at 640px and replace it */
-@media (max-width: 640px) {
+@media (max-width: 700px) {
     .site-nav {
         display: none;
     }
@@ -230,7 +245,7 @@
     margin-bottom: 0;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 700px) {
     .mobile-nav {
         display: block;
     }
@@ -471,6 +486,14 @@ a:focus, a:hover {
    We use this section to override some of the things defined
    in screen.css.
 */
+
+.site-nav {
+    font-size: var(--nav-fontsize);
+}
+
+.nav li {
+    text-transform: capitalize;
+}
 
 /* Override z-index of these elements so that they're below the side menu. */
 .site-main {
