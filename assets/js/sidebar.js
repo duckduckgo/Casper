@@ -12,6 +12,7 @@ $(function() {
     var sidenav = document.querySelector('.side-nav');
 
     var $sidebar = $(sidebar);
+    var $sidebarLinks = $sidebar.find('a');
 
     // Show the sidemenu when the hamburger menu is clicked.
     $sidemenu.click(function() {
@@ -22,7 +23,7 @@ $(function() {
         }
     });
 
-    // Hide the sidemenu when the X button is clicked/
+    // Hide the sidemenu when the X button is clicked
     $sideclose.click(function() {
         $sidebar.removeClass('show');
     });
@@ -33,5 +34,18 @@ $(function() {
            !$.contains(sidenav, el.target)) {
             $sidebar.removeClass('show');
         }
+    });
+
+    // Accessibility
+    // -------------
+    // When the links or buttons are focused we need to 
+    // open the sidemenu so that people would be able to see
+    // the focused elements.
+    $sidebarLinks.focus(function() {
+        $sidebar.addClass('show');
+    });
+
+    $sideclose.focus(function() {
+        $sidebar.addClass('show');
     });
 });

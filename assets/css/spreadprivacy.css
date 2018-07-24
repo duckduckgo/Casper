@@ -178,6 +178,8 @@
         margin: 0 0 0 -1vw;
     }
 
+    /* Make sure the navigation is taking up all
+       available space. */
     .site-nav .nav {
         width: 100%;
         display: flex;
@@ -283,7 +285,7 @@ a:focus, a:hover {
     padding: var(--tag-template-bottom-spacing) 0;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 450px) {
     .post-full-header {
         padding: 65px 0;
     }
@@ -367,7 +369,7 @@ a:focus, a:hover {
     margin-top: 8px;
 }
 
-.side-menu:hover, .side-menu:active {
+.side-menu:hover, .side-menu:active, .side-menu:focus {
     background-color: var(--sidemenu-icon-background);
 }
 
@@ -477,7 +479,7 @@ a:focus, a:hover {
     transition: fill .15s ease-in-out 0s;
 }
 
-.side-bar-close:hover svg path {
+.side-bar-close:hover svg path, .side-bar-close:focus svg path {
     fill: var(--sidemenu-close-focus-color);
 }
 
@@ -731,4 +733,38 @@ a:focus, a:hover {
         display: block;
         text-align: center;
     }
+}
+
+/* Accessibility 
+   -----------------------------
+
+   Add a navigation element when people are tabbing around.
+*/
+
+.nav-access {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: -20em;
+}
+
+.nav-access li {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-access a {
+    display: block;
+    background: rgba(255,255,255,.9);
+    padding: .5em 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.nav-access a:focus {
+    top: 20em;
 }
