@@ -85,6 +85,10 @@
     margin-bottom: var(--tag-template-bottom-spacing);
 }
 
+.home-template .site-nav {
+    margin-bottom: 40px;
+}
+
 .site-nav-container {
     display: flex;
     width: 100%;
@@ -104,6 +108,11 @@
 
 .site-nav .nav li a {
     color: currentColor; /* Inherit the color from the parent */
+    opacity: 1;
+}
+
+.nav li a {
+    opacity: 1;
 }
 
 /* Remove the margins when we're on the blog post itself.
@@ -282,13 +291,7 @@ a:focus, a:hover {
 */
 
 .post-full-header {
-    padding: var(--tag-template-bottom-spacing) 0;
-}
-
-@media (min-width: 450px) {
-    .post-full-header {
-        padding: 65px 0;
-    }
+    padding: var(--tag-template-bottom-spacing) 0 36px;
 }
 
 .post-full-content {
@@ -297,15 +300,16 @@ a:focus, a:hover {
 
 .post-full-meta-filed {
     text-transform: uppercase;
-    font-size: 1.3rem;
+    font-size: 12px;
     line-height: 1.5;
     color: var(--secondary-text);
     font-weight: 600;
+    letter-spacing: .3px;
 }
 
 .post-full-title {
     font-size: var(--title-font-size);
-    padding-bottom: 20px;
+    padding-bottom: 16px;
 }
 
 .post-card:focus {
@@ -339,10 +343,6 @@ a:focus, a:hover {
 @media (min-width: 768px) {
     .post-full-title {
         font-size: 4.5rem
-    }
-
-    .post-full-meta-filed {
-        font-size: 1.3rem;
     }
 }
 
@@ -496,7 +496,7 @@ a:focus, a:hover {
 }
 
 .tag-template .site-header-content .site-description {
-    color: var(--secondary-text);
+    color: #666;
     margin-bottom: 0;
 }
 
@@ -533,7 +533,7 @@ a:focus, a:hover {
 /* Remove the background on the tag view */
 .tag-template .site-header {
     background: initial;
-    padding-bottom: var(--tag-template-bottom-spacing);
+    padding-bottom: calc(var(--tag-template-bottom-spacing) + 6px);
 }
 
 /* Main page
@@ -554,7 +554,7 @@ a:focus, a:hover {
 }
 
 .tag-template .site-title {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .tag-template .site-description {
@@ -660,7 +660,7 @@ a:focus, a:hover {
     margin-bottom: 0;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 700px) {
     .author-template .site-header {
         margin-bottom: 30px;
     }

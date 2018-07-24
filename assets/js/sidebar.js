@@ -14,6 +14,8 @@ $(function() {
     var $sidebar = $(sidebar);
     var $sidebarLinks = $sidebar.find('a');
 
+    var $links = $('a');
+
     // Show the sidemenu when the hamburger menu is clicked.
     $sidemenu.click(function() {
         if($sidebar.hasClass('show')) {
@@ -47,5 +49,14 @@ $(function() {
 
     $sideclose.focus(function() {
         $sidebar.addClass('show');
+    });
+
+    // Close the sidebar when a link outside of the sidebar is 
+    // in focus.
+    $links.focus(function(el) {
+        if(!$.contains(sidebar, el.target) &&
+           !$.contains(sidenav, el.target)) {
+            $sidebar.removeClass('show');
+        }
     });
 });
