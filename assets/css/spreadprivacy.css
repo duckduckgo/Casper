@@ -23,7 +23,7 @@
 
     /* Site Header */
     --header-bottom-spacing: 30px;
-    --tag-template-bottom-spacing: 65px;
+    --tag-template-bottom-spacing: 30px;
 
     /* Post styling*/
     --post-spacing: 3rem;
@@ -178,6 +178,17 @@
         margin: 0 0 0 -1vw;
     }
 
+    .site-nav .nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+    }
+
+    .site-nav-left, .site-nav-container {
+        width: 100%;
+    }
+
     .site-nav {
         font-size: 1.1rem;
     }
@@ -192,7 +203,7 @@
 }
 
 /* Hide the about link at 740px */
-@media (max-width: 740px) {
+@media (max-width: 760px) {
     .site-nav .nav-about {
         display: none;
     }
@@ -233,7 +244,7 @@
 
 .mobile-nav li a {
     color: var(--nav-color);
-    padding: 10px 0px;
+    padding: 15px 0px;
 }
 
 .mobile-nav .nav li {
@@ -270,6 +281,12 @@ a:focus, a:hover {
 
 .post-full-header {
     padding: var(--tag-template-bottom-spacing) 0;
+}
+
+@media (min-width: 400px) {
+    .post-full-header {
+        padding: 65px 0;
+    }
 }
 
 .post-full-content {
@@ -448,6 +465,7 @@ a:focus, a:hover {
     top: 0;
     right: 0;
     padding: 2em 1em 1em;
+    background: transparent;
 }
 
 .side-bar-close svg {
