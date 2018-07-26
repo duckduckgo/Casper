@@ -440,7 +440,7 @@ a:focus, a:hover {
 }
 
 .side-bar .side-bar-list {
-    padding-left: 2.160rem;
+    padding-left: 1.440rem;
     padding-right: 0;
     list-style: none;
     font-size: 1.322rem;
@@ -453,20 +453,24 @@ a:focus, a:hover {
 
 .side-bar .side-bar-title {
     font-size: 1.080rem;
-    text-transform: uppercase; 
+    text-transform: uppercase;
 
-    padding-top: 3.168rem;
-    padding-bottom: 2.303rem;
-    margin-bottom: -2.160rem;
+    padding-top: 2.9rem;
+    padding-bottom: 1.7rem;
+    margin-bottom: -1rem;
     
     color: var(--sidemenu-section-color);
+}
+
+.side-bar li {
+    margin: 0;
 }
 
 .side-bar-close {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 2em 1em 1em;
+    padding: 1.5em .8em;
     background: transparent;
 }
 
