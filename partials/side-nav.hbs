@@ -1,0 +1,67 @@
+<div class="side-nav">
+    <div class="side-nav-container">
+        {{#is "post"}}
+            <a href="https://duckduckgo.com/" class="nav-logo">
+                {{> "icons/logo-main"}}
+            </a>
+        {{/is}}
+        {{#is "author"}}
+            <a href="https://duckduckgo.com/" class="nav-logo">
+                {{> "icons/logo-main"}}
+            </a>
+        {{/is}}
+        {{#is "tag"}}
+            <a href="https://duckduckgo.com/" class="nav-logo">
+                {{> "icons/logo-main"}}
+            </a>
+        {{/is}}
+
+        <a href="#" class="side-menu">
+            {{> "icons/menu"}}
+        </a>
+    </div>
+</div>
+
+<nav class="side-bar hide">
+    <button class="side-bar-close">{{> icons/close}}</button>
+    <ul class="side-bar-list">
+        <li class="side-bar-title">Menu</li>
+        <li>
+            <a href="https://duckduckgo.com/about">About</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/settings">Settings</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/bangs">Bangs</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/spread">Spread</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/hiring">Careers</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/press">Press</a>
+        </li>
+
+        <li class="side-bar-title">Privacy</li>
+        <li>
+            <a href="https://spreadprivacy.com/">Blog</a>
+        </li>
+        <li>
+            <a href="https://donttrack.us">DontTrack.us</a>
+        </li>
+        <li>
+            <a href="https://duckduckgo.com/privacy">Policy</a>
+        </li>
+
+        <li class="side-bar-title">Keep In Touch</li>
+        <li>
+            <a href="https://twitter.com/duckduckgo">Twitter</a>
+        </li>
+        <li>
+            <a href="https://reddit.com/r/duckduckgo">Reddit</a>
+        </li>
+    </ul>
+</nav>

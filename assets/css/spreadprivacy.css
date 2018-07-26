@@ -1,0 +1,778 @@
+/* Spread Privacy
+   ----------------------------
+
+   This CSS contains all the changes that we want to do to
+   the Casper theme. The modifications here match the styleguide
+   of DuckDuckGo.
+*/
+
+:root {
+    /* Colors */
+    --lightblue: #60a5da;
+    --blue: #3eb0ef;
+    --secondary-text: #999;
+    --primary-text: #333;
+    --link-color: #60A5DA;
+
+    /* Navigation */
+    --nav-fontsize: 1.5rem;
+    --nav-color: #333;
+    --nav-separator: #e5e5e5;
+    --nav-bottom-spacing: 2rem;
+    --nav-max-width: 1040px;
+
+    /* Site Header */
+    --header-bottom-spacing: 30px;
+    --tag-template-bottom-spacing: 30px;
+
+    /* Post styling*/
+    --post-spacing: 3rem;
+    --title-font-size: 3rem;
+
+    /* Side menu */
+    --sidemenu-icon-background: rgba(0,0,0,0.15);
+    --sidemenu-icon-size: 17px;
+    --sidemenu-button-size: 33px;
+    --sidemenu-close-color: #bfbfbf;
+    --sidemenu-close-focus-color: #575757;
+    --sidemenu-section-color: #888;
+    --sidemenu-background: rgba(242,242,242,0.975);
+
+    /* z-index */
+    --z-index-main: 100;
+    --z-index-author: 0;
+}
+
+/* Site Header
+   ----------------------------
+   Spacing between the title & subtitle vs the rest 
+   of the content.
+*/
+
+.site-header {
+    background: var(--lightblue);
+    padding: 0 4vw;
+    padding-bottom: var(--header-bottom-spacing);
+}
+
+.site-header-content {
+    padding: 1vw 4vw;
+    padding-top: 0;
+    min-height: initial;
+}
+
+/*
+   Desktop Navigation
+   ----------------------------
+
+   This is the navigation on bigger screen widths.
+   This replaces the mobile navigation below when the
+   screen size increases.
+*/
+
+.site-nav {
+    background: white;
+    color: var(--primary-text);
+    border-bottom: 1px solid var(--nav-separator);
+    padding: 10px 4vw;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    margin-bottom: var(--header-bottom-spacing);
+}
+
+.tag-template .site-nav {
+    margin-bottom: var(--tag-template-bottom-spacing);
+}
+
+.home-template .site-nav {
+    margin-bottom: 40px;
+}
+
+.site-nav-container {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    max-width: var(--nav-max-width);
+}
+
+.site-nav-right {
+    margin-left: auto;
+}
+
+@media (min-width: 1140px) {
+    .site-nav-container {
+        padding: 0;
+    }
+}
+
+.site-nav .nav li a {
+    color: currentColor; /* Inherit the color from the parent */
+    opacity: 1;
+}
+
+.nav li a {
+    opacity: 1;
+}
+
+/* Remove the margins when we're on the blog post itself.
+   This is because it's adding an extra blue space between
+   the nav and the article. */
+.post-template .site-nav {
+    margin-bottom: 0;
+}
+
+/* This is the DDG logo. */
+.nav-logo {
+    height: 33px;
+    margin-left: -5px;
+}
+
+/* Reset the spacing in the navigation since we
+   now have it in a different location. */
+.site-nav-left {
+    margin-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.nav li a:hover,
+.nav li a:focus {
+    color: var(--link-color);
+    opacity: 1;
+}
+
+.nav-current {
+    font-weight: bold;
+}
+
+.home-template .nav-home,
+.tag-device-privacy-tips .nav-device-privacy-tips,
+.tag-privacy-newsletter .nav-privacy-newsletter,
+.tag-research .nav-privacy-research,
+.tag-duckduckgo .nav-duckduckgo-news {
+    font-weight: bold;
+}
+
+/* This is the part of the nav with the social icons. */
+
+.social-link {
+    color: currentColor;
+    padding: 8px;
+    padding-top: 11px;
+}
+
+.social-link:focus, .social-link:hover {
+    opacity: 1;
+}
+
+.social-link svg {
+    height: 12px;;
+    fill: currentColor;
+    opacity: .5;
+}
+
+.social-links a:last-of-type {
+    padding-right: 0;
+}
+
+/* Adjust Twitter icon padding so that the icons
+   look like they're spaced out evenly. */
+.social-link-tw {
+    padding-right: 4px;
+}
+
+@media (max-width: 980px) {
+    .nav {
+        margin: 0 0 0 -1vw;
+    }
+
+    /* Make sure the navigation is taking up all
+       available space. */
+    .site-nav .nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+    }
+
+    .site-nav-left, .site-nav-container {
+        width: 100%;
+    }
+
+    .site-nav {
+        font-size: 1.1rem;
+    }
+
+    .site-nav .nav li a {
+        padding: 10px 8px;
+    }
+
+    .site-nav-right {
+        display: none;
+    }
+}
+
+/* Hide the about link at 740px */
+@media (max-width: 760px) {
+    .site-nav .nav-about {
+        display: none;
+    }
+}
+
+/* Hide the whole nav at 640px and replace it */
+@media (max-width: 700px) {
+    .site-nav {
+        display: none;
+    }
+}
+
+/* Mobile Navigation
+   ----------------------------
+
+   Mobile navigation has the styles for the mobile version
+   of the local nav. This includes links to "Home" and the 
+   various tags.
+*/
+
+.mobile-nav {
+    display: none;
+    border-bottom: 1px solid var(--nav-separator);
+    background: white;
+    margin-bottom: var(--nav-bottom-spacing);
+}
+
+.tag-template .mobile-nav {
+    margin-bottom: var(--tag-template-bottom-spacing);
+}
+
+.mobile-nav .nav {
+    font-size: var(--nav-fontsize);
+    justify-content: space-between;
+    margin: 0 4vw;
+    max-width: 1040px;
+}
+
+.mobile-nav li a {
+    color: var(--nav-color);
+    padding: 15px 0px;
+}
+
+.mobile-nav .nav li {
+    text-transform: capitalize;
+}
+
+/* Remove margin between the nav and the article title */
+.post-template .mobile-nav {
+    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+    .mobile-nav {
+        display: block;
+    }
+}
+
+/* Link styles
+   ----------------------------
+
+   Has styles for link interactions. This includes 
+   considerations for accessibility.
+*/
+
+a:focus, a:hover {
+    text-decoration: underline;
+}
+
+/* Post styles
+   ----------------------------
+
+   Styles on the blog posts.
+*/
+
+.post-full-header {
+    padding: var(--tag-template-bottom-spacing) 0 36px;
+}
+
+.post-full-content {
+    padding: var(--post-spacing) 0;
+}
+
+.post-full-meta-filed {
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--secondary-text);
+    font-weight: 600;
+    letter-spacing: .3px;
+}
+
+.post-full-meta-filed a {
+    color: currentColor;
+}
+
+.post-full-title {
+    font-size: var(--title-font-size);
+    padding-bottom: 16px;
+}
+
+.post-card:focus {
+    box-shadow: 0 0 1px rgba(39,44,49,0.10), 0 3px 16px rgba(39, 44, 49,0.07);
+    transition: all 0.3s ease;
+    transform: translate3D(0, -1px, 0);
+}
+
+.post-card-content-link:focus {
+    text-decoration: none;
+}
+
+/* Hide the "Read More" button beside the author to give
+   the description more width to expand. */
+.post-full-footer-right {
+    display: none;
+}
+
+@media (min-width: 495px) {
+    .post-full-footer-right {
+        display: block;
+    }
+}
+
+@media (min-width: 560px) {
+    .post-full-title {
+        font-size: 4rem
+    }
+}
+
+@media (min-width: 768px) {
+    .post-full-title {
+        font-size: 4.5rem
+    }
+}
+
+@media (min-width: 1200px) {
+    .post-full-title {
+        font-size: 5rem;
+    }
+}
+
+/* Side menu styles
+   ----------------------------
+
+   Styles for the global side menu.
+*/
+
+.side-menu {
+    border-radius: 3px;
+    height: var(--sidemenu-button-size);
+    width: var(--sidemenu-button-size);
+    text-align: center;
+    float: right;
+    padding-top: 3px;
+    padding-left: 1px;
+    margin-top: 8px;
+}
+
+.side-menu:hover, .side-menu:active, .side-menu:focus {
+    background-color: var(--sidemenu-icon-background);
+}
+
+.side-menu svg {
+    width: var(--sidemenu-icon-size);
+    height: var(--sidemenu-icon-size);
+}
+
+/* We need to be specific to override the <path> prop. */
+.side-menu svg path {
+    fill: white;
+}
+
+.side-nav {
+    background: var(--lightblue);
+    padding: 8px 4vw;
+}
+
+.side-nav-container {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+.home-template .side-nav-container {
+    max-width: initial;
+}
+
+/* Specific position adjustments for the logo and the
+   side menu. */
+
+.side-menu {
+    margin-right: -7px;
+}
+
+.nav-logo {
+    margin-left: -5px;
+}
+
+/* Reset these adjustments on bigger sizes. */
+
+@media (min-width: 760px) {
+    .home-template .side-menu, .home-template .nav-logo {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .home-template .side-nav {
+        padding: 18px 10px;
+    }
+}
+
+.side-bar {
+    position: fixed;
+    z-index: 101;
+    top: 0;
+    bottom: 0;
+    width: 13.4em;
+    right: 0;
+    background-color: var(--sidemenu-background);
+    height: 100%;
+    box-shadow: -1px 0 1px rgba(0,0,0,0.2);
+    transition: transform .3s ease-in-out 0s;
+    transform: translateX(100%);
+}
+
+.side-bar.show {
+    transform: translateX(0);
+}
+
+.side-bar .side-bar-list {
+    padding-left: 1.440rem;
+    padding-right: 0;
+    list-style: none;
+    font-size: 1.322rem;
+    color: var(--primary-text);
+}
+
+.side-bar .side-bar-list a {
+    color: var(--primary-text);
+}
+
+.side-bar .side-bar-title {
+    font-size: 1.080rem;
+    text-transform: uppercase;
+
+    padding-top: 2.9rem;
+    padding-bottom: 1.7rem;
+    margin-bottom: -1rem;
+    
+    color: var(--sidemenu-section-color);
+}
+
+.side-bar li {
+    margin: 0;
+}
+
+.side-bar-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.5em .8em;
+    background: transparent;
+}
+
+.side-bar-close svg {
+    height: var(--sidemenu-icon-size);
+}
+
+.side-bar-close svg path {
+    fill: var(--sidemenu-close-color);
+    transition: fill .15s ease-in-out 0s;
+}
+
+.side-bar-close:hover svg path, .side-bar-close:focus svg path {
+    fill: var(--sidemenu-close-focus-color);
+}
+
+/* Tag template
+   ----------------------------
+
+   Style the tag view.
+*/
+
+
+.tag-template .site-header-content {
+    color: var(--primary-text);
+    padding-bottom: 0;
+}
+
+.tag-template .site-header-content .site-description {
+    color: #666;
+    margin-bottom: 0;
+}
+
+/* Overrides
+   ----------------------------
+
+   We use this section to override some of the things defined
+   in screen.css.
+*/
+
+.site-nav {
+    font-size: var(--nav-fontsize);
+}
+
+.nav li {
+    text-transform: capitalize;
+}
+
+/* Override z-index of these elements so that they're below the side menu. */
+.site-main {
+    z-index: var(--z-index-main);
+}
+
+.site-header-content .author-profile-image {
+    z-index: var(--z-index-author);
+}
+
+/* screen.css applies a margin of -70px. We reset that since we moved the
+   component around. */
+.site-main .post-feed {
+    margin-top: 0;
+}
+
+/* Remove the background on the tag view */
+.tag-template .site-header {
+    background: initial;
+    padding-bottom: calc(var(--tag-template-bottom-spacing) + 6px);
+}
+
+/* Main page
+   ----------------------------
+
+   Main page styles.
+*/
+
+.site-logo {
+    max-height: 104px;
+    margin-bottom: 24px;
+}
+
+.site-title {
+    font-size: 4rem;
+    font-weight: 500;
+    z-index: 10;
+}
+
+.tag-template .site-title {
+    padding-bottom: 10px;
+}
+
+.tag-template .site-description {
+    padding: 0;
+}
+
+.site-description {
+    margin: 0 0 1em 0;
+    font-size: 2rem;
+    font-weight: 400;
+    z-index: 0;
+}
+
+.post-full-header .post-full-meta-date {
+    color: var(--secondary-text);
+}
+
+@media (max-width: 590px) {
+    .site-logo {
+        height: 80px;
+    }
+
+    .site-title {
+        font-size: 3.4rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .site-title {
+        font-size: 2.5rem;
+    }
+    .site-description {
+        font-size: 1.5rem;
+    }
+}
+
+/* 7. Single Post
+/* ---------------------------------------------------------- */
+
+.post-full-image {
+    background-color: #fff;
+    background-repeat: no-repeat;
+}
+
+.post-full-content:before,
+.post-full-content:after {
+    display:none;
+}
+
+.post-full-content a {
+    color: #3c484e;
+}
+
+.post-full-content a:focus {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.post-full-content img,
+.post-full-content video {
+    max-width: 700px;
+    width: auto;
+}
+
+.post-full-content h1,
+.post-full-content h2,
+.post-full-content h3,
+.post-full-content h4,
+.post-full-content h5,
+.post-full-content h6 {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+@media (max-width: 700px) {
+    .post-full-content img,
+    .post-full-content video {
+        max-width: 100%;
+    }
+}
+
+
+/* 7.2. Post Footer
+/* ---------------------------------------------------------- */
+
+.author-card-name a:focus {
+    text-decoration: none;
+}
+
+.author-card-button:focus {
+    border-color: var(--blue);
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.author-template .site-nav {
+    background: transparent;
+    border: none;
+    margin-bottom: 0;
+}
+
+.author-template .site-header {
+    margin-bottom: 0;
+}
+
+@media (min-width: 700px) {
+    .author-template .site-header {
+        margin-bottom: 30px;
+    }
+}
+
+.author-template .site-nav {
+    color: white;
+}
+
+.author-template .site-nav .nav li a {
+    color: white;
+}
+
+
+/* 7.4. Related posts
+/* ---------------------------------------------------------- */
+
+.read-next-card {
+    background: var(--lightblue) center center;
+}
+
+.read-next-card:before {
+    background: none;
+}
+
+.read-next-card-header-title a:focus {
+    text-decoration: none;
+}
+
+.read-next-card-content li a:focus {
+    opacity: 1;
+}
+
+/* 7.5. Floating Header
+/* ---------------------------------------------------------- */
+
+.floating-header-logo a:focus {
+    text-decoration: none;
+}
+
+
+/* 10. Subscribe Overlay
+/* ---------------------------------------------------------- */
+
+.subscribe-overlay-close:hover {
+    cursor: pointer;
+}
+
+
+/* 11. Site Footer
+/* ---------------------------------------------------------- */
+
+.site-footer {
+    background: var(--lightblue);
+}
+
+.site-footer-content,
+.site-footer-content a {
+    color: white;
+}
+
+.site-footer-content a:hover,
+.site-footer-content a:focus {
+    color: rgba(255,255,255,1);
+    text-decoration: underline;
+}
+
+@media (max-width: 650px) {
+    .site-footer-nav {
+        display: block;
+        text-align: center;
+    }
+}
+
+/* Accessibility 
+   -----------------------------
+
+   Add a navigation element when people are tabbing around.
+*/
+
+.nav-access {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: -20em;
+}
+
+.nav-access li {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-access a {
+    display: block;
+    background: rgba(255,255,255,.9);
+    padding: .5em 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.nav-access a:focus {
+    top: 20em;
+}
