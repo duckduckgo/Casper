@@ -426,7 +426,7 @@ a:focus, a:hover {
     z-index: 101;
     top: 0;
     bottom: 0;
-    width: 14em;
+    width: 13.4em;
     right: 0;
     background-color: var(--sidemenu-background);
     height: 100%;
