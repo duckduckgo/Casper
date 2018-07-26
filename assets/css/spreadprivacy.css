@@ -307,6 +307,10 @@ a:focus, a:hover {
     letter-spacing: .3px;
 }
 
+.post-full-meta-filed a {
+    color: currentColor;
+}
+
 .post-full-title {
     font-size: var(--title-font-size);
     padding-bottom: 16px;
