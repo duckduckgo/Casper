@@ -182,7 +182,7 @@
     padding-right: 4px;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1040px) {
     .nav {
         margin: 0 0 0 -1vw;
     }
@@ -213,15 +213,8 @@
     }
 }
 
-/* Hide the about link at 740px */
-@media (max-width: 760px) {
-    .site-nav .nav-about {
-        display: none;
-    }
-}
-
-/* Hide the whole nav at 640px and replace it */
-@media (max-width: 700px) {
+/* Hide the whole nav at 900px and replace it */
+@media (max-width: 900px) {
     .site-nav {
         display: none;
     }
@@ -258,18 +251,30 @@
     padding: 15px 0px;
 }
 
-.mobile-nav .nav li {
-    text-transform: capitalize;
-}
-
 /* Remove margin between the nav and the article title */
 .post-template .mobile-nav {
     margin-bottom: 0;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
     .mobile-nav {
         display: block;
+    }
+    
+    .mobile-nav .linebreak {
+        display: none;
+    }
+}
+
+@media (max-width: 560px) {
+    /* Split the nav bar onto two rows for small screens */
+    .mobile-nav .nav {
+        flex-flow: row wrap;
+    }
+
+    .mobile-nav .linebreak {
+        display: block;
+        width: 100%;
     }
 }
 
