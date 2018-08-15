@@ -61,6 +61,11 @@
     min-height: initial;
 }
 
+.site-header-container {
+    background: var(--lightblue);
+    min-height: 77px;
+}
+
 /*
    Desktop Navigation
    ----------------------------
@@ -390,6 +395,7 @@ a:focus, a:hover {
 .side-nav {
     background: var(--lightblue);
     padding: 8px 4vw;
+    min-height: 4em;
 }
 
 .side-nav-container {
