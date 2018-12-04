@@ -45,7 +45,7 @@
 
 /* Site Header
    ----------------------------
-   Spacing between the title & subtitle vs the rest 
+   Spacing between the title & subtitle vs the rest
    of the content.
 */
 
@@ -236,7 +236,7 @@
    ----------------------------
 
    Mobile navigation has the styles for the mobile version
-   of the local nav. This includes links to "Home" and the 
+   of the local nav. This includes links to "Home" and the
    various tags.
 */
 
@@ -281,7 +281,7 @@
 /* Link styles
    ----------------------------
 
-   Has styles for link interactions. This includes 
+   Has styles for link interactions. This includes
    considerations for accessibility.
 */
 
@@ -468,7 +468,7 @@ a:focus, a:hover {
     padding-top: 2.9rem;
     padding-bottom: 1.7rem;
     margin-bottom: -1rem;
-    
+
     color: var(--sidemenu-section-color);
 }
 
@@ -749,7 +749,124 @@ a:focus, a:hover {
     }
 }
 
-/* Accessibility 
+/* Newsletter
+   -----------------------------
+
+   This has the styles for the newsletter form at the bottom
+   of the blog posts.
+*/
+
+.newsletter {
+    padding-top: 2.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.newsletter__title {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.newsletter__tagline {
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 1.625em;
+}
+
+.newsletter__email {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    border: 1px solid #e6e6e6;
+    text-align: center;
+    margin-bottom: 1.125em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newsletter__submit {
+    text-transform: uppercase;
+    font-size: 14px;
+    height: 45px;
+    letter-spacing: 0.7px;
+    border-radius: 22px;
+    line-height: 37px;
+    color: #fff;
+    background-color: #66ABFF;
+    width: 100%;
+    border: 1px solid #4495d4;
+    font-weight: 600;
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newsletter__privacy {
+    color: #888;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1.35;
+    margin-bottom: 0;
+}
+
+.newsletter__illustration--mobile {
+    width: 239px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.newsletter__illustration--desktop {
+    width: 613px;
+    margin: auto;
+    position: absolute;
+    left: 45px;
+    right: 0;
+    margin-top: 7em;
+    display: none;
+    z-index: -1;
+}
+
+@media (min-width: 750px) {
+    .newsletter__illustration--mobile {
+        display: none;
+    }
+
+    .newsletter__illustration--desktop {
+        display: block;
+    }
+}
+
+.newsletter__privacy a {
+    color: #66ABFF;
+}
+
+@media (min-width: 470px) {
+    .newsletter__email, .newsletter__submit {
+        max-width: 250px;
+    }
+
+    .newsletter__tagline {
+        max-width: 355px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .newsletter__privacy {
+        max-width: 230px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 765px) {
+    .newsletter__title {
+        font-size: 3.5rem;
+    }
+}
+
+/* Accessibility
    -----------------------------
 
    Add a navigation element when people are tabbing around.
