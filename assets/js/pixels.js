@@ -37,7 +37,7 @@ $(function() {
         } else {
             // Otherwise we go with creating an <img> element
             // and setting the src attribute with the GIF.
-            let pixel = $('img');
+            let pixel = $('<img>');
             pixel.attr('src', pixelPath + data);
         }
     }
