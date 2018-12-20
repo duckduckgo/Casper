@@ -13,6 +13,7 @@
     --secondary-text: #999;
     --primary-text: #333;
     --link-color: #60A5DA;
+    --middarkgrey: #54666d;
 
     /* Navigation */
     --nav-fontsize: 1.5rem;
@@ -28,6 +29,8 @@
     /* Post styling*/
     --post-spacing: 3rem;
     --title-font-size: 3rem;
+    --sans-serif: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
+
 
     /* Side menu */
     --sidemenu-icon-background: rgba(0,0,0,0.15);
@@ -641,6 +644,23 @@ a:focus, a:hover {
 .post-full-content h6 {
     margin-top: 0px;
     padding-top: 0px;
+}
+
+blockquote {
+    font-style: italic;
+
+}
+
+figcaption {
+    font-style: italic;
+    color: var(--middarkgrey);
+    text-align: center;
+    font-family: var(--sans-serif);
+}
+
+.kg-embed-card figcaption {
+    font-size: 80%;
+    margin: -3.5em auto 3em;
 }
 
 @media (max-width: 700px) {
