@@ -616,6 +616,10 @@ a:focus, a:hover {
     background-repeat: no-repeat;
 }
 
+.post-full-content {
+    max-width: 800px;
+}
+
 .post-full-content:before,
 .post-full-content:after {
     display:none;
