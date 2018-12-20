@@ -793,11 +793,11 @@ The first (most recent) post in the list is styled to be bigger than the others 
 
 .post-full-content a {
     color: #000;
-    box-shadow: var(--blue) 0 -1px 0 inset;
+    box-shadow: var(--cornflower-blue-dark) 0 -1px 0 inset;
 }
 
 .post-full-content a:hover {
-    color: var(--blue);
+    color: var(--cornflower-blue-dark);
     text-decoration: none;
 }
 
