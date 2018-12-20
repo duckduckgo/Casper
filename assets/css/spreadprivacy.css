@@ -13,6 +13,8 @@
     --secondary-text: #999;
     --primary-text: #333;
     --link-color: #60A5DA;
+    --middarkgrey: #54666d;
+    --cornflower-blue: #678fff;
 
     /* Navigation */
     --nav-fontsize: 1.5rem;
@@ -28,6 +30,8 @@
     /* Post styling*/
     --post-spacing: 3rem;
     --title-font-size: 3rem;
+    --sans-serif: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
+
 
     /* Side menu */
     --sidemenu-icon-background: rgba(0,0,0,0.15);
@@ -50,7 +54,7 @@
 */
 
 .site-header {
-    background: var(--lightblue);
+    background: var(--cornflower-blue);
     padding: 0 4vw;
     padding-bottom: var(--header-bottom-spacing);
 }
@@ -393,7 +397,7 @@ a:focus, a:hover {
 }
 
 .side-nav {
-    background: var(--lightblue);
+    background: var(--cornflower-blue);
     padding: 8px 4vw;
     min-height: 4em;
 }
@@ -613,6 +617,10 @@ a:focus, a:hover {
     background-repeat: no-repeat;
 }
 
+.post-full-content {
+    max-width: 800px;
+}
+
 .post-full-content:before,
 .post-full-content:after {
     display:none;
@@ -641,6 +649,23 @@ a:focus, a:hover {
 .post-full-content h6 {
     margin-top: 0px;
     padding-top: 0px;
+}
+
+blockquote {
+    font-style: italic;
+
+}
+
+figcaption {
+    font-style: italic;
+    color: var(--middarkgrey);
+    text-align: center;
+    font-family: var(--sans-serif);
+}
+
+.kg-embed-card figcaption {
+    font-size: 80%;
+    margin: -3.5em auto 3em;
 }
 
 @media (max-width: 700px) {
@@ -693,7 +718,7 @@ a:focus, a:hover {
 /* ---------------------------------------------------------- */
 
 .read-next-card {
-    background: var(--lightblue) center center;
+    background: var(--cornflower-blue) center center;
 }
 
 .read-next-card:before {
@@ -728,7 +753,7 @@ a:focus, a:hover {
 /* ---------------------------------------------------------- */
 
 .site-footer {
-    background: var(--lightblue);
+    background: var(--cornflower-blue);
 }
 
 .site-footer-content,
@@ -794,7 +819,7 @@ a:focus, a:hover {
     border-radius: 22px;
     line-height: 37px;
     color: #fff;
-    background-color: #66ABFF;
+    background-color: var(--cornflower-blue);
     width: 100%;
     border: 1px solid #4495d4;
     font-weight: 600;
