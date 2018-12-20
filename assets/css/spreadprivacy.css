@@ -14,6 +14,7 @@
     --primary-text: #333;
     --link-color: #60A5DA;
     --middarkgrey: #54666d;
+    --cornflower-blue: #678fff;
 
     /* Navigation */
     --nav-fontsize: 1.5rem;
@@ -53,7 +54,7 @@
 */
 
 .site-header {
-    background: var(--lightblue);
+    background: var(--cornflower-blue);
     padding: 0 4vw;
     padding-bottom: var(--header-bottom-spacing);
 }
@@ -396,7 +397,7 @@ a:focus, a:hover {
 }
 
 .side-nav {
-    background: var(--lightblue);
+    background: var(--cornflower-blue);
     padding: 8px 4vw;
     min-height: 4em;
 }
@@ -717,7 +718,7 @@ figcaption {
 /* ---------------------------------------------------------- */
 
 .read-next-card {
-    background: var(--lightblue) center center;
+    background: var(--cornflower-blue) center center;
 }
 
 .read-next-card:before {
@@ -752,7 +753,7 @@ figcaption {
 /* ---------------------------------------------------------- */
 
 .site-footer {
-    background: var(--lightblue);
+    background: var(--cornflower-blue);
 }
 
 .site-footer-content,
@@ -818,7 +819,7 @@ figcaption {
     border-radius: 22px;
     line-height: 37px;
     color: #fff;
-    background-color: #66ABFF;
+    background-color: var(--cornflower-blue);
     width: 100%;
     border: 1px solid #4495d4;
     font-weight: 600;
