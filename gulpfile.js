@@ -24,8 +24,13 @@ var nodemonServerInit = function () {
     livereload.listen(1234);
 };
 
-gulp.task('build', ['css'], function (/* cb */) {
+gulp.task('build', ['css', 'copy'], function (/* cb */) {
     return nodemonServerInit();
+});
+
+gulp.task('copy', function() {
+    return gulp.src(['assets/fonts/**/*'])
+               .pipe(gulp.dest('assets/built/'));
 });
 
 gulp.task('css', function () {
@@ -51,7 +56,7 @@ gulp.task('css', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('assets/css/**', ['css']);
+    gulp.watch('assets/css/**', ['css', 'copy']);
 });
 
 gulp.task('zip', ['css'], function () {
