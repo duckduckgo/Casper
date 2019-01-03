@@ -957,7 +957,7 @@ Usage (In Ghost editor):
 .post-full-content h2 {
     margin: 0.5em 0 0.5em 0;
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 @media (max-width: 500px) {
     .post-full-content h2 {
@@ -1833,7 +1833,7 @@ Usage (In Ghost editor):
 
 .kg-image-card figcaption {
     font-size: 80%;
-    margin: -1.5em auto 3em;
+    margin: -1.5em auto 1.875em;
 }
 
 .post-full-content .kg-image-full + figcaption {

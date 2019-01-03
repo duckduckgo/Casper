@@ -15,6 +15,7 @@
     --link-color: #60A5DA;
     --middarkgrey: #54666d;
     --cornflower-blue: #678fff;
+    --cornflower-blue-dark: #3F66D5;
 
     /* Navigation */
     --nav-fontsize: 1.5rem;
@@ -147,7 +148,7 @@
 
 .nav li a:hover,
 .nav li a:focus {
-    color: var(--link-color);
+    color: var(--cornflower-blue-dark);
     opacity: 1;
 }
 
@@ -864,7 +865,7 @@ figcaption {
 }
 
 .newsletter__privacy a {
-    color: #66ABFF;
+    color: var(--cornflower-blue-dark);
 }
 
 @media (min-width: 470px) {
@@ -923,4 +924,19 @@ figcaption {
 
 .nav-access a:focus {
     top: 20em;
+}
+
+/* Content fixes
+   --------------
+
+   .kg-width-full needs to take the full size of the browser and
+   therefore outside of the container.
+*/
+
+.kg-width-full {
+    position: relative;
+    min-width: 100%;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    transform: translateX(calc(50vw - 50%));
 }
