@@ -804,7 +804,7 @@ The first (most recent) post in the list is styled to be bigger than the others 
 
 .post-full-content strong,
 .post-full-content em {
-    color: color(var(--darkgrey) l(-5%));
+    color: currentColor;
 }
 
 .post-full-content small {
