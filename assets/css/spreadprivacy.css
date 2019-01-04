@@ -664,11 +664,6 @@ figcaption {
     font-family: var(--sans-serif);
 }
 
-.kg-embed-card figcaption {
-    font-size: 80%;
-    margin: -3.5em auto 3em;
-}
-
 @media (max-width: 700px) {
     .post-full-content img,
     .post-full-content video {
@@ -926,11 +921,14 @@ figcaption {
     top: 20em;
 }
 
-/* Content fixes
-   --------------
+/* Content flow fixes
+   ------------------
 
-   .kg-width-full needs to take the full size of the browser and
+   `.kg-width-full` needs to take the full size of the browser and
    therefore outside of the container.
+
+   `.kg-embed-card figcaption` needs to not have such a big margin
+    at the bottom.
 */
 
 .kg-width-full {
@@ -939,4 +937,9 @@ figcaption {
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     transform: translateX(calc(50vw - 50%));
+}
+
+.kg-embed-card figcaption {
+    font-size: 80%;
+    margin: -3.5em auto 1em;
 }
