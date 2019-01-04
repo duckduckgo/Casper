@@ -373,6 +373,7 @@ a:focus, a:hover {
 */
 
 .side-menu {
+    font-family: georgia;
     border-radius: 3px;
     height: var(--sidemenu-button-size);
     width: var(--sidemenu-button-size);
