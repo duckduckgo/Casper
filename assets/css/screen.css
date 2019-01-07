@@ -864,7 +864,7 @@ Usage (In Ghost editor):
 }
 
 .post-full-content blockquote {
-    border-left: var(--cornflower-blue) 3px solid;
+    border-left: #3eb0ef 3px solid;
 }
 
 .post-full-content blockquote p {
@@ -1714,7 +1714,7 @@ Usage (In Ghost editor):
     width: 100%;
     height: 2px;
     border: none;
-    color: var(--cornflower-blue);
+    color: var(--blue);
     background: transparent;
 
     appearance: none;
@@ -1725,11 +1725,11 @@ Usage (In Ghost editor):
 }
 
 .progress::-webkit-progress-value {
-    background-color: var(--cornflower-blue);
+    background-color: var(--blue);
 }
 
 .progress::-moz-progress-bar {
-    background-color: var(--cornflower-blue);
+    background-color: var(--blue);
 }
 
 .progress-container {
@@ -1746,7 +1746,7 @@ Usage (In Ghost editor):
     display: block;
     width: 50%;
     height: inherit;
-    background-color: var(--cornflower-blue);
+    background-color: var(--blue);
 }
 
 @media (max-width: 900px) {

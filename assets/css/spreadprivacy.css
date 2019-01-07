@@ -14,8 +14,6 @@
     --primary-text: #333;
     --link-color: #60A5DA;
     --middarkgrey: #54666d;
-    --cornflower-blue: #678fff;
-    --cornflower-blue-dark: #3F66D5;
 
     /* Navigation */
     --nav-fontsize: 1.5rem;
@@ -55,7 +53,7 @@
 */
 
 .site-header {
-    background: var(--cornflower-blue);
+    background: var(--lightblue);
     padding: 0 4vw;
     padding-bottom: var(--header-bottom-spacing);
 }
@@ -399,7 +397,7 @@ a:focus, a:hover {
 }
 
 .side-nav {
-    background: var(--cornflower-blue);
+    background: var(--lightblue);
     padding: 8px 4vw;
     min-height: 4em;
 }
@@ -715,7 +713,7 @@ figcaption {
 /* ---------------------------------------------------------- */
 
 .read-next-card {
-    background: var(--cornflower-blue) center center;
+    background: var(--lightblue) center center;
 }
 
 .read-next-card:before {
@@ -750,7 +748,7 @@ figcaption {
 /* ---------------------------------------------------------- */
 
 .site-footer {
-    background: var(--cornflower-blue);
+    background: var(--lightblue);
 }
 
 .site-footer-content,
@@ -816,7 +814,7 @@ figcaption {
     border-radius: 22px;
     line-height: 37px;
     color: #fff;
-    background-color: var(--cornflower-blue);
+    background-color: #66ABFF;
     width: 100%;
     border: 1px solid #4495d4;
     font-weight: 600;
