@@ -146,7 +146,7 @@
 
 .nav li a:hover,
 .nav li a:focus {
-    color: var(--cornflower-blue-dark);
+    color: var(--link-color);
     opacity: 1;
 }
 
@@ -859,7 +859,7 @@ figcaption {
 }
 
 .newsletter__privacy a {
-    color: var(--cornflower-blue-dark);
+    color: #66ABFF;
 }
 
 @media (min-width: 470px) {
