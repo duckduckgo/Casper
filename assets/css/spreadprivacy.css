@@ -230,8 +230,8 @@
     }
 }
 
-/* Hide the whole nav at 640px and replace it */
-@media (max-width: 700px) {
+/* Hide the whole nav at 840px and replace it */
+@media (max-width: 840px) {
     .site-nav {
         display: none;
     }
@@ -277,7 +277,7 @@
     margin-bottom: 0;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 840px) {
     .mobile-nav {
         display: block;
     }
