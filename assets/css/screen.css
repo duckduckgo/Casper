@@ -31,6 +31,7 @@ production stylesheet in assets/built/screen.css
 /* ---------------------------------------------------------- */
 @import "global.css";
 
+
 body {
     background: #f4f8fb;
 }
@@ -447,7 +448,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .post-card-excerpt {
-    font-family: Georgia, serif;
+    font-family: athelas, Georgia, serif;
 }
 
 .post-card-meta {
@@ -712,7 +713,7 @@ The first (most recent) post in the list is styled to be bigger than the others 
     margin: 0 auto;
     padding: 70px 100px 0;
     min-height: 230px;
-    font-family: Georgia, serif;
+    font-family: athelas, Georgia, serif;
     font-size: 2.2rem;
     line-height: 1.6em;
     background: #fff;
@@ -793,17 +794,17 @@ The first (most recent) post in the list is styled to be bigger than the others 
 
 .post-full-content a {
     color: #000;
-    box-shadow: var(--cornflower-blue-dark) 0 -1px 0 inset;
+    box-shadow: var(--blue) 0 -1px 0 inset;
 }
 
 .post-full-content a:hover {
-    color: var(--cornflower-blue-dark);
+    color: var(--blue);
     text-decoration: none;
 }
 
 .post-full-content strong,
 .post-full-content em {
-    color: color(var(--darkgrey) l(-5%));
+    color: currentColor;
 }
 
 .post-full-content small {
@@ -863,7 +864,7 @@ Usage (In Ghost editor):
 }
 
 .post-full-content blockquote {
-    border-left: var(--cornflower-blue) 3px solid;
+    border-left: #3eb0ef 3px solid;
 }
 
 .post-full-content blockquote p {
@@ -912,7 +913,7 @@ Usage (In Ghost editor):
 }
 
 .post-full-content .fluid-width-video-wrapper {
-    margin: 1.5em 0 3em;
+    margin: 1.5em 0 1.5em;
 }
 
 .post-full-content hr {
@@ -940,7 +941,7 @@ Usage (In Ghost editor):
 .post-full-content h5,
 .post-full-content h6 {
     color: color(var(--darkgrey) l(-5%));
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: "DDG_ProximaNova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .post-full-content h1 {
@@ -1618,7 +1619,7 @@ Usage (In Ghost editor):
     align-items: center;
     color: var(--darkgrey);
     line-height: 1.1em;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .floating-header-logo a:hover {
@@ -1642,7 +1643,7 @@ Usage (In Ghost editor):
     color: #2e2e2e;
     font-size: 1.6rem;
     line-height: 1.3em;
-    font-weight: bold;
+    font-weight: 400;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -1713,7 +1714,7 @@ Usage (In Ghost editor):
     width: 100%;
     height: 2px;
     border: none;
-    color: var(--cornflower-blue);
+    color: var(--blue);
     background: transparent;
 
     appearance: none;
@@ -1724,11 +1725,11 @@ Usage (In Ghost editor):
 }
 
 .progress::-webkit-progress-value {
-    background-color: var(--cornflower-blue);
+    background-color: var(--blue);
 }
 
 .progress::-moz-progress-bar {
-    background-color: var(--cornflower-blue);
+    background-color: var(--blue);
 }
 
 .progress-container {
@@ -1745,7 +1746,7 @@ Usage (In Ghost editor):
     display: block;
     width: 50%;
     height: inherit;
-    background-color: var(--cornflower-blue);
+    background-color: var(--blue);
 }
 
 @media (max-width: 900px) {
@@ -1833,7 +1834,7 @@ Usage (In Ghost editor):
 
 .kg-image-card figcaption {
     font-size: 80%;
-    margin: -1.5em auto 3em;
+    margin: -1.5em auto 1.875em;
 }
 
 .post-full-content .kg-image-full + figcaption {

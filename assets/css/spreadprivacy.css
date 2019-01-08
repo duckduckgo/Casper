@@ -14,7 +14,6 @@
     --primary-text: #333;
     --link-color: #60A5DA;
     --middarkgrey: #54666d;
-    --cornflower-blue: #678fff;
 
     /* Navigation */
     --nav-fontsize: 1.5rem;
@@ -54,7 +53,7 @@
 */
 
 .site-header {
-    background: var(--cornflower-blue);
+    background: var(--lightblue);
     padding: 0 4vw;
     padding-bottom: var(--header-bottom-spacing);
 }
@@ -229,8 +228,8 @@
     }
 }
 
-/* Hide the whole nav at 640px and replace it */
-@media (max-width: 700px) {
+/* Hide the whole nav at 840px and replace it */
+@media (max-width: 840px) {
     .site-nav {
         display: none;
     }
@@ -276,7 +275,7 @@
     margin-bottom: 0;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 840px) {
     .mobile-nav {
         display: block;
     }
@@ -372,6 +371,7 @@ a:focus, a:hover {
 */
 
 .side-menu {
+    font-family: georgia;
     border-radius: 3px;
     height: var(--sidemenu-button-size);
     width: var(--sidemenu-button-size);
@@ -397,7 +397,7 @@ a:focus, a:hover {
 }
 
 .side-nav {
-    background: var(--cornflower-blue);
+    background: var(--lightblue);
     padding: 8px 4vw;
     min-height: 4em;
 }
@@ -663,11 +663,6 @@ figcaption {
     font-family: var(--sans-serif);
 }
 
-.kg-embed-card figcaption {
-    font-size: 80%;
-    margin: -3.5em auto 3em;
-}
-
 @media (max-width: 700px) {
     .post-full-content img,
     .post-full-content video {
@@ -718,7 +713,7 @@ figcaption {
 /* ---------------------------------------------------------- */
 
 .read-next-card {
-    background: var(--cornflower-blue) center center;
+    background: var(--lightblue) center center;
 }
 
 .read-next-card:before {
@@ -753,7 +748,7 @@ figcaption {
 /* ---------------------------------------------------------- */
 
 .site-footer {
-    background: var(--cornflower-blue);
+    background: var(--lightblue);
 }
 
 .site-footer-content,
@@ -819,7 +814,7 @@ figcaption {
     border-radius: 22px;
     line-height: 37px;
     color: #fff;
-    background-color: var(--cornflower-blue);
+    background-color: #66ABFF;
     width: 100%;
     border: 1px solid #4495d4;
     font-weight: 600;
@@ -923,4 +918,27 @@ figcaption {
 
 .nav-access a:focus {
     top: 20em;
+}
+
+/* Content flow fixes
+   ------------------
+
+   `.kg-width-full` needs to take the full size of the browser and
+   therefore outside of the container.
+
+   `.kg-embed-card figcaption` needs to not have such a big margin
+    at the bottom.
+*/
+
+.kg-width-full {
+    position: relative;
+    min-width: 100%;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    transform: translateX(calc(50vw - 50%));
+}
+
+.kg-embed-card figcaption {
+    font-size: 80%;
+    margin: -3.5em auto 1em;
 }
