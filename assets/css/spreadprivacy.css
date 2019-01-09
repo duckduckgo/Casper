@@ -194,7 +194,7 @@
     padding-right: 4px;
 }
 
-@media (max-width: 1005px) {
+@media (max-width: 1010px) {
     .nav {
         margin: 0 0 0 -1vw;
     }
