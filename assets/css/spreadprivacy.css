@@ -328,6 +328,8 @@ a:focus, a:hover {
 }
 
 .post-full-title {
+    max-width: 800px;
+    margin: 0 auto;
     font-size: var(--title-font-size);
     padding-bottom: 16px;
 }
