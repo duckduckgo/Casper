@@ -44,7 +44,7 @@ $(function() {
 
     // Get source param in the URL.
     const url = new URL(location.href);
-    const source = url.searchParams.get('source') || 'direct';
+    const source = url.searchParams.get('s') || 'direct';
 
     // Get path to uniquely identify pixel.
     const pathname = url.pathname.replace(/\/(.+)\//, '$1');
