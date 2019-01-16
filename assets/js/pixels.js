@@ -112,6 +112,19 @@ $(function() {
         ticking = false;
     }
 
+    // Helper: sanitizeUrl
+    // Sanitzes a given URL by removing unsafe characters.
+    // E.g. 'https://reddit.com/r/duckduckgo' -> 'https-reddit-com-r-duckduckgo'
+    function sanitizeUrl(url) {
+        return url
+        // strip leading/trailing slash
+            .replace(/^\/|\/$/, '')
+        // strip unsafe chars for grafana
+            .replace(/[^a-z0-9_-]+/ig, '-')
+        // strip underscores as well
+            .replace(/_/g,'-');
+    }
+
     // -------------
     // Start firing!
     // -------------
@@ -137,5 +150,14 @@ $(function() {
     // Example: blog.google-filter-bubble-study.letter.quora
     $(".js-newsletter").one("submit", function(event) {
         firePixel(pixels.submit_letter.name, {once: true});
+    });
+
+    // Link Clicks
+    // -----------
+    // Fire pixels when links are clicked.
+    // Example: blog.google-filter-bubble-study.link.https-spreadprivacy-com.quora
+    $('article a').click(function() {
+        const href = sanitizeUrl(this.href);
+        firePixel('link_' + href, {once: false});
     });
 });
