@@ -10,6 +10,10 @@
 // blog.google-filter-bubble-study.load.twitter
 
 $(function() {
+    // -------------------------
+    // I. Initialization & Setup
+    // -------------------------
+
     // Pixel List:
     // -----------
     // These are the set of pixels that we'd like to fire.
@@ -57,13 +61,17 @@ $(function() {
     let lastDocumentHeight = $('article').height();
     let ticking = false;
 
+    // --------------------
+    // II. Helper Functions
+    // --------------------
+
     // Helper: firePixel
     // -------------------
     // This function abstracts away the logging details.
     function firePixel(data, options) {
-        if(options && options.once && seenList[data + source]) {
+        if (options && options.once && seenList[data + source]) {
             return;
-        } else if(options && options.once) {
+        } else if (options && options.once) {
             seenList[data + source] = true;
         }
 
@@ -85,9 +93,9 @@ $(function() {
 
     // Helper: requestTick
     // Better performance on scrolling by using debouncing.
-    // https://gomakethings.com/debouncing-events-with-requestanimationframe-for-better-performance/
+    // Reference: https://gomakethings.com/debouncing-events-with-requestanimationframe-for-better-performance/
     function requestTick() {
-        if(!ticking) {
+        if (!ticking) {
             requestAnimationFrame(updateScrollInfo);
         }
         ticking = true;
@@ -125,18 +133,19 @@ $(function() {
             .replace(/_/g,'-');
     }
 
-    // -------------
-    // Start firing!
-    // -------------
+    // --------------------
+    // III. Event Listeners
+    // --------------------
 
-    // Page Load
-    // ---------
+    // Page Loading
+    // ------------
     // Fire when the post loads.
     // Example: blog.google-filter-bubble-study.load.quora
     firePixel(pixels.position.load, {once: true});
 
-    // Scroll Events
-    // -------------
+    // Page Position Scrolling
+    // -----------------------
+    // Figure out if the user is 25%, 50%, or 100% of the page.
     window.addEventListener('scroll', function() {
         lastScrollY = window.scrollY;
         requestTick();
@@ -144,8 +153,8 @@ $(function() {
 
     updateScrollInfo();
 
-    // Newsletter
-    // ----------
+    // Newsletter Submission
+    // ---------------------
     // Fire pixel when the newsletter form is submitted.
     // Example: blog.google-filter-bubble-study.letter.quora
     $(".js-newsletter").one("submit", function(event) {
@@ -154,10 +163,14 @@ $(function() {
 
     // Link Clicks
     // -----------
-    // Fire pixels when links are clicked.
+    // Fire pixels when links within the article are clicked.
     // Example: blog.google-filter-bubble-study.link.https-spreadprivacy-com.quora
     $('article a').click(function() {
         const href = sanitizeUrl(this.href);
         firePixel('link_' + href, {once: false});
     });
+
+    // --------
+    // IV. Fin.
+    // --------
 });
