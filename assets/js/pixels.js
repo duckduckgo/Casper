@@ -6,8 +6,8 @@
 //
 // Pixel format:
 // -------------
-// blog.[article-path].[scroll-position].[source]
-// blog.google-filter-bubble-study.load.twitter
+// blog.[scroll-pos].[source].[article]
+// blog.half.twitter.google-filter-bubble-study
 
 $(function() {
     // -------------------------
@@ -68,26 +68,31 @@ $(function() {
     // Helper: firePixel
     // -------------------
     // This function abstracts away the logging details.
-    function firePixel(data, options) {
-        if (options && options.once && seenList[data + source]) {
-            return;
-        } else if (options && options.once) {
-            seenList[data + source] = true;
-        }
-
+    function firePixel() {
         // This is the path to our pixels for logging certain events on
         // the page.
-        const pixelPath = 'https://improving.duckduckgo.com/t/blog_' + pathname + '_';
+        const pixelUrl = 'https://improving.duckduckgo.com/t/blog_';
+        let args = [].slice.call(arguments); //data + '_' + source + '_' + pathname;
+        const options = args.pop();
+        const concat = args.join('_');
+        const pixelPath = pixelUrl + concat;
+
+        if (options && options.once && seenList[concat]) {
+            return;
+        } else if (options && options.once) {
+            seenList[concat] = true;
+        }
+
 
         // We use the Beacon API if it's available for more accurate logging.
         // Reference: https://developer.mozilla.org/en-US/docs/Web/API/Beacon_API
         if ('sendBeacon' in navigator) {
-            navigator.sendBeacon(pixelPath + data + '_' + source);
+            navigator.sendBeacon(pixelPath);
         } else {
             // Otherwise we go with creating an <img> element
             // and setting the src attribute with the GIF.
             let pixel = $('<img>');
-            pixel.attr('src', pixelPath + data + '_' + source);
+            pixel.attr('src', pixelPath);
         }
     }
 
@@ -104,17 +109,17 @@ $(function() {
     // Helper: updateScrollInfo
     // ---------------
     // Check how far down the user has scrolled.
-    // Example: blog.google-filter-bubble-study.half.quora
+    // Example: blog.half.quora.google-filter-bubble-study
     function updateScrollInfo() {
         let progressMax = lastDocumentHeight - lastWindowHeight;
         let percentage = lastScrollY / progressMax;
 
         if (percentage > 1) {
-            firePixel(pixels.position.done, {once: true});
+            firePixel(pixels.position.done, source, pathname, {once: true});
         } else if (percentage > .50) {
-            firePixel(pixels.position.half, {once: true});
+            firePixel(pixels.position.half, source, pathname, {once: true});
         } else if (percentage > .25) {
-            firePixel(pixels.position.quarter, {once: true});
+            firePixel(pixels.position.quarter, source, pathname, {once: true});
         }
 
         ticking = false;
@@ -140,8 +145,8 @@ $(function() {
     // Page Loading
     // ------------
     // Fire when the post loads.
-    // Example: blog.google-filter-bubble-study.load.quora
-    firePixel(pixels.position.load, {once: true});
+    // Example: blog.load.quora.google-filter-bubble-study
+    firePixel(pixels.position.load, source, pathname, {once: true});
 
     // Page Position Scrolling
     // -----------------------
@@ -156,18 +161,18 @@ $(function() {
     // Newsletter Submission
     // ---------------------
     // Fire pixel when the newsletter form is submitted.
-    // Example: blog.google-filter-bubble-study.letter.quora
+    // Example: blog.letter.quora.google-filter-bubble-study
     $(".js-newsletter").one("submit", function(event) {
-        firePixel(pixels.submit_letter.name, {once: true});
+        firePixel(pixels.submit_letter.name, source, pathname, {once: true});
     });
 
     // Link Clicks
     // -----------
     // Fire pixels when links within the article are clicked.
-    // Example: blog.google-filter-bubble-study.link.https-spreadprivacy-com.quora
+    // Example: blog.link.quora.https-spreadprivacy-com.google-filter-bubble-study
     $('article a').click(function() {
         const href = sanitizeUrl(this.href);
-        firePixel('link_' + href, {once: false});
+        firePixel('link', source, pathname, href, {once: false});
     });
 
     // --------
