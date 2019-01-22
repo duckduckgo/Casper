@@ -6,6 +6,7 @@ var livereload = require('gulp-livereload');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var zip = require('gulp-zip');
+var minify = require('gulp-minify');
 
 // postcss plugins
 var autoprefixer = require('autoprefixer');
@@ -24,7 +25,7 @@ var nodemonServerInit = function () {
     livereload.listen(1234);
 };
 
-gulp.task('build', ['css', 'copy'], function (/* cb */) {
+gulp.task('build', ['css', 'js', 'copy'], function (/* cb */) {
     return nodemonServerInit();
 });
 
@@ -55,8 +56,15 @@ gulp.task('css', function () {
         .pipe(livereload());
 });
 
+gulp.task('js', function() {
+    gulp.src(['assets/js/*.js'])
+        .pipe(minify())
+        .pipe(gulp.dest('assets/built/'));
+});
+
 gulp.task('watch', function () {
     gulp.watch('assets/css/**', ['css', 'copy']);
+    gulp.watch('assets/js/**', ['js']);
 });
 
 gulp.task('zip', ['css'], function () {

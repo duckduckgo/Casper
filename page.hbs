@@ -96,7 +96,7 @@ into the {body} of the default.hbs template --}}
 
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
-<script src="{{asset "js/pixels.js"}}"></script>
+<script src="{{asset "built/pixels-min.js"}}"></script>
 <script>
 $(function() {
     var $postContent = $(".post-full-content");

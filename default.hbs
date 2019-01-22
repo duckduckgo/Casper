@@ -59,8 +59,8 @@
     {{/if}}
 
     {{!-- jQuery + Fitvids, which makes all video embeds responsive --}}
-    <script src="{{asset "js/jquery-3.2.1.min.js"}}"></script>
-    <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
+    <script src="{{asset "js/lib/jquery-3.2.1.min.js"}}"></script>
+    <script type="text/javascript" src="{{asset "built/jquery.fitvids-min.js"}}"></script>
 
     {{#if pagination.pages}}
     <script>
@@ -69,10 +69,10 @@
         // we reached the last page already.
         var maxPages = parseInt('{{pagination.pages}}');
     </script>
-    <script src="{{asset "js/infinitescroll.js"}}"></script>
+    <script src="{{asset "built/infinitescroll-min.js"}}"></script>
     {{/if}}
 
-    <script type="text/javascript" src="{{asset "js/sidebar.js"}}"></script>
+    <script type="text/javascript" src="{{asset "built/sidebar-min.js"}}"></script>
 
     {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
     {{{block "scripts"}}}
