@@ -110,14 +110,20 @@ $(function() {
     // ---------------
     // Check how far down the user has scrolled.
     // Example: blog.half.quora.google-filter-bubble-study
+    let imageUrlCache = {};
     function updateScrollInfo() {
         let progressMax = lastDocumentHeight - lastWindowHeight;
         let percentage = lastScrollY / progressMax;
 
         articleImagesEl.each(function() {
+            if(!imageUrlCache[this.src]) {
+                imageUrlCache[this.src] = this.src.split('/').pop();
+            }
+
             if (elementIsVisibleInViewport(this, true)) {
                 firePixel('image', source, pathname,
-                          sanitizeUrl(this.src.split('/').pop()), {once: true});
+                          sanitizeUrl(imageUrlCache[this.src]),
+                          {once: true});
             }
         });
 
