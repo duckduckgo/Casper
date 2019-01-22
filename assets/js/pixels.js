@@ -6,8 +6,10 @@
 //
 // Pixel format:
 // -------------
-// blog.[scroll-pos].[source].[article]
-// blog.half.twitter.google-filter-bubble-study
+// Scrolling: blog.image.[source].[article].[image-name]
+// Link click: blog.link.[source].[article].[link]
+// Loading: blog.load.[source].[article]
+
 
 $(function() {
     // -------------------------
@@ -25,13 +27,8 @@ $(function() {
             name: 'letter',
             el: '.js-card-url'
         },
-        // Pixels to determine the position of the reader
-        // in the document.
         position: {
             load: 'load',
-            quarter: 'quarter',
-            half: 'half',
-            done: 'done'
         }
     };
 
@@ -60,6 +57,9 @@ $(function() {
     let lastWindowHeight = window.innerHeight;
     let lastDocumentHeight = $('article').height();
     let ticking = false;
+
+    // Get the images in the article if there are any.
+    const articleImagesEl = $('.kg-image');
 
     // --------------------
     // II. Helper Functions
@@ -114,13 +114,12 @@ $(function() {
         let progressMax = lastDocumentHeight - lastWindowHeight;
         let percentage = lastScrollY / progressMax;
 
-        if (percentage > 1) {
-            firePixel(pixels.position.done, source, pathname, {once: true});
-        } else if (percentage > .50) {
-            firePixel(pixels.position.half, source, pathname, {once: true});
-        } else if (percentage > .25) {
-            firePixel(pixels.position.quarter, source, pathname, {once: true});
-        }
+        articleImagesEl.each(function() {
+            if (elementIsVisibleInViewport(this, true)) {
+                firePixel('image', source, pathname,
+                          sanitizeUrl(this.src.split('/').pop()), {once: true});
+            }
+        });
 
         ticking = false;
     }
@@ -136,6 +135,19 @@ $(function() {
             .replace(/[^a-z0-9_-]+/ig, '-')
         // strip underscores as well
             .replace(/_/g,'-');
+    }
+
+    // Helper: elementIsVisibleInViewport
+    // Source: https://github.com/30-seconds/30-seconds-of-code#elementisvisibleinviewport-
+    // Figures out if an element (in our case images) are in view so that we
+    // can fire the pixels.
+    function elementIsVisibleInViewport(el, partiallyVisible = false) {
+        const { top, left, bottom, right } = el.getBoundingClientRect();
+        const { innerHeight, innerWidth } = window;
+        return partiallyVisible
+            ? ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) &&
+            ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
+            : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
     }
 
     // --------------------
