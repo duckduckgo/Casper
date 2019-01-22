@@ -141,9 +141,18 @@ $(function() {
     // Source: https://github.com/30-seconds/30-seconds-of-code#elementisvisibleinviewport-
     // Figures out if an element (in our case images) are in view so that we
     // can fire the pixels.
-    function elementIsVisibleInViewport(el, partiallyVisible = false) {
-        const { top, left, bottom, right } = el.getBoundingClientRect();
-        const { innerHeight, innerWidth } = window;
+    function elementIsVisibleInViewport(el, partiallyVisible) {
+        partiallyVisible = partiallyVisible || false;
+
+        const elBounds = el.getBoundingClientRect();
+        const top = elBounds.top;
+        const left = elBounds.left;
+        const bottom = elBounds.bottom;
+        const right = elBounds.right;
+
+        const innerHeight = window.innerHeight;
+        const innerWidth = window.innerWidth;
+
         return partiallyVisible
             ? ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) &&
             ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
