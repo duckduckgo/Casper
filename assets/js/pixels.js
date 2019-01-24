@@ -6,7 +6,7 @@
 //
 // Pixel format:
 // -------------
-// Scrolling: blog.image.[source].[article].[image-name]
+// Image: blog.image.[source].[article].[image-index]
 // Link click: blog.link.[source].[article].[link]
 // Loading: blog.load.[source].[article]
 
@@ -108,8 +108,7 @@ $(function() {
 
     // Helper: updateScrollInfo
     // ---------------
-    // Check how far down the user has scrolled.
-    // Example: blog.half.quora.google-filter-bubble-study
+    // Check which images are now in view.
     function updateScrollInfo() {
         let progressMax = lastDocumentHeight - lastWindowHeight;
         let percentage = lastScrollY / progressMax;
