@@ -62,7 +62,8 @@ gulp.task('js', function() {
         .pipe(minify({
             noSource: true
         }))
-        .pipe(gulp.dest('assets/built/', {overwrite: true}));
+        .pipe(gulp.dest('assets/built/', {overwrite: true}))
+        .pipe(livereload());;
 });
 
 gulp.task('js:clean', function() {

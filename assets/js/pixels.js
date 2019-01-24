@@ -117,7 +117,7 @@ $(function() {
         $articleImagesEl.each(function(index) {
             if (elementIsVisibleInViewport(this, true)) {
                 firePixel('image', source, pathname,
-                          index + 'of' + $articleImagesEl.length,
+                          (index + 1) + 'of' + $articleImagesEl.length,
                           {once: true});
             }
         });
