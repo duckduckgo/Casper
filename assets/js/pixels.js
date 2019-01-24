@@ -59,7 +59,7 @@ $(function() {
     let ticking = false;
 
     // Get the images in the article if there are any.
-    const articleImagesEl = $('.kg-image');
+    const $articleImagesEl = $('.kg-image');
 
     // --------------------
     // II. Helper Functions
@@ -110,19 +110,14 @@ $(function() {
     // ---------------
     // Check how far down the user has scrolled.
     // Example: blog.half.quora.google-filter-bubble-study
-    let imageUrlCache = {};
     function updateScrollInfo() {
         let progressMax = lastDocumentHeight - lastWindowHeight;
         let percentage = lastScrollY / progressMax;
 
-        articleImagesEl.each(function() {
-            if(!imageUrlCache[this.src]) {
-                imageUrlCache[this.src] = this.src.split('/').pop();
-            }
-
+        $articleImagesEl.each(function(index) {
             if (elementIsVisibleInViewport(this, true)) {
                 firePixel('image', source, pathname,
-                          sanitizeUrl(imageUrlCache[this.src]),
+                          index + 'of' + $articleImagesEl.length,
                           {once: true});
             }
         });
@@ -159,10 +154,17 @@ $(function() {
         const innerHeight = window.innerHeight;
         const innerWidth = window.innerWidth;
 
-        return partiallyVisible
-            ? ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) &&
-            ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
-            : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
+        if (partiallyVisible) {
+            return ((top > 0 && top < innerHeight) ||
+                    (bottom > 0 && bottom < innerHeight)) &&
+                   ((left > 0 && left < innerWidth) ||
+                    (right > 0 && right < innerWidth));
+        } else {
+            return top >= 0 &&
+                   left >= 0 &&
+                   bottom <= innerHeight &&
+                   right <= innerWidth;
+        }
     }
 
     // --------------------
