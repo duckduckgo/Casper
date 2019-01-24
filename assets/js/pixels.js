@@ -59,7 +59,7 @@ $(function() {
     let ticking = false;
 
     // Get the images in the article if there are any.
-    const $articleImagesEl = $('.kg-image');
+    const $articleImagesEl = $('.post-full-content img');
 
     // --------------------
     // II. Helper Functions
