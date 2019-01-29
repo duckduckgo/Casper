@@ -59,7 +59,7 @@ $(function() {
     let ticking = false;
 
     // Get the images in the article if there are any.
-    const $articleImagesEl = $('.post-full-content img');
+    const $articleImagesEl = $('.post-full img');
 
     // --------------------
     // II. Helper Functions
@@ -111,7 +111,6 @@ $(function() {
     // Check which images are now in view.
     function updateScrollInfo() {
         let progressMax = lastDocumentHeight - lastWindowHeight;
-        let percentage = lastScrollY / progressMax;
 
         $articleImagesEl.each(function(index) {
             if (elementIsVisibleInViewport(this, true)) {
@@ -178,7 +177,7 @@ $(function() {
 
     // Page Position Scrolling
     // -----------------------
-    // Figure out if the user is 25%, 50%, or 100% of the page.
+    // See if images are in view.
     window.addEventListener('scroll', function() {
         lastScrollY = window.scrollY;
         requestTick();
