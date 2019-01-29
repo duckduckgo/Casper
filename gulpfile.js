@@ -6,6 +6,8 @@ var livereload = require('gulp-livereload');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var zip = require('gulp-zip');
+var minify = require('gulp-minify');
+var del = require('del');
 
 // postcss plugins
 var autoprefixer = require('autoprefixer');
@@ -24,7 +26,7 @@ var nodemonServerInit = function () {
     livereload.listen(1234);
 };
 
-gulp.task('build', ['css', 'copy'], function (/* cb */) {
+gulp.task('build', ['css', 'js:clean', 'js', 'copy'], function (/* cb */) {
     return nodemonServerInit();
 });
 
@@ -55,11 +57,27 @@ gulp.task('css', function () {
         .pipe(livereload());
 });
 
-gulp.task('watch', function () {
-    gulp.watch('assets/css/**', ['css', 'copy']);
+gulp.task('js', function() {
+    gulp.src(['assets/js/*.js'])
+        .pipe(minify({
+            noSource: true
+        }))
+        .pipe(gulp.dest('assets/built/', {overwrite: true}))
+        .pipe(livereload());;
 });
 
-gulp.task('zip', ['css'], function () {
+gulp.task('js:clean', function() {
+    return del([
+        'assets/built/*-min.js',
+    ]);
+});
+
+gulp.task('watch', function () {
+    gulp.watch('assets/css/**', ['css', 'copy']);
+    gulp.watch('assets/js/**', ['js:clean', 'js']);
+});
+
+gulp.task('zip', ['css', 'js'], function () {
     var targetDir = 'dist/';
     var themeName = require('./package.json').name;
     var filename = themeName + '.zip';
