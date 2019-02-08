@@ -46,7 +46,7 @@ into the {body} of the default.hbs template --}}
 
         <div class="read-next-feed">
             {{#if primary_tag}}
-            {{#get "posts" filter="tags:{{primary_tag.slug}}+id:-{{id}}" limit="3" as |related_posts|}}
+            {{#get "posts" filter="tags:{{primary_tag.slug}}+id:-{{comment_id}}" limit="3" as |related_posts|}}
                 {{#if related_posts}}
                 <article class="read-next-card"
                     {{#if ../primary_tag.feature_image}}
@@ -85,7 +85,7 @@ into the {body} of the default.hbs template --}}
 
             {{!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs --}}
             {{#prev_post}}
-                {{> "post-card"}}
+              {{> "post-card"}}
             {{/prev_post}}
 
         </div>
