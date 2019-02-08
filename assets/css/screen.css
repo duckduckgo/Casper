@@ -1788,21 +1788,6 @@ Usage (In Ghost editor):
 /* 7.6. Koenig Styles
 /* ---------------------------------------------------------- */
 
-/* For Ghost 1.0 */
-.kg-card-markdown {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 920px;
-}
-
-.post-template .kg-card-markdown > p:first-child {
-    font-size: 1.1em;
-    line-height: 1.5em;
-}
-/* ^ .kg-card-markdown will be deprecated */
-
-
 .post-template .kg-post > p:first-child {
     font-size: 1.25em;
     line-height: 1.5em;
