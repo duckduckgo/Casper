@@ -933,8 +933,8 @@ figcaption {
 /* Content flow fixes
    ------------------
 
-   `.kg-width-full` needs to take the full size of the browser and
-   therefore outside of the container.
+   `.kg-width-full` and `.kg-width-wide` needs
+   to extend beyond the container so we have to increase its width.
 
    `.kg-embed-card figcaption` needs to not have such a big margin
     at the bottom.
@@ -945,6 +945,14 @@ figcaption {
     min-width: 100%;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
+    transform: translateX(calc(50vw - 50%));
+}
+
+.kg-width-wide {
+    position: relative;
+    width: 85vw;
+    min-width: 100%;
+    margin: auto calc(50% - 50vw);
     transform: translateX(calc(50vw - 50%));
 }
 
