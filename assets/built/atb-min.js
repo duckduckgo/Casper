@@ -1,0 +1,1 @@
+$(function(){new URL(location.href).pathname.replace(/\/(.+)\//,"$1")in{"why-use-duckduckgo-instead-of-google":!0}&&$(".js-floating-header-atb").removeClass("is-hidden")});
