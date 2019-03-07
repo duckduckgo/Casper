@@ -10,7 +10,6 @@
 // Link click: blog.link.[source].[article].[link]
 // Loading: blog.load.[source].[article]
 
-
 $(function() {
     // -------------------------
     // I. Initialization & Setup
@@ -200,6 +199,14 @@ $(function() {
     $('article a').click(function() {
         const href = sanitizeUrl(this.href);
         firePixel('link', source, pathname, href, {once: false});
+    });
+
+    // ATB Button
+    // ----------
+    // Fire click pixel if the ATB is clicked.
+    // Example: atb.direct.why-use-duckduckgo-instead-of-google
+    $('.js-floating-header-atb').click(function() {
+        firePixel('atb', source, pathname, {once: true});
     });
 
     // --------

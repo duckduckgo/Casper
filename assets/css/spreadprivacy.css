@@ -10,6 +10,7 @@
     /* Colors */
     --lightblue: #60a5da;
     --blue: #3eb0ef;
+    --ddg-blue: #66abff;
     --secondary-text: #999;
     --primary-text: #333;
     --link-color: #60A5DA;
@@ -745,6 +746,34 @@ figcaption {
     text-decoration: none;
 }
 
+.is-hidden {
+    display: none;
+}
+
+.floating-header-atb__button {
+    background: var(--ddg-blue);
+    color: white;
+    padding: .8em 1.2em;
+    border-radius: 22px;
+    font-weight: 600;
+}
+
+.floating-header-atb__button:hover, .floating-header-atb__button:focus {
+    text-decoration: none;
+}
+
+/* This is the size when the header becomes smaller. */
+@media (max-width: 900px) {
+    .floating-header-atb__button {
+        padding: .3em 1em;
+    }
+}
+
+@media (max-width: 390px) {
+    .floating-header-atb {
+        display: none;
+    }
+}
 
 /* 10. Subscribe Overlay
 /* ---------------------------------------------------------- */
@@ -824,7 +853,7 @@ figcaption {
     border-radius: 22px;
     line-height: 37px;
     color: #fff;
-    background-color: #66ABFF;
+    background-color: var(--ddg-blue);
     width: 100%;
     border: 1px solid #4495d4;
     font-weight: 600;
@@ -869,7 +898,7 @@ figcaption {
 }
 
 .newsletter__privacy a {
-    color: #66ABFF;
+    color: var(--ddg-blue);
 }
 
 @media (min-width: 470px) {

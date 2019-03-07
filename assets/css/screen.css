@@ -1778,7 +1778,7 @@ Usage (In Ghost editor):
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 480px) {
     .floating-header-share-label {
         display: none;
     }
