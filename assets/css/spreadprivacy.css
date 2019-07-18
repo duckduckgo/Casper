@@ -887,6 +887,22 @@ figcaption {
     z-index: -1;
 }
 
+.newsletter__checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.125em;
+}
+
+.newsletter__checkbox-item {
+    margin-right: 10px;
+}
+
+.newsletter__checkbox-item:last-of-type {
+    margin-right: 0;
+}
+
 @media (min-width: 750px) {
     .newsletter__illustration--mobile {
         display: none;
