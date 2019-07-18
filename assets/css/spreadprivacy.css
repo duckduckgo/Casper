@@ -882,7 +882,7 @@ figcaption {
     position: absolute;
     left: 45px;
     right: 0;
-    margin-top: 7em;
+    margin-top: 10em;
     display: none;
     z-index: -1;
 }
