@@ -1,0 +1,1 @@
+$(function(){$(".js-newsletter").on("submit",function(t){$(t.target).serialize();0===$(t.target).find("input[type='checkbox']").filter(function(){return this.checked}).toArray().length&&t.preventDefault()})});
