@@ -10,12 +10,9 @@ $(function() {
 
         // Prevent the form from submitting if
         // none of the checkboxes are selected.
-        let checkboxes = $(event.target).find("input[type='checkbox']");
-        let newsletterOptions = checkboxes.filter(function() {
-            return this.checked;
-        }).toArray();
+        let atLeastOneIsChecked = $('.js-newsletter-checkbox:checked').length > 0;
 
-        if (newsletterOptions.length === 0) {
+        if (!atLeastOneIsChecked) {
             event.preventDefault();
         }
     });
