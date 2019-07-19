@@ -819,6 +819,9 @@ figcaption {
     padding-top: 2.5em;
     display: flex;
     flex-direction: column;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .newsletter__title {
@@ -836,6 +839,7 @@ figcaption {
 
 .newsletter__email {
     width: 100%;
+    min-width: 100%;
     height: 45px;
     border-radius: 3px;
     border: 1px solid #e6e6e6;
@@ -889,10 +893,11 @@ figcaption {
 
 .newsletter__checkbox {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: center;
     margin-bottom: 1.125em;
+    font-size: .96em;
 }
 
 .newsletter__checkbox-item {
@@ -903,22 +908,12 @@ figcaption {
     margin-right: 0;
 }
 
-@media (min-width: 750px) {
-    .newsletter__illustration--mobile {
-        display: none;
-    }
-
-    .newsletter__illustration--desktop {
-        display: block;
-    }
-}
-
 .newsletter__privacy a {
     color: var(--ddg-blue);
 }
 
 @media (min-width: 470px) {
-    .newsletter__email, .newsletter__submit {
+    .newsletter__submit {
         max-width: 250px;
     }
 
