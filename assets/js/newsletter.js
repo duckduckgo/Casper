@@ -6,8 +6,6 @@
 
 $(function() {
     $(".js-newsletter").on("submit", function(event) {
-        let params = $(event.target).serialize();
-
         // Prevent the form from submitting if
         // none of the checkboxes are selected.
         let atLeastOneIsChecked = $('.js-newsletter-checkbox:checked').length > 0;
