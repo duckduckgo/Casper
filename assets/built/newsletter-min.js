@@ -1,0 +1,1 @@
+$(function(){$(".js-newsletter").on("submit",function(e){$(".js-newsletter-checkbox:checked").length>0||e.preventDefault()})});
