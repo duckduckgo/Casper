@@ -188,8 +188,14 @@ $(function() {
     // ---------------------
     // Fire pixel when the newsletter form is submitted.
     // Example: blog.letter.quora.google-filter-bubble-study
-    $(".js-newsletter").one("submit", function(event) {
-        firePixel(pixels.submit_letter.name, source, pathname, {once: true});
+    $(".js-newsletter").on("submit", function(event) {
+        // Prevent the form from submitting if
+        // none of the checkboxes are selected.
+        let atLeastOneIsChecked = $('.js-newsletter-checkbox:checked').length > 0;
+
+        if(atLeastOneIsChecked) {
+            firePixel(pixels.submit_letter.name, source, pathname, {once: true});
+        }
     });
 
     // Link Clicks
