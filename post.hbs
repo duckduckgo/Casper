@@ -22,8 +22,8 @@ into the {body} of the default.hbs template --}}
                 <section class="post-full-meta-filed">
                     {{#primary_tag}}
                         {{^has slug="duckduckgo-q-a"}}
-                        	<span>Filed under <a href="{{url}}">{{name}}</a> on </span>
-                        	<time class="post-full-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                            <span>Filed under <a href="{{url}}">{{name}}</a> on </span>
+                            <time class="post-full-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
                         {{else}}
                             <span>Filed under <a href="{{url}}">{{name}}</a></span>
                         {{/has}}
