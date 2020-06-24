@@ -20,14 +20,12 @@ into the {body} of the default.hbs template --}}
             <header class="post-full-header">
                 <h1 class="post-full-title">{{title}}</h1>
                 <section class="post-full-meta-filed">
-                    {{#primary_tag}}
-                        {{^has slug="duckduckgo-q-a"}}
-                            <span>Filed under <a href="{{url}}">{{name}}</a> on </span>
-                            <time class="post-full-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
-                        {{else}}
-                            <span>Filed under <a href="{{url}}">{{name}}</a></span>
-                        {{/has}}
-                    {{/primary_tag}}    
+                    {{#has slug="duckduckgo-q-a"}}
+                        <span>Filed under {{#primary_tag}}<a href="{{url}}">{{name}}</a>{{/primary_tag}}</span>
+                    {{else}}
+                        <span>Filed under {{#primary_tag}}<a href="{{url}}">{{name}}</a>{{/primary_tag}} on </span>
+                        <time class="post-full-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                    {{/has}}
                 </section>
             </header>
 
