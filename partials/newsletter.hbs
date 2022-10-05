@@ -1,12 +1,12 @@
 <form class="newsletter js-newsletter" action="https://duck.co/s/a" method="post" name="y">
   <input type="hidden" name="page" value="1">
   <input type="hidden" name="flow" value="blog">
+  <input type="hidden" name="news" value="on">
   <img class="newsletter__illustration--mobile" src="{{asset 'bird-illustration-mobile.svg'}}" />
   <img class="newsletter__illustration--desktop" src="{{asset 'bird-illustration-desktop.svg'}}" />
   <h1 class="newsletter__title">DuckDuckGo <br> Privacy Newsletters</h1>
   <h2 class="newsletter__tagline">Stay protected and informed with our privacy newsletters.</h2>
   <input class="newsletter__email" type="email" name="email" placeholder="Your email address" required>
-  <input value="on" name="news" type="hidden">
   <input class="newsletter__submit" type="submit" value="Subscribe">
   <p class="newsletter__privacy">Your email address will not be shared or associated with anonymous searches.</p>
 </form
