@@ -7,18 +7,18 @@ into the {body} of the default.hbs template --}}
     {{> side-nav}}
 
     {{!-- The big featured header, it uses blog cover image as a BG if available --}}
-    <header class="site-header outer {{#if @blog.cover_image}}" style="background-image: url({{@blog.cover_image}}){{else}}no-cover{{/if}}">
+    <header class="site-header outer {{#if @site.cover_image}}" style="background-image: url({{@site.cover_image}}){{else}}no-cover{{/if}}">
         <div class="inner">
             <div class="site-header-content">
                 <div>
                     <a href="https://duckduckgo.com/">
-                        <img class="site-logo" src="{{@blog.logo}}" alt="{{@blog.title}}" />
+                        <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}" />
                     </a>
                 </div>
                 <h1 class="site-title">
-                    {{@blog.title}}
+                    {{@site.title}}
                 </h1>
-                <h2 class="site-description">{{@blog.description}}</h2>
+                <h2 class="site-description">{{@site.description}}</h2>
             </div>
         </div>
     </header>
