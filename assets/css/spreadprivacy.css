@@ -413,6 +413,22 @@ a:focus, a:hover {
     min-height: 4em;
 }
 
+.side-bar .new-badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 3px 5px;
+    margin-left: 4px;
+    background: #f9be1a;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 0.04px;
+    color: rgba(0, 0, 0, 0.9);
+}
+
 .side-nav-container {
     max-width: 1040px;
     margin: 0 auto;
