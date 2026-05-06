@@ -982,25 +982,141 @@ figcaption {
     top: 20em;
 }
 
-/* Content flow fixes
-   ------------------
+/* Modern Ghost content cards
+   --------------------------
 
-   `.kg-width-full` needs to take the full size of the browser and
-   therefore outside of the container.
-
-   `.kg-embed-card figcaption` needs to not have such a big margin
-    at the bottom.
+   Ghost 5's editor outputs Koenig cards for images, galleries,
+   bookmarks, callouts, toggles, products, and headers. Casper 5 keeps
+   these cards inside a `.gh-content` canvas; this fork keeps the
+   existing `.post-full-content` layout and adds `.gh-content` in the
+   templates so the newer card markup has enough spacing and width
+   support without replacing the DuckDuckGo blog design.
 */
+
+.gh-content > * + * {
+    margin-top: max(1.5em, 24px);
+    margin-bottom: 0;
+}
+
+.gh-content :not(.kg-card):not([id]) + .kg-card {
+    margin-top: max(2em, 32px);
+}
+
+.gh-content .kg-card + :not(.kg-card) {
+    margin-top: max(2em, 32px);
+}
+
+.kg-card {
+    width: 100%;
+}
+
+.kg-width-wide {
+    position: relative;
+    left: 50%;
+    width: min(100vw - 8vw, 1040px);
+    max-width: none;
+    transform: translateX(-50%);
+}
 
 .kg-width-full {
     position: relative;
-    min-width: 100%;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    transform: translateX(calc(50vw - 50%));
+    left: 50%;
+    width: 100vw;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    transform: translateX(-50%);
 }
 
+.kg-width-full img,
+.kg-width-wide img,
+.kg-image-card img,
+.kg-gallery-card img {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+}
+
+.kg-image-card img,
+.kg-gallery-image img {
+    height: auto;
+}
+
+.kg-embed-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kg-embed-card iframe {
+    max-width: 100%;
+}
+
+.kg-card figcaption,
 .kg-embed-card figcaption {
-    font-size: 80%;
-    margin: -3.5em auto 1em;
+    margin: 1rem auto 0;
+    max-width: 720px;
+    color: var(--secondary-text);
+    font-family: var(--sans-serif);
+    font-size: 1.3rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.kg-bookmark-card,
+.kg-callout-card,
+.kg-toggle-card,
+.kg-product-card,
+.kg-header-card {
+    font-family: var(--sans-serif);
+}
+
+.gh-content .kg-callout-card .kg-callout-text,
+.gh-content .kg-toggle-card .kg-toggle-content > ol,
+.gh-content .kg-toggle-card .kg-toggle-content > ul,
+.gh-content .kg-toggle-card .kg-toggle-content > p,
+.gh-content .kg-product-card .kg-product-card-description > p,
+.gh-content .kg-product-card .kg-product-card-description > ol,
+.gh-content .kg-product-card .kg-product-card-description > ul {
+    font-size: 1.7rem;
+    line-height: 1.6;
+}
+
+.gh-content .kg-toggle-card .kg-toggle-heading-text,
+.kg-header-card h2.kg-header-card-header {
+    font-family: var(--gh-font-heading, var(--sans-serif));
+}
+
+.kg-card.kg-header-card.kg-style-dark {
+    background: var(--primary-text);
+}
+
+.kg-header-card.kg-style-light h2.kg-header-card-header {
+    color: var(--primary-text);
+}
+
+.post-full-comments {
+    margin: 3rem auto 0;
+    padding: 0 100px;
+    background: #fff;
+}
+
+@media (max-width: 1170px) {
+    .post-full-comments {
+        padding: 0 7vw;
+    }
+}
+
+@media (max-width: 650px) {
+    .kg-width-wide,
+    .kg-width-full {
+        width: 100vw;
+    }
+
+    .gh-content .kg-callout-card .kg-callout-text,
+    .gh-content .kg-toggle-card .kg-toggle-content > ol,
+    .gh-content .kg-toggle-card .kg-toggle-content > ul,
+    .gh-content .kg-toggle-card .kg-toggle-content > p {
+        font-size: 1.6rem;
+    }
 }
