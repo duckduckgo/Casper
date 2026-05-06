@@ -16,6 +16,7 @@ into the {body} of the default.hbs template --}}
 
         <article class="post-full {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
 
+            {{#match @page.show_title_and_feature_image}}
             <header class="post-full-header">
                 <h1 class="post-full-title">{{title}}</h1>
                 <section class="post-full-meta-filed">
@@ -28,8 +29,9 @@ into the {body} of the default.hbs template --}}
             <figure class="post-full-image" style="background-image: url({{feature_image}})">
             </figure>
             {{/if}}
+            {{/match}}
 
-            <section class="post-full-content">
+            <section class="post-full-content gh-content">
                 {{content}}
             </section>
 
