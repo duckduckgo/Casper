@@ -15,7 +15,6 @@ test.describe('SpreadPrivacy theme smoke checks', () => {
         await expect(page.locator('.site-nav, .mobile-nav').first()).toBeAttached();
         await expect(page.locator('.post-feed')).toBeVisible();
         await expect(page.locator('article.post-card').first()).toBeVisible();
-        await expect(page.locator('.newsletter').first()).toBeAttached();
 
         await expect(page.locator('.side-bar')).not.toHaveClass(/show/);
         await page.locator('.side-menu').click();
@@ -44,6 +43,7 @@ test.describe('SpreadPrivacy theme smoke checks', () => {
         await expect(page.locator('.post-full-content.gh-content')).toBeVisible();
         await expect(page.locator('.post-full-footer')).toBeVisible();
         await expect(page.locator('.floating-header')).toBeAttached();
+        await expect(page.locator('.newsletter').first()).toBeAttached();
 
         expect(consoleErrors.filter(isThemeConsoleError)).toEqual([]);
     });
