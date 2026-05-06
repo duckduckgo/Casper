@@ -19,7 +19,8 @@
     "test": "yarn build && yarn test:gscan",
     "test:gscan": "gscan . --verbose",
     "test:gscan:fatal": "gscan . --fatal --verbose",
-    "test:vrt": "playwright test"
+    "test:smoke": "playwright test tests/theme-smoke.spec.js",
+    "test:vrt": "playwright test tests/theme-vrt.spec.js"
   },
   "author": {
     "name": "Ghost Foundation",
