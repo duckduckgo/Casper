@@ -39,8 +39,9 @@
     --sidemenu-button-size: 33px;
     --sidemenu-close-color: #bfbfbf;
     --sidemenu-close-focus-color: #575757;
-    --sidemenu-section-color: #888;
-    --sidemenu-background: rgba(242,242,242,0.975);
+    --sidemenu-section-color: #666;
+    --sidemenu-background: #fff;
+    --sidemenu-link-color: #222;
 
     /* z-index */
     --z-index-main: 100;
@@ -485,11 +486,11 @@ a:focus, a:hover {
     padding-right: 0;
     list-style: none;
     font-size: 1.322rem;
-    color: var(--primary-text);
+    color: var(--sidemenu-link-color);
 }
 
 .side-bar .side-bar-list a {
-    color: var(--primary-text);
+    color: var(--sidemenu-link-color);
 }
 
 .side-bar .side-bar-title {
