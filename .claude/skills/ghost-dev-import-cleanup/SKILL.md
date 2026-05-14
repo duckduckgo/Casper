@@ -27,7 +27,8 @@ Columns that contain `__GHOST_URL__`:
 
 ```bash
 # 1. Ghost install root (the directory containing config.development.json).
-export GHOST_DIR=/home/moollaza/ghost-pr47
+#    See the ghost-local-preview skill for the recommended layout.
+export GHOST_DIR="$HOME/ghost-preview"
 
 # 2. Back up the DB first.
 cp "$GHOST_DIR/content/data/ghost-local.db" \

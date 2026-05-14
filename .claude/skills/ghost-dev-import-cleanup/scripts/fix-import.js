@@ -11,7 +11,7 @@
 //      links resolve to the production CDN.
 //
 // Run with:
-//   GHOST_DIR=/home/moollaza/ghost-pr47 \
+//   GHOST_DIR="$HOME/ghost-preview" \
 //   PROD_URL=https://spreadprivacy.com \
 //     node /path/to/scripts/fix-import.js
 //

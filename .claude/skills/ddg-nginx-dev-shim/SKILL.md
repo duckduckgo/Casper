@@ -1,11 +1,13 @@
 ---
 name: ddg-nginx-dev-shim
-description: Expose a local dev server at https://moollaza.duckduckgo.com/<subpath>/ by dropping a location snippet into the duckduckgo.com nginx include directory. Use when the user wants to share or preview a localhost service on a real HTTPS URL — e.g. "expose this on duckduckgo.com", "nginx shim", "preview via duckduckgo.com", "subpath dev preview", or when setting up a public preview of a local app.
+description: Expose a local dev server at https://<your-handle>.duckduckgo.com/<subpath>/ by dropping a location snippet into the duckduckgo.com nginx include directory. Use when the user wants to share or preview a localhost service on their personal DDG dev subdomain — e.g. "expose this on duckduckgo.com", "nginx shim", "preview via duckduckgo.com", "subpath dev preview", or when setting up a public preview of a local app.
 ---
 
 # DuckDuckGo nginx dev shim
 
-Expose any localhost service at `https://moollaza.duckduckgo.com/<subpath>/` by dropping a `location` snippet into the production nginx include directory.
+Expose any localhost service at `https://<your-handle>.duckduckgo.com/<subpath>/` by dropping a `location` snippet into the production nginx include directory on your DDG dev box.
+
+> Each DDG developer has their own `<handle>.duckduckgo.com` subdomain. Substitute your own handle (your DDG username) wherever you see `<your-handle>` below.
 
 ## How it works
 
@@ -61,13 +63,19 @@ If you copy a snippet from a neighboring app, **check which one applies to yours
 ## Verify
 
 ```bash
-curl -I https://moollaza.duckduckgo.com/<subpath>/   # expect a 2xx/3xx from your upstream
-sudo /usr/local/nginx/sbin/nginx -t                  # syntax check before reloading
+curl -I https://<your-handle>.duckduckgo.com/<subpath>/   # expect a 2xx/3xx from your upstream
+sudo /usr/local/nginx/sbin/nginx -t                       # syntax check before reloading
 ```
 
 If you get a 404 or the wrong app, double-check that the snippet filename actually landed in `/usr/local/nginx/conf/duckduckgo.com_conf.d/` and that `nginx -t` passes.
 
-## Prior art on this box
+## Existing snippets on the box
 
-- `/home/moollaza/ghost-pr47/nginx.conf` — Ghost preview, subpath-aware (no trailing slash on `proxy_pass`). Deployed copy at `/usr/local/nginx/conf/duckduckgo.com_conf.d/spreadprivacy.conf`.
-- `/home/moollaza/projects/feedback-bot/feedback-explorer/` — `feedback-explorer` shim, strips the prefix (trailing slash on `proxy_pass`). Different behavior — see the table above before copying.
+List what's already wired up — useful both as prior art and to avoid subpath collisions:
+
+```bash
+ls /usr/local/nginx/conf/duckduckgo.com_conf.d/
+grep -n 'proxy_pass' /usr/local/nginx/conf/duckduckgo.com_conf.d/*.conf
+```
+
+Find a snippet that proxies the *same kind* of upstream as yours (subpath-aware vs prefix-stripping per the table above) before copying.

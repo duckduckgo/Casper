@@ -7,16 +7,26 @@ description: Operate a local Ghost install previewing this Casper theme — star
 
 This skill operates a local Ghost install used to preview Casper theme branches against real Spread Privacy content.
 
-## Layout
+> Each DDG developer runs their own local Ghost install on their own dev box and serves it from their own `<your-handle>.duckduckgo.com` subdomain. Substitute your own paths and handle below — the layout is a recommended convention, not a hard-coded location.
 
-| Path                                                       | Role                                                                                       |
-| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `/home/moollaza/ghost-pr47/`                               | Ghost install root (`config.development.json`, `content/`, `current` → `versions/6.37.1`). |
-| `/home/moollaza/ghost-pr47/content/themes/casper-pr47/`    | Active theme — **non-git directory clone** of a Casper branch.                             |
-| `/home/moollaza/projects/spreadprivacy-blog/Casper`        | Canonical theme source (this repo). Don't edit the deployed copy in isolation.             |
-| `/home/moollaza/ghost-pr47/content/data/ghost-local.db`    | SQLite DB with imported Spread Privacy content.                                            |
+## Layout (recommended convention)
 
-Public URL: `https://moollaza.duckduckgo.com/spreadprivacy/`, via the snippet documented in the [`ddg-nginx-dev-shim`](../ddg-nginx-dev-shim/SKILL.md) skill.
+| Path                                         | Role                                                                                       |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `$GHOST_DIR`                                 | Ghost install root (`config.development.json`, `content/`, `current` → `versions/<X.Y.Z>`). |
+| `$GHOST_DIR/content/themes/<theme-dir>/`     | Active theme — **non-git directory clone** of a Casper branch.                             |
+| `$REPO_DIR`                                  | Canonical theme source (this repo, wherever you cloned it). Don't edit the deployed copy in isolation. |
+| `$GHOST_DIR/content/data/ghost-local.db`     | SQLite DB with imported Spread Privacy content.                                            |
+
+Suggested values (use whatever you prefer):
+
+```bash
+export GHOST_DIR="$HOME/ghost-preview"
+export REPO_DIR="$HOME/projects/Casper"
+export THEME_DIR="$GHOST_DIR/content/themes/casper-preview"
+```
+
+Public URL: `https://<your-handle>.duckduckgo.com/<subpath>/`, via the snippet documented in the [`ddg-nginx-dev-shim`](../ddg-nginx-dev-shim/SKILL.md) skill. The conventional `<subpath>` is `spreadprivacy` (matches Ghost's `url` config below), but you can use any unique path.
 
 ## Node version gotcha
 
@@ -34,7 +44,7 @@ Or load `fnm` with auto-cd: `eval "$(fnm env --use-on-cd)"`.
 ## Operate
 
 ```bash
-cd /home/moollaza/ghost-pr47 && fnm use 22
+cd "$GHOST_DIR" && fnm use 22
 
 ghost status                       # is it up?
 ghost start
@@ -46,35 +56,35 @@ ghost log -f                       # tail logs (or: tail -f content/logs/*.log)
 ## Refresh the deployed theme from this repo
 
 ```bash
-cd /home/moollaza/projects/spreadprivacy-blog/Casper
+cd "$REPO_DIR"
 git fetch origin
-git checkout <branch>    # e.g. pr-47 or master
+git checkout <branch>    # e.g. master, or a PR branch
 git pull --ff-only
 
 # Replace the deployed copy (this discards any local hand-edits — back them up first).
 rsync -a --delete \
   --exclude='.git/' \
-  /home/moollaza/projects/spreadprivacy-blog/Casper/ \
-  /home/moollaza/ghost-pr47/content/themes/casper-pr47/
+  "$REPO_DIR"/ \
+  "$THEME_DIR"/
 
-cd /home/moollaza/ghost-pr47 && fnm use 22 && ghost restart
+cd "$GHOST_DIR" && fnm use 22 && ghost restart
 ```
 
-Then in Ghost admin → **Design → Change theme**, pick `casper-pr47` if it isn't already active.
+Then in Ghost admin → **Design → Change theme**, pick the theme dir name (e.g. `casper-preview`) if it isn't already active.
 
 ## CSS iteration shortcut (avoid the Gulp 3.x build)
 
 The theme's source CSS (`assets/css/spreadprivacy.css`) is compiled to `assets/built/spreadprivacy.css` by a Gulp 3.x pipeline that requires Node 8 and is painful to run. For quick iteration, edit **both** files in the deployed theme dir directly:
 
-- `content/themes/casper-pr47/assets/css/spreadprivacy.css` (source)
-- `content/themes/casper-pr47/assets/built/spreadprivacy.css` (what Ghost actually serves)
+- `$THEME_DIR/assets/css/spreadprivacy.css` (source)
+- `$THEME_DIR/assets/built/spreadprivacy.css` (what Ghost actually serves)
 
-Reload the page in the browser — no theme restart needed. When you're done iterating, port the changes back into `/home/moollaza/projects/spreadprivacy-blog/Casper` on the right branch, commit both files together, and push.
+Reload the page in the browser — no theme restart needed. When you're done iterating, port the changes back into `$REPO_DIR` on the right branch, commit both files together, and push.
 
 ## DB backup / restore
 
 ```bash
-cd /home/moollaza/ghost-pr47
+cd "$GHOST_DIR"
 
 # Back up
 cp content/data/ghost-local.db content/data/ghost-local.db.bak-$(date +%Y%m%d-%H%M%S)
@@ -90,15 +100,15 @@ ghost start
 
 ## Ghost config (do not change without restart)
 
-`config.development.json` is the source of truth for Ghost's public URL. The current setup binds Ghost to `127.0.0.1:5000` and serves the site at `https://moollaza.duckduckgo.com/spreadprivacy`:
+`config.development.json` is the source of truth for Ghost's public URL. The conventional setup binds Ghost to `127.0.0.1:5000` and serves the site at `https://<your-handle>.duckduckgo.com/spreadprivacy`:
 
 ```json
 {
-  "url": "https://moollaza.duckduckgo.com/spreadprivacy",
+  "url": "https://<your-handle>.duckduckgo.com/spreadprivacy",
   "server": { "port": 5000, "host": "127.0.0.1" },
   "database": {
     "client": "sqlite3",
-    "connection": { "filename": "/home/moollaza/ghost-pr47/content/data/ghost-local.db" }
+    "connection": { "filename": "<absolute path to $GHOST_DIR>/content/data/ghost-local.db" }
   }
 }
 ```
@@ -109,5 +119,5 @@ If Ghost ever silently falls back to `ghost-dev.db` after a restart, check that 
 
 ## Related skills
 
-- [`ddg-nginx-dev-shim`](../ddg-nginx-dev-shim/SKILL.md) — the nginx snippet that exposes Ghost publicly at `moollaza.duckduckgo.com/spreadprivacy/`.
+- [`ddg-nginx-dev-shim`](../ddg-nginx-dev-shim/SKILL.md) — the nginx snippet that exposes Ghost publicly at `<your-handle>.duckduckgo.com/<subpath>/`.
 - [`ghost-dev-import-cleanup`](../ghost-dev-import-cleanup/SKILL.md) — clean up a freshly-imported Ghost JSON export (demo posts + `__GHOST_URL__` placeholders).

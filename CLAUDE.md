@@ -46,7 +46,7 @@ For running this theme against real Spread Privacy content via a local Ghost ins
 
 - [`ghost-local-preview`](.claude/skills/ghost-local-preview/SKILL.md) — start / stop / restart Ghost, refresh the deployed theme from this repo, back up and restore the SQLite DB. Includes the Node 22 / `fnm` gotcha.
 - [`ghost-dev-import-cleanup`](.claude/skills/ghost-dev-import-cleanup/SKILL.md) — import the Spread Privacy JSON export and clean up the two Ghost demo posts plus the literal `__GHOST_URL__` placeholders that ship in every Ghost export.
-- [`ddg-nginx-dev-shim`](.claude/skills/ddg-nginx-dev-shim/SKILL.md) — expose any localhost dev service at `https://moollaza.duckduckgo.com/<subpath>/` via the production nginx include directory. Reusable beyond this repo.
+- [`ddg-nginx-dev-shim`](.claude/skills/ddg-nginx-dev-shim/SKILL.md) — expose any localhost dev service at `https://<your-handle>.duckduckgo.com/<subpath>/` via the production nginx include directory on your DDG dev box. Reusable beyond this repo.
 
 ## Quick repo orientation
 
