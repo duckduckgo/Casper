@@ -1,42 +1,40 @@
-# Casper
+# Casper — DuckDuckGo fork
 
-The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Casper. If you're just looking to download the latest release, head over to the [releases](https://github.com/TryGhost/Casper/releases) page.
+This is the DuckDuckGo fork of TryGhost's [Casper theme](https://github.com/TryGhost/Casper), customized for the [Spread Privacy](https://spreadprivacy.com) blog. It's a Ghost CMS theme — Handlebars templates rendered by a running Ghost instance.
 
-&nbsp;
+If you're looking for the upstream theme, see [TryGhost/Casper](https://github.com/TryGhost/Casper).
 
-![screenshot-desktop](https://user-images.githubusercontent.com/120485/27221326-1e31d326-5280-11e7-866d-82d550a7683b.jpg)
+For instructions to AI coding agents working in this repo, see [`CLAUDE.md`](CLAUDE.md) (Cursor reads the same content via `AGENTS.md` → `CLAUDE.md`).
 
-&nbsp;
+## Working with Ghost themes
 
-# First time using a Ghost theme?
+Ghost uses [Handlebars](http://handlebarsjs.com/) for its themes. The theme code is documented heavily; reading the source and inline comments is the fastest way in. For the helper reference, see the [Ghost theme API docs](https://themes.ghost.org).
 
-Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
+**The main template files are:**
 
-We've documented our default theme pretty heavily so that it should be fairly easy to work out what's going on just by reading the code and the comments. Once you feel comfortable with how everything works, we also have full [theme API documentation](https://themes.ghost.org) which explains every possible Handlebars helper and template.
+- `default.hbs` — the main template wrapping everything
+- `index.hbs` — home page
+- `post.hbs` — individual posts
+- `page.hbs` — individual pages
+- `tag.hbs` — tag archives
+- `author.hbs` — author archives
 
-**The main files are:**
+You can create custom one-off templates by adding the slug of a page to a template filename. For example:
 
-- `default.hbs` - The main template file
-- `index.hbs` - Used for the home page
-- `post.hbs` - Used for individual posts
-- `page.hbs` - Used for individual pages
-- `tag.hbs` - Used for tag archives
-- `author.hbs` - Used for author archives
+- `page-about.hbs` — custom template for the `/about/` page
+- `tag-news.hbs` — custom template for `/tag/news/` archive
+- `author-ali.hbs` — custom template for `/author/ali/` archive
 
-One really neat trick is that you can also create custom one-off templates just by adding the slug of a page to a template file. For example:
+## Development
 
-- `page-about.hbs` - Custom template for the `/about/` page
-- `tag-news.hbs` - Custom template for `/tag/news/` archive
-- `author-ali.hbs` - Custom template for `/author/ali/` archive
+> ⚠️ The build pipeline is on **Gulp 3.x**, which only runs on **Node 8 / 10**. On any modern Node it will fail (`primordials is not defined` or `internalBinding is not defined`). For small CSS changes there's a hand-edit workaround — see [`CLAUDE.md`](CLAUDE.md#build-system-pain-read-before-touching-css).
 
-
-# Development
-
-Casper styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need Node and Gulp installed globally. After that, from the theme's root directory:
+Casper styles are compiled using Gulp/PostCSS to polyfill future CSS spec. To run the proper build you need Node 8 and Gulp installed. From the theme's root directory:
 
 ```bash
-$ yarn install
-$ yarn dev
+fnm use 8                          # or: nvm use 8
+yarn install --ignore-engines
+yarn dev
 ```
 
 Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
@@ -44,23 +42,31 @@ Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/
 The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which you can then upload to your site.
 
 ```bash
-$ yarn zip
+yarn zip
 ```
 
-# PostCSS Features Used
+## PostCSS features used
 
-- Autoprefixer - Don't worry about writing browser prefixes of any kind, it's all done automatically with support for the latest 2 major versions of every browser.
-- Variables - Simple pure CSS variables
-- [Color Function](https://github.com/postcss/postcss-color-function)
+- **Autoprefixer** — automatic browser prefixes for the latest 2 major versions of every browser.
+- **Variables** — simple pure CSS variables.
+- [**Color Function**](https://github.com/postcss/postcss-color-function)
 
+## SVG icons
 
-# SVG Icons
-
-Casper uses inline SVG icons, included via Handlebars partials. You can find all icons inside `/partials/icons`. To use an icon just include the name of the relevant file, eg. To include the SVG icon in `/partials/icons/rss.hbs` - use `{{> "icons/rss"}}`.
+Casper uses inline SVG icons, included via Handlebars partials. You can find all icons inside `/partials/icons`. To use an icon, include the name of the relevant file — for example, to include the SVG icon in `/partials/icons/rss.hbs`, use `{{> "icons/rss"}}`.
 
 You can add your own SVG icons in the same manner.
 
+## Local preview against real Spread Privacy content
 
-# Copyright & License
+To run this theme end-to-end against a real Spread Privacy export in a local Ghost install, see the project skills under [`.claude/skills/`](.claude/skills/) (Cursor picks them up via [`.cursor/skills/`](.cursor/skills/) symlinks):
 
-Copyright (c) 2013-2018 Ghost Foundation - Released under the [MIT license](LICENSE).
+- [`ghost-local-preview`](.claude/skills/ghost-local-preview/SKILL.md) — start, stop, and restart Ghost; refresh the deployed theme from this repo; back up and restore the SQLite DB. Includes the Node 22 / `fnm` gotcha.
+- [`ghost-dev-import-cleanup`](.claude/skills/ghost-dev-import-cleanup/SKILL.md) — import a Ghost JSON export, then clean up the two Ghost demo posts and the literal `__GHOST_URL__` placeholders that ship in every export. Ships with a runnable `fix-import.js`.
+- [`ddg-nginx-dev-shim`](.claude/skills/ddg-nginx-dev-shim/SKILL.md) — expose any localhost dev service at `https://<your-handle>.duckduckgo.com/<subpath>/` via the production nginx include directory on your DDG dev box. Reusable beyond this repo.
+
+## Copyright & license
+
+Released under the [MIT license](LICENSE).
+
+Upstream Casper © 2013-2018 Ghost Foundation.
