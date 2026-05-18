@@ -22,3 +22,6 @@ projectFilesBackup
 .DS_Store
 
 dist/
+
+playwright-report/
+test-results/
