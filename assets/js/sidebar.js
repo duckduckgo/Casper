@@ -16,17 +16,15 @@ $(function() {
 
     var $links = $('a');
 
-    // Show the sidemenu when the hamburger menu is clicked.
-    $sidemenu.click(function() {
-        if($sidebar.hasClass('show')) {
-            $sidebar.removeClass('show');
-        } else {
-            $sidebar.addClass('show');
-        }
+    // Hamburger toggles the drawer. stopPropagation so the body-click closer
+    // below does not see our own click and immediately re-close the drawer.
+    $sidemenu.click(function(e) {
+        e.stopPropagation();
+        $sidebar.toggleClass('show');
     });
 
-    // Hide the sidemenu when the X button is clicked
-    $sideclose.click(function() {
+    $sideclose.click(function(e) {
+        e.stopPropagation();
         $sidebar.removeClass('show');
     });
 

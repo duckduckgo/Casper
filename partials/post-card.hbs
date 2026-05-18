@@ -18,24 +18,23 @@
         </a>
         <footer class="post-card-meta">
 
-            <ul class="author-list">
-            {{#foreach authors}}
-                <li class="author-list-item">
-
-                    <div class="author-name-tooltip">
-                        {{name}}
-                    </div>
-
+            {{#primary_author}}
+                <div class="post-card-author">
                     {{#if profile_image}}
                         <a href="{{url}}" class="static-avatar"><img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" /></a>
                     {{else}}
-                        <a href="{{url}}" class="static-avatar author-profile-image">{{> "icons/avatar"}}</a>
+                        <a href="{{url}}" class="static-avatar author-profile-image" aria-label="{{name}}">{{> "icons/avatar"}}</a>
                     {{/if}}
-                </li>
-            {{/foreach}}
-            </ul>
+                </div>
+            {{/primary_author}}
 
-            <span class="reading-time">{{reading_time}}</span>
+            <div class="post-card-byline-date">
+                <time class="post-card-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                {{#if reading_time}}
+                    <span class="post-card-meta-separator">&middot;</span>
+                    <span class="reading-time">{{reading_time}}</span>
+                {{/if}}
+            </div>
 
         </footer>
     </div>

@@ -136,10 +136,14 @@
     margin-bottom: 0;
 }
 
-/* This is the DDG logo. */
 .nav-logo {
-    height: 33px;
     margin-left: -5px;
+}
+
+/* Override the global `img { display: block }` so the logo stays inline. */
+.nav-logo-img {
+    display: inline-block;
+    height: auto;
 }
 
 /* Reset the spacing in the navigation since we
@@ -196,7 +200,8 @@
     padding-right: 4px;
 }
 
-@media (max-width: 1010px) {
+/* 1011-1200px: compress the menu and drop social icons to avoid overflow. */
+@media (max-width: 1200px) {
     .nav {
         margin: 0 0 0 -1vw;
     }
@@ -388,10 +393,11 @@ a:focus, a:hover {
     height: var(--sidemenu-button-size);
     width: var(--sidemenu-button-size);
     text-align: center;
-    float: right;
     padding-top: 3px;
     padding-left: 1px;
-    margin-top: 8px;
+    /* Flex on .side-nav-container vertically centers this; push it to the
+       right edge with auto left-margin (replaces the old float:right). */
+    margin-left: auto;
 }
 
 .side-menu:hover, .side-menu:active, .side-menu:focus {
@@ -433,14 +439,19 @@ a:focus, a:hover {
 .side-nav-container {
     max-width: 1040px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    /* Matches the rendered nav-row height on master so the slim header
+       stays 66px tall on tag/author/post pages. */
+    min-height: 50px;
 }
 
+/* Homepage has no small logo, hamburger spans the full padded width. */
 .home-template .side-nav-container {
     max-width: initial;
+    /* Home keeps the original 60px-tall blue strip. */
+    min-height: calc(4em - 16px);
 }
-
-/* Specific position adjustments for the logo and the
-   side menu. */
 
 .side-menu {
     margin-right: -7px;
@@ -450,16 +461,28 @@ a:focus, a:hover {
     margin-left: -5px;
 }
 
-/* Reset these adjustments on bigger sizes. */
+/* Mobile home: anchor hamburger to top of the strip (matches master's
+   margin-top:8px placement) without growing the flex container. */
+.home-template .side-menu {
+    align-self: flex-start;
+    margin-top: 8px;
+}
 
 @media (min-width: 760px) {
-    .home-template .side-menu, .home-template .nav-logo {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
+    /* Desktop home: position the hamburger absolutely so margin-top
+       adjustments don't stretch the flex container past 60px. Mirrors
+       master's float:right + margin-top:8px placement (top:26, right:10). */
     .home-template .side-nav {
-        padding: 18px 10px;
+        position: relative;
+    }
+    .home-template .side-menu {
+        position: absolute;
+        top: 26px;
+        right: 10px;
+        margin: 0;
+    }
+    .home-template .nav-logo {
+        margin: 0;
     }
 }
 
@@ -536,14 +559,34 @@ a:focus, a:hover {
 */
 
 
-.tag-template .site-header-content {
+.tag-header {
+    margin: 0 0 var(--tag-template-bottom-spacing);
+    text-align: center;
     color: var(--primary-text);
-    padding-bottom: 0;
 }
 
-.tag-template .site-header-content .site-description {
+.tag-title {
+    margin: 0 0 10px;
+    font-size: 4rem;
+    font-weight: 500;
+    color: var(--primary-text);
+}
+
+.tag-description {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 300;
     color: #666;
-    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+    .tag-title {
+        font-size: 3rem;
+    }
+
+    .tag-description {
+        font-size: 1.6rem;
+    }
 }
 
 /* Overrides
@@ -576,12 +619,6 @@ a:focus, a:hover {
     margin-top: 0;
 }
 
-/* Remove the background on the tag view */
-.tag-template .site-header {
-    background: initial;
-    padding-bottom: calc(var(--tag-template-bottom-spacing) + 6px);
-}
-
 /* Main page
    ----------------------------
 
@@ -597,14 +634,6 @@ a:focus, a:hover {
     font-size: 4rem;
     font-weight: 500;
     z-index: 10;
-}
-
-.tag-template .site-title {
-    padding-bottom: 10px;
-}
-
-.tag-template .site-description {
-    padding: 0;
 }
 
 .site-description {
@@ -712,29 +741,6 @@ figcaption {
     text-decoration: none;
 }
 
-.author-template .site-nav {
-    background: transparent;
-    border: none;
-    margin-bottom: 0;
-}
-
-.author-template .site-header {
-    margin-bottom: 0;
-}
-
-@media (min-width: 700px) {
-    .author-template .site-header {
-        margin-bottom: 30px;
-    }
-}
-
-.author-template .site-nav {
-    color: white;
-}
-
-.author-template .site-nav .nav li a {
-    color: white;
-}
 
 
 /* 7.4. Related posts
@@ -983,25 +989,140 @@ figcaption {
     top: 20em;
 }
 
-/* Content flow fixes
-   ------------------
+/* Modern Ghost content cards
+   --------------------------
 
-   `.kg-width-full` needs to take the full size of the browser and
-   therefore outside of the container.
-
-   `.kg-embed-card figcaption` needs to not have such a big margin
-    at the bottom.
+   Ghost 5's editor outputs Koenig cards for images, galleries,
+   bookmarks, callouts, toggles, products, and headers. Casper 5 keeps
+   these cards inside a `.gh-content` canvas; this fork keeps the
+   existing `.post-full-content` layout and adds `.gh-content` in the
+   templates so the newer card markup has enough spacing and width
+   support without replacing the DuckDuckGo blog design.
 */
+
+.gh-content > * + * {
+    margin-top: max(1.5em, 24px);
+}
+
+.gh-content :not(.kg-card):not([id]) + .kg-card {
+    margin-top: max(2em, 32px);
+}
+
+.gh-content .kg-card + :not(.kg-card) {
+    margin-top: max(2em, 32px);
+}
+
+.kg-card {
+    width: 100%;
+}
+
+.kg-width-wide {
+    position: relative;
+    left: 50%;
+    width: min(100vw - 8vw, 1040px);
+    max-width: none;
+    transform: translateX(-50%);
+}
 
 .kg-width-full {
     position: relative;
-    min-width: 100%;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    transform: translateX(calc(50vw - 50%));
+    left: 50%;
+    width: 100vw;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    transform: translateX(-50%);
 }
 
+.kg-width-full img,
+.kg-width-wide img,
+.kg-image-card img,
+.kg-gallery-card img {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+}
+
+.kg-image-card img,
+.kg-gallery-image img {
+    height: auto;
+}
+
+.kg-embed-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kg-embed-card iframe {
+    max-width: 100%;
+}
+
+.kg-card figcaption,
 .kg-embed-card figcaption {
-    font-size: 80%;
-    margin: -3.5em auto 1em;
+    margin: 1rem auto 0;
+    max-width: 720px;
+    color: var(--secondary-text);
+    font-family: var(--sans-serif);
+    font-size: 1.3rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.kg-bookmark-card,
+.kg-callout-card,
+.kg-toggle-card,
+.kg-product-card,
+.kg-header-card {
+    font-family: var(--sans-serif);
+}
+
+.gh-content .kg-callout-card .kg-callout-text,
+.gh-content .kg-toggle-card .kg-toggle-content > ol,
+.gh-content .kg-toggle-card .kg-toggle-content > ul,
+.gh-content .kg-toggle-card .kg-toggle-content > p,
+.gh-content .kg-product-card .kg-product-card-description > p,
+.gh-content .kg-product-card .kg-product-card-description > ol,
+.gh-content .kg-product-card .kg-product-card-description > ul {
+    font-size: 1.7rem;
+    line-height: 1.6;
+}
+
+.gh-content .kg-toggle-card .kg-toggle-heading-text,
+.kg-header-card h2.kg-header-card-header {
+    font-family: var(--gh-font-heading, var(--sans-serif));
+}
+
+.kg-card.kg-header-card.kg-style-dark {
+    background: var(--primary-text);
+}
+
+.kg-header-card.kg-style-light h2.kg-header-card-header {
+    color: var(--primary-text);
+}
+
+.post-full-comments {
+    margin: 3rem auto 0;
+    padding: 0 100px;
+    background: #fff;
+}
+
+@media (max-width: 1170px) {
+    .post-full-comments {
+        padding: 0 7vw;
+    }
+}
+
+@media (max-width: 650px) {
+    .kg-width-wide,
+    .kg-width-full {
+        width: 100vw;
+    }
+
+    .gh-content .kg-callout-card .kg-callout-text,
+    .gh-content .kg-toggle-card .kg-toggle-content > ol,
+    .gh-content .kg-toggle-card .kg-toggle-content > ul,
+    .gh-content .kg-toggle-card .kg-toggle-content > p {
+        font-size: 1.6rem;
+    }
 }
