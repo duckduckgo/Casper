@@ -32,8 +32,8 @@
                 <section class="copyright"><a href="{{@site.url}}">{{@site.title}}</a> &copy; {{date format="YYYY"}}</section>
                 <nav class="site-footer-nav">
                     <a href="{{@site.url}}">Latest Posts</a>
-                    {{#if @site.facebook}}<a href="{{facebook_url @site.facebook}}" target="_blank" rel="noopener">Facebook</a>{{/if}}
-                    {{#if @site.twitter}}<a href="{{twitter_url @site.twitter}}" target="_blank" rel="noopener">Twitter</a>{{/if}}
+                    {{#if @site.facebook}}<a href="{{social_url type="facebook"}}" target="_blank" rel="noopener">Facebook</a>{{/if}}
+                    {{#if @site.twitter}}<a href="{{social_url type="twitter"}}" target="_blank" rel="noopener">Twitter</a>{{/if}}
                     <a href="https://www.reddit.com/r/duckduckgo/" target="_blank" rel="noopener">Community</a>
                     <a href="https://duckduckgo.com/newsletter" target="_blank" rel="noopener">Privacy Crash Course</a>
                     <a href="https://duckduckgo.com/about" target="_blank">About DuckDuckGo</a>

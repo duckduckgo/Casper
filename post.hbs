@@ -34,9 +34,15 @@ into the {body} of the default.hbs template --}}
             </figure>
             {{/if}}
 
-            <section class="post-full-content">
+            <section class="post-full-content gh-content">
                 {{content}}
             </section>
+
+            {{#if comments}}
+            <section class="post-full-comments">
+                {{comments}}
+            </section>
+            {{/if}}
 
             {{!-- Email subscribe form at the bottom of the page --}}
             {{#if @labs.subscribers}}

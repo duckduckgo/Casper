@@ -1,24 +1,12 @@
 <div class="side-nav">
     <div class="side-nav-container">
-        {{#is "post"}}
-            <a href="https://duckduckgo.com/" class="nav-logo">
-                {{> "icons/logo-main"}}
-            </a>
-        {{/is}}
-        {{#is "author"}}
-            <a href="https://duckduckgo.com/" class="nav-logo">
-                {{> "icons/logo-main"}}
-            </a>
-        {{/is}}
-        {{#is "tag"}}
-            <a href="https://duckduckgo.com/" class="nav-logo">
-                {{> "icons/logo-main"}}
-            </a>
-        {{/is}}
-        {{#is "page"}}
-            <a href="https://duckduckgo.com/" class="nav-logo">
-                {{> "icons/logo-main"}}
-            </a>
+        {{!-- Home shows the big logo in the hero, so skip the small one here. --}}
+        {{#is "post, author, tag, page"}}
+            {{#if @site.logo}}
+                <a href="https://duckduckgo.com/" class="nav-logo">
+                    {{> "icons/logo-main"}}
+                </a>
+            {{/if}}
         {{/is}}
 
         <a href="#" class="side-menu">

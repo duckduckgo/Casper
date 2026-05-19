@@ -32,7 +32,9 @@ One really neat trick is that you can also create custom one-off templates just 
 
 # Development
 
-Casper styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need Node and Gulp installed globally. After that, from the theme's root directory:
+Casper styles are compiled using Gulp/PostCSS to polyfill future CSS spec. This fork targets Ghost 6.x and uses Node 22 for local theme development.
+
+From the theme's root directory:
 
 ```bash
 $ yarn install
@@ -46,6 +48,21 @@ The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which
 ```bash
 $ yarn zip
 ```
+
+# Running the theme tests
+
+```bash
+yarn install --frozen-lockfile
+yarn build
+# spin up a local Ghost serving this theme on http://localhost:2368
+GHOST_BASE_URL=http://localhost:2368 yarn test:smoke
+GHOST_BASE_URL=http://localhost:2368 yarn test:vrt
+```
+
+The smoke spec covers: theme chrome + post feed render, single-post page,
+DDG Proxima Nova webfont actually loaded at every weight, side-nav stays
+one row tall, site-nav menu does not overflow at narrow desktop widths
+(1015-1200px band), and no third-party tracking / external CDN requests.
 
 # PostCSS Features Used
 
