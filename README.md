@@ -49,6 +49,10 @@ The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which
 $ yarn zip
 ```
 
+# Releases
+
+Releases are automatic on merge to `master`. Use [Conventional Commit](https://www.conventionalcommits.org/) subjects (`feat:` → minor, `fix:` → patch, `BREAKING CHANGE:` footer → major) — anything else skips the release. Download the zip from the [releases page](https://github.com/duckduckgo/Casper/releases) and upload via Ghost admin → Settings → Design → Change theme.
+
 # Running the theme tests
 
 ```bash

@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build theme zip
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build theme
+        run: yarn build
+
+      - name: Report gscan warnings (non-blocking)
+        continue-on-error: true
+        run: yarn test:gscan
+
+      - name: Gate on fatal gscan errors
+        run: yarn test:gscan:fatal
+
+      - name: Verify zip task succeeds
+        if: github.event_name == 'pull_request'
+        run: yarn zip
+
+      - name: Run semantic-release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release

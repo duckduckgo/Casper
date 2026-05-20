@@ -16,6 +16,7 @@
     "dev": "gulp",
     "build": "gulp build",
     "zip": "gulp zip",
+    "release": "semantic-release",
     "test": "yarn build && yarn test:gscan",
     "test:gscan": "gscan . --verbose",
     "test:gscan:fatal": "gscan . --fatal --verbose",
@@ -46,6 +47,8 @@
   "contributors": "https://github.com/duckduckgo/Casper/graphs/contributors",
   "devDependencies": {
     "@playwright/test": "^1.57.0",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
     "autoprefixer": "^10.4.24",
     "beeper": "^2.1.0",
     "cssnano": "^7.1.2",
@@ -60,7 +63,8 @@
     "postcss-color-function": "^4.1.0",
     "postcss-custom-properties": "^15.0.1",
     "postcss-easy-import": "^4.0.0",
-    "pump": "^3.0.3"
+    "pump": "^3.0.3",
+    "semantic-release": "^25.0.3"
   },
   "browserslist": [
     "defaults"
