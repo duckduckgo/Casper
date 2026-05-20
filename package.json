@@ -49,6 +49,7 @@
     "@playwright/test": "^1.57.0",
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
+    "@tryghost/admin-api": "^1.13.13",
     "autoprefixer": "^10.4.24",
     "beeper": "^2.1.0",
     "cssnano": "^7.1.2",
