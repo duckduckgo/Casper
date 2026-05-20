@@ -55,9 +55,14 @@ Releases are automatic on merge to `master`. Use [Conventional Commit](https://w
 
 # Running the theme tests
 
+CI runs the full chain on every PR and master push: gscan → zip → bundle
+integrity → smoke → VRT. Locally:
+
 ```bash
 yarn install --frozen-lockfile
 yarn build
+yarn zip
+scripts/verify-bundle.sh dist/casper.zip
 # spin up a local Ghost serving this theme on http://localhost:2368
 GHOST_BASE_URL=http://localhost:2368 yarn test:smoke
 GHOST_BASE_URL=http://localhost:2368 yarn test:vrt
@@ -67,6 +72,10 @@ The smoke spec covers: theme chrome + post feed render, single-post page,
 DDG Proxima Nova webfont actually loaded at every weight, side-nav stays
 one row tall, site-nav menu does not overflow at narrow desktop widths
 (1015-1200px band), and no third-party tracking / external CDN requests.
+
+`scripts/verify-bundle.sh` magic-byte-checks every font, PNG, and JPG in
+the built zip — catches the class of bug where tooling re-encodes binary
+assets without `yarn zip` itself failing.
 
 # PostCSS Features Used
 

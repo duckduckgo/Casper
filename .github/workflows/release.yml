@@ -16,8 +16,20 @@ concurrency:
 
 jobs:
   build:
-    name: Build theme zip
+    name: Build, validate, and release
     runs-on: ubuntu-latest
+
+    services:
+      ghost:
+        image: ghost:6-alpine
+        ports:
+          - 2368:2368
+        env:
+          NODE_ENV: development
+          database__client: sqlite3
+          database__connection__filename: /var/lib/ghost/content/data/ghost-test.db
+          url: http://localhost:2368
+          mail__transport: Direct
 
     steps:
       - name: Checkout
@@ -45,9 +57,50 @@ jobs:
       - name: Gate on fatal gscan errors
         run: yarn test:gscan:fatal
 
-      - name: Verify zip task succeeds
-        if: github.event_name == 'pull_request'
+      - name: Build zip
         run: yarn zip
+
+      - name: Verify bundle integrity
+        run: scripts/verify-bundle.sh dist/casper.zip
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Wait for Ghost
+        run: |
+          for i in $(seq 1 60); do
+            if curl -sf http://localhost:2368/ghost/api/admin/site/ > /dev/null; then
+              echo "Ghost is up"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Ghost did not become ready in time" >&2
+          exit 1
+
+      - name: Bootstrap Ghost (setup + theme upload + seed)
+        env:
+          GHOST_BASE_URL: http://localhost:2368
+          THEME_ZIP: dist/casper.zip
+        run: node scripts/ci-bootstrap-ghost.mjs
+
+      - name: Run smoke tests
+        env:
+          GHOST_BASE_URL: http://localhost:2368
+        run: yarn test:smoke
+
+      - name: Run VRT
+        env:
+          GHOST_BASE_URL: http://localhost:2368
+        run: yarn test:vrt
+
+      - name: Upload Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 14
 
       - name: Run semantic-release
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
