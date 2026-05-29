@@ -245,6 +245,12 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     height: 21px;
 }
 
+/* The DuckDuckGo wordmark (logo-main) is wider than the old square logo, so
+   give it the same 36px height it uses in the site header. */
+.site-nav-logo .nav-logo-img {
+    height: 36px;
+}
+
 .nav {
     display: flex;
     margin: 0 0 0 -12px;

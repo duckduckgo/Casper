@@ -140,10 +140,13 @@
     margin-left: -5px;
 }
 
-/* Override the global `img { display: block }` so the logo stays inline. */
+/* Override the global `img { display: block }` so the logo stays inline.
+   The DuckDuckGo wordmark is wide (~189x53), so pin the height and let the
+   width scale to keep the aspect ratio. */
 .nav-logo-img {
     display: inline-block;
-    height: auto;
+    width: auto;
+    height: 36px;
 }
 
 /* Reset the spacing in the navigation since we
@@ -400,6 +403,44 @@ a:focus, a:hover {
     margin-left: auto;
 }
 
+/* DuckDuckGo tagline, sits at the right of the slim header, just before the
+   hamburger. Only the tagline carries the auto left-margin so it pushes the
+   whole [tagline][hamburger] group to the right edge; the hamburger sits flush
+   next to it. (Two auto margins would split the free space and center this.) */
+.nav-tagline {
+    margin-left: auto;
+    margin-right: 7px;
+    padding: 8px 12px;
+    border-radius: 3px;
+    color: hsl(0, 0%, 100%);
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.nav-tagline + .side-menu {
+    margin-left: 0;
+}
+
+/* Match the hamburger's hover: a subtle background tint, no underline. */
+.nav-tagline:hover, .nav-tagline:active, .nav-tagline:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: var(--sidemenu-icon-background);
+}
+
+@media (max-width: 500px) {
+    /* Keep the slim mobile header uncluttered; the hamburger reclaims the
+       right-push since the tagline is gone. */
+    .nav-tagline {
+        display: none;
+    }
+    .nav-tagline + .side-menu {
+        margin-left: auto;
+    }
+}
+
 .side-menu:hover, .side-menu:active, .side-menu:focus {
     background-color: var(--sidemenu-icon-background);
 }
@@ -483,6 +524,24 @@ a:focus, a:hover {
     }
     .home-template .nav-logo {
         margin: 0;
+    }
+}
+
+/* The home header now carries the tagline too. With no left logo, the old
+   absolutely-positioned hamburger left the lone tagline stranded mid-strip.
+   Put the [tagline][hamburger] group back in normal flow and right-align it,
+   exactly like the content-page header. (Below 500px the tagline is hidden, so
+   the original mobile hamburger placement above still applies.) */
+@media (min-width: 501px) {
+    .home-template .side-nav {
+        position: static;
+    }
+    .home-template .side-menu {
+        position: static;
+        top: auto;
+        right: auto;
+        margin-top: 0;
+        align-self: center;
     }
 }
 
