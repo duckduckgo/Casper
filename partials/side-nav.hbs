@@ -2,12 +2,12 @@
     <div class="side-nav-container">
         {{!-- Home shows the big logo in the hero, so skip the small one here. --}}
         {{#is "post, author, tag, page"}}
-            {{#if @site.logo}}
-                <a href="https://duckduckgo.com/" class="nav-logo">
-                    {{> "icons/logo-main"}}
-                </a>
-            {{/if}}
+            <a href="https://duckduckgo.com/" class="nav-logo">
+                {{> "icons/logo-main"}}
+            </a>
         {{/is}}
+
+        <a href="https://duckduckgo.com/compare-privacy" class="nav-tagline" target="_blank" rel="noopener">Privacy, Simplified.&trade;</a>
 
         <a href="#" class="side-menu">
             {{> "icons/menu"}}
