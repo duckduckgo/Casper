@@ -12,7 +12,7 @@
         <div class="inner">
             <div class="site-header-content">
                 {{#if profile_image}}
-                    <img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" />
+                    {{> "responsive-image" image=profile_image alt=name class="author-profile-image" imgsize="s" px="100" eager=true}}
                 {{/if}}
                 <h1 class="site-title">{{name}}</h1>
                 {{#if bio}}

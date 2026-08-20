@@ -26,7 +26,10 @@ into the {body} of the default.hbs template --}}
             </header>
 
             {{#if feature_image}}
-            <figure class="post-full-image" style="background-image: url({{feature_image}})">
+            {{!-- LCP element on a post, so eager and high priority. --}}
+            <figure class="post-full-image">
+                {{> "responsive-image" image=feature_image alt=title imgsize="l" eager=true
+                    sizes="(min-width: 1040px) 1040px, 100vw"}}
             </figure>
             {{/if}}
             {{/match}}
