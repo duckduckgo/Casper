@@ -639,6 +639,13 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 The first (most recent) post in the list is styled to be bigger than the others and take over the full width of the grid to give it more emphasis. Wrapped in a media query to make sure this only happens on large viewports / desktop-ish devices.
 
+NOTE: nth-child(6n+1) counts across the whole feed, including the cards infinite
+scroll appends from /page/N/. index.hbs mirrors this set with @rowStart from
+{{#foreach posts columns=6}} so the images can advertise the right `sizes`, but
+that is page-local. The two only agree while posts_per_page is a multiple of 6,
+which is why it is 24 in package.json. Changing it to a non-multiple of 6 will
+silently misalign the two on every page after the first.
+
  */
 
 @media (min-width: 795px) {
