@@ -1,15 +1,15 @@
 <article class="post-card {{post_class}}{{#unless feature_image}} no-image{{/unless}}">
     {{#if feature_image}}
         <a class="post-card-image-link" href="{{url}}">
-            {{!-- First card is the LCP element and fills the wide 6n+1 slot;
-                  the rest are lazy in a ~320px cell. The media queries after
-                  sizes="auto" are the fallback for browsers without it. --}}
-            {{#if @first}}
-                {{> "responsive-image" image=feature_image alt=title class="post-card-image" imgsize="l" eager=true
+            {{!-- `wide` marks the cards screen.css lays out in the full-width
+                  6n+1 slot; only index.hbs sets it. `eager` is the first card of
+                  any feed, which is the LCP element. --}}
+            {{#if wide}}
+                {{> "responsive-image" image=feature_image alt=title class="post-card-image" imgsize="l" eager=@first
                     sizes="(min-width: 795px) 683px, (min-width: 650px) 45vw, 92vw"}}
             {{else}}
-                {{> "responsive-image" image=feature_image alt=title class="post-card-image" imgsize="m"
-                    sizes="auto, (min-width: 795px) 320px, (min-width: 650px) 45vw, 92vw"}}
+                {{> "responsive-image" image=feature_image alt=title class="post-card-image" imgsize="m" eager=@first
+                    sizes="(min-width: 795px) 320px, (min-width: 650px) 45vw, 92vw"}}
             {{/if}}
         </a>
     {{/if}}

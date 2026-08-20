@@ -426,6 +426,15 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     object-fit: cover;
 }
 
+/* The <picture> wrapping each card and hero image. Block rather than the
+   default inline, so it can never contribute a line box to the padding-bottom
+   aspect box on .post-full-image. Chromium collapses an empty inline to a
+   zero-height line box per CSS 2.1 10.8.1, but this does not rely on that. */
+.post-card-image-link picture,
+.post-full-image picture {
+    display: block;
+}
+
 .post-card-content-link {
     position: relative;
     flex-grow: 1;

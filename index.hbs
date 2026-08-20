@@ -32,10 +32,14 @@ into the {body} of the default.hbs template --}}
     <div class="inner">
 
         <div class="post-feed">
-            {{#foreach posts}}
+            {{!-- columns=6 makes @rowStart true at index 0, 6, 12, 18, 24, which is
+                  exactly the set that screen.css gives the full-width slot via
+                  .home-template ... :nth-child(6n+1). Other templates omit `wide`,
+                  so their cards all advertise the narrow grid cell. --}}
+            {{#foreach posts columns=6}}
 
                 {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
-                {{> "post-card"}}
+                {{> "post-card" wide=@rowStart}}
 
             {{/foreach}}
         </div>

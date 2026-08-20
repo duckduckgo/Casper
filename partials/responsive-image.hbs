@@ -14,15 +14,18 @@
       alt      alt text
       class    class applied to the <img>
       imgsize  Ghost size keyword for src and the fallback (xs|s|m|l|xl)
-      sizes    sizes attribute; omit for fixed-size images such as avatars
+      sizes    media-query list for the sizes attribute, without the leading
+               `auto`; omit entirely for fixed-size images such as avatars.
+               `auto` is prepended automatically unless `eager` is set, because
+               sizes="auto" is only valid alongside loading="lazy".
       eager    true for above-the-fold LCP images; everything else is lazy
       px       width/height attributes, for fixed-size images
 --}}
 {{#if sizes}}
 <picture>
-    <source type="image/avif" sizes="{{sizes}}" srcset="{{img_url image size="s" format="avif"}} 300w, {{img_url image size="m" format="avif"}} 600w, {{img_url image size="l" format="avif"}} 1000w, {{img_url image size="xl" format="avif"}} 2000w">
-    <source type="image/webp" sizes="{{sizes}}" srcset="{{img_url image size="s" format="webp"}} 300w, {{img_url image size="m" format="webp"}} 600w, {{img_url image size="l" format="webp"}} 1000w, {{img_url image size="xl" format="webp"}} 2000w">
-    <img {{#if class}}class="{{class}}" {{/if}}sizes="{{sizes}}" srcset="{{img_url image size="s"}} 300w, {{img_url image size="m"}} 600w, {{img_url image size="l"}} 1000w, {{img_url image size="xl"}} 2000w" src="{{img_url image size=imgsize}}" alt="{{alt}}" {{#if eager}}loading="eager" fetchpriority="high"{{else}}loading="lazy"{{/if}} decoding="async" />
+    <source type="image/avif" sizes="{{#unless eager}}auto, {{/unless}}{{sizes}}" srcset="{{img_url image size="s" format="avif"}} 300w, {{img_url image size="m" format="avif"}} 600w, {{img_url image size="l" format="avif"}} 1000w, {{img_url image size="xl" format="avif"}} 2000w">
+    <source type="image/webp" sizes="{{#unless eager}}auto, {{/unless}}{{sizes}}" srcset="{{img_url image size="s" format="webp"}} 300w, {{img_url image size="m" format="webp"}} 600w, {{img_url image size="l" format="webp"}} 1000w, {{img_url image size="xl" format="webp"}} 2000w">
+    <img {{#if class}}class="{{class}}" {{/if}}sizes="{{#unless eager}}auto, {{/unless}}{{sizes}}" srcset="{{img_url image size="s"}} 300w, {{img_url image size="m"}} 600w, {{img_url image size="l"}} 1000w, {{img_url image size="xl"}} 2000w" src="{{img_url image size=imgsize}}" alt="{{alt}}" {{#if eager}}loading="eager" fetchpriority="high"{{else}}loading="lazy"{{/if}} decoding="async" />
 </picture>
 {{else}}
 <picture>
