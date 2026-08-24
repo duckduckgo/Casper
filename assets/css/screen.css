@@ -413,10 +413,26 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .post-card-image {
-    width: auto;
+    /* Now an <img>, so object-fit does the cropping. The background-* rules
+       are kept deliberately: infinite scroll appends /page/N/ markup, which is
+       cached for 24h and may still be the old background-image div. Without
+       them those divs paint at natural size anchored top-left. Inert on an
+       <img>, since the background sits behind the image. */
+    display: block;
+    width: 100%;
     height: 200px;
     background: var(--lightgrey) no-repeat center center;
     background-size: cover;
+    object-fit: cover;
+}
+
+/* The <picture> wrapping each card and hero image. Block rather than the
+   default inline, so it can never contribute a line box to the padding-bottom
+   aspect box on .post-full-image. Chromium collapses an empty inline to a
+   zero-height line box per CSS 2.1 10.8.1, but this does not rely on that. */
+.post-card-image-link picture,
+.post-full-image picture {
+    display: block;
 }
 
 .post-card-content-link {
@@ -623,6 +639,13 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 The first (most recent) post in the list is styled to be bigger than the others and take over the full width of the grid to give it more emphasis. Wrapped in a media query to make sure this only happens on large viewports / desktop-ish devices.
 
+NOTE: nth-child(6n+1) counts across the whole feed, including the cards infinite
+scroll appends from /page/N/. index.hbs mirrors this set with @rowStart from
+{{#foreach posts columns=6}} so the images can advertise the right `sizes`, but
+that is page-local. The two only agree while posts_per_page is a multiple of 6,
+which is why it is 24 in package.json. Changing it to a non-multiple of 6 will
+silently misalign the two on every page after the first.
+
  */
 
 @media (min-width: 795px) {
@@ -736,8 +759,18 @@ The first (most recent) post in the list is styled to be bigger than the others 
     padding-bottom: 55%;
     margin: 0;
     background: #c5d2d9 50%;
-    background-size: cover;
     border-radius: 3px;
+    overflow: hidden;
+}
+
+/* The figure keeps its 55% aspect box; the <img> fills and crops it. */
+.post-full-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .post-full-content {

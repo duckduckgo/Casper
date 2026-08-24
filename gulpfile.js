@@ -123,7 +123,24 @@ function zipper(done) {
     ], handleError(done));
 }
 
-const build = series(parallel(css, series(cleanJs, js), copyFonts));
+// screen.css gives every :nth-child(6n+1) card the full-width slot, counting
+// across the whole feed including the cards infinite scroll appends. index.hbs
+// mirrors that set with @rowStart from {{#foreach posts columns=6}}, which is
+// page-local, so the two only agree while posts_per_page is a multiple of 6.
+// Fail the build rather than let the mismatch ship silently.
+function checkPostsPerPage(done) {
+    const perPage = require('./package.json').config.posts_per_page;
+    if (perPage % 6 !== 0) {
+        return done(new Error(
+            `posts_per_page is ${perPage}; it must be a multiple of 6 so that ` +
+            '@rowStart in index.hbs stays aligned with :nth-child(6n+1) in screen.css ' +
+            'on every infinite-scroll page. See the note above the home page grid rules.'
+        ));
+    }
+    done();
+}
+
+const build = series(checkPostsPerPage, parallel(css, series(cleanJs, js), copyFonts));
 const watcher = function () {
     watch('assets/css/**', css);
     watch('assets/js/**', series(cleanJs, js));

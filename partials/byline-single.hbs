@@ -3,7 +3,7 @@
 
 <section class="author-card">
     {{#if profile_image}}
-        <img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" />
+        {{> "responsive-image" image=profile_image alt=name class="author-profile-image" imgsize="s" px="60"}}
     {{else}}
         <span class="avatar-wrapper">{{> "icons/avatar"}}</span>
     {{/if}}

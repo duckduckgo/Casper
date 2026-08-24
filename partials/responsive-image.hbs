@@ -1,0 +1,36 @@
+{{!--
+    Renders one image as a <picture> with AVIF -> WebP -> original-format tiers.
+
+    The last tier is the point. With only AVIF/WebP sources, a browser that
+    decodes neither gets a *broken* image rather than a larger one, and
+    browserslist "defaults" still lists op_mini and kaios 2.5. The fallback is
+    Ghost's plain resize, so those browsers still get a card-sized image.
+
+    One candidate list serves cards and heroes; `sizes` decides which is picked,
+    so the extra entries are inert.
+
+    Params:
+      image    feature_image / profile_image
+      alt      alt text
+      class    class applied to the <img>
+      imgsize  Ghost size keyword for src and the fallback (xs|s|m|l|xl)
+      sizes    media-query list for the sizes attribute, without the leading
+               `auto`; omit entirely for fixed-size images such as avatars.
+               `auto` is prepended automatically unless `eager` is set, because
+               sizes="auto" is only valid alongside loading="lazy".
+      eager    true for above-the-fold LCP images; everything else is lazy
+      px       width/height attributes, for fixed-size images
+--}}
+{{#if sizes}}
+<picture>
+    <source type="image/avif" sizes="{{#unless eager}}auto, {{/unless}}{{sizes}}" srcset="{{img_url image size="s" format="avif"}} 300w, {{img_url image size="m" format="avif"}} 600w, {{img_url image size="l" format="avif"}} 1000w, {{img_url image size="xl" format="avif"}} 2000w">
+    <source type="image/webp" sizes="{{#unless eager}}auto, {{/unless}}{{sizes}}" srcset="{{img_url image size="s" format="webp"}} 300w, {{img_url image size="m" format="webp"}} 600w, {{img_url image size="l" format="webp"}} 1000w, {{img_url image size="xl" format="webp"}} 2000w">
+    <img {{#if class}}class="{{class}}" {{/if}}sizes="{{#unless eager}}auto, {{/unless}}{{sizes}}" srcset="{{img_url image size="s"}} 300w, {{img_url image size="m"}} 600w, {{img_url image size="l"}} 1000w, {{img_url image size="xl"}} 2000w" src="{{img_url image size=imgsize}}" alt="{{alt}}" {{#if eager}}loading="eager" fetchpriority="high"{{else}}loading="lazy"{{/if}} decoding="async" />
+</picture>
+{{else}}
+<picture>
+    <source type="image/avif" srcset="{{img_url image size=imgsize format="avif"}}">
+    <source type="image/webp" srcset="{{img_url image size=imgsize format="webp"}}">
+    <img {{#if class}}class="{{class}}" {{/if}}src="{{img_url image size=imgsize}}" alt="{{alt}}" {{#unless eager}}loading="lazy" {{/unless}}decoding="async"{{#if px}} width="{{px}}" height="{{px}}"{{/if}} />
+</picture>
+{{/if}}
