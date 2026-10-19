@@ -4,7 +4,7 @@
 
 ### Node.js version requirement
 
-This project targets **Ghost 6.x** and uses **Node 22** for local theme development. The `.node-version` file pins the version for `fnm` / `nvm` / `volta`.
+This project targets **Ghost 6.x** and uses **Node 24** for local theme development. The `.node-version` file pins the version for `fnm` / `nvm` / `volta`.
 
 ### Development workflow
 
