@@ -32,7 +32,7 @@ One really neat trick is that you can also create custom one-off templates just 
 
 # Development
 
-Casper styles are compiled using Gulp/PostCSS to polyfill future CSS spec. This fork targets Ghost 6.x and uses Node 22 for local theme development.
+Casper styles are compiled using Gulp/PostCSS to polyfill future CSS spec. This fork targets Ghost 6.x and uses Node 24 for local theme development.
 
 From the theme's root directory:
 

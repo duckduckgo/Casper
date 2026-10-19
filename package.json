@@ -5,7 +5,7 @@
   "version": "2.7.0",
   "engines": {
     "ghost": ">=5.0.0",
-    "node": ">=22.13.1"
+    "node": ">=24.14.1"
   },
   "license": "MIT",
   "screenshots": {
@@ -52,7 +52,7 @@
     "autoprefixer": "^10.4.24",
     "beeper": "^2.1.0",
     "cssnano": "^7.1.2",
-    "gscan": "5.2.4",
+    "gscan": "5.4.3",
     "gulp": "5.0.1",
     "gulp-livereload": "^4.0.2",
     "gulp-postcss": "^10.0.0",
