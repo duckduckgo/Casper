@@ -9,12 +9,8 @@ into the {body} of the default.hbs template --}}
     {{!-- The big featured header, it uses blog cover image as a BG if available --}}
     <header class="site-header outer {{#if @site.cover_image}}" style="background-image: url({{@site.cover_image}}){{else}}no-cover{{/if}}">
         <div class="inner">
+            <img class="site-header-illustration" src="{{asset 'hero-illustration.svg'}}" alt="" width="334" height="200" />
             <div class="site-header-content">
-                <div>
-                    <a href="https://duckduckgo.com/">
-                        <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}" />
-                    </a>
-                </div>
                 <h1 class="site-title">
                     {{@site.title}}
                 </h1>

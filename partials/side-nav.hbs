@@ -1,10 +1,17 @@
 <div class="side-nav">
     <div class="side-nav-container">
-        {{!-- Home shows the big logo in the hero, so skip the small one here. --}}
+        {{!-- Home shows the Dax logo centred in this row instead of the wordmark. --}}
         {{#is "post, author, tag, page"}}
             <a href="https://duckduckgo.com/" class="nav-logo">
                 {{> "icons/logo-main"}}
             </a>
+        {{/is}}
+        {{#is "home"}}
+            {{#if @site.logo}}
+                <a href="https://duckduckgo.com/" class="nav-logo-home">
+                    <img class="nav-logo-home-img" src="{{@site.logo}}" alt="{{@site.title}}" width="54" height="54" />
+                </a>
+            {{/if}}
         {{/is}}
 
         <a href="https://duckduckgo.com/compare-privacy" class="nav-tagline" target="_blank" rel="noopener">Privacy, Simplified.&trade;</a>
