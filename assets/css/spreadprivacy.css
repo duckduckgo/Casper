@@ -16,6 +16,13 @@
     --link-color: #60A5DA;
     --middarkgrey: #54666d;
 
+    /* Rebrand design tokens */
+    --pondwater-10: #e6f6ff;
+    --mandarin-50: #f05f2b;
+    --surface-canvas: #fbfaf9;
+    --text-primary: rgba(0, 0, 0, 0.96);
+    --card-radius: 28px;
+
     /* Navigation */
     --nav-fontsize: 1.5rem;
     --nav-color: #333;
@@ -55,7 +62,8 @@
 */
 
 .site-header {
-    background: var(--lightblue);
+    background: var(--pondwater-10);
+    color: var(--text-primary);
     padding: 0 4vw;
     padding-bottom: var(--header-bottom-spacing);
 }
@@ -67,8 +75,53 @@
 }
 
 .site-header-container {
-    background: var(--lightblue);
+    background: var(--pondwater-10);
     min-height: 77px;
+}
+
+.home-template .site-header-content {
+    padding-top: 31px;
+}
+
+/* Sits bottom left of the title and touches the bottom of the hero. There's
+   no room for it beside the title on narrow screens, so it's hidden there. */
+.site-header-illustration {
+    position: absolute;
+    bottom: 0;
+    /* 40px in from the edge at the 1512px design width; on wider screens it
+       keeps the same distance from the centred content. */
+    left: max(40px, calc(50% - 716px));
+    width: 334px;
+    height: auto;
+}
+
+@media (max-width: 900px) {
+    .site-header-illustration {
+        display: none;
+    }
+}
+
+/* Home shows the Dax logo centred in the slim header row, 30px from the top
+   to match the design. */
+.home-template .side-nav {
+    padding-top: 30px;
+}
+
+.home-template .side-nav .side-nav-container {
+    position: relative;
+    min-height: 54px;
+}
+
+.nav-logo-home {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.nav-logo-home-img {
+    width: 54px;
+    height: 54px;
 }
 
 /*
@@ -412,10 +465,10 @@ a:focus, a:hover {
     margin-right: 7px;
     padding: 8px 12px;
     border-radius: 3px;
-    color: hsl(0, 0%, 100%);
-    font-size: 1.3rem;
-    font-weight: 600;
-    line-height: 1.4;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 20px;
     white-space: nowrap;
 }
 
@@ -425,7 +478,7 @@ a:focus, a:hover {
 
 /* Match the hamburger's hover: a subtle background tint, no underline. */
 .nav-tagline:hover, .nav-tagline:active, .nav-tagline:focus {
-    color: #fff;
+    color: var(--text-primary);
     text-decoration: none;
     background-color: var(--sidemenu-icon-background);
 }
@@ -452,13 +505,19 @@ a:focus, a:hover {
 
 /* We need to be specific to override the <path> prop. */
 .side-menu svg path {
-    fill: white;
+    fill: var(--text-primary);
 }
 
+/* White slim header on post, tag and page templates. Home and author pages
+   nest it in the hero, so it takes the hero colour there. */
 .side-nav {
-    background: var(--lightblue);
+    background: #fff;
     padding: 8px 4vw;
     min-height: 4em;
+}
+
+.site-header-container .side-nav {
+    background: var(--pondwater-10);
 }
 
 .side-bar .new-badge {
@@ -626,15 +685,18 @@ a:focus, a:hover {
 
 .tag-title {
     margin: 0 0 10px;
-    font-size: 4rem;
-    font-weight: 500;
+    font-size: 4.4rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -1px;
     color: var(--primary-text);
 }
 
 .tag-description {
     margin: 0;
     font-size: 2rem;
-    font-weight: 300;
+    font-weight: 400;
+    line-height: 1.4;
     color: #666;
 }
 
@@ -661,6 +723,24 @@ a:focus, a:hover {
 
 .nav li {
     text-transform: capitalize;
+}
+
+body {
+    background: var(--surface-canvas);
+}
+
+.post-card {
+    border-radius: var(--card-radius);
+}
+
+.post-card-image-link {
+    border-radius: var(--card-radius) var(--card-radius) 0 0;
+}
+
+@media (min-width: 795px) {
+    .home-template .post-feed .post-card:nth-child(6n+1):not(.no-image) .post-card-image-link {
+        border-radius: var(--card-radius) 0 0 var(--card-radius);
+    }
 }
 
 /* Override z-index of these elements so that they're below the side menu. */
@@ -690,16 +770,28 @@ a:focus, a:hover {
 }
 
 .site-title {
-    font-size: 4rem;
-    font-weight: 500;
+    font-size: 6.4rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -1px;
     z-index: 10;
 }
 
 .site-description {
-    margin: 0 0 1em 0;
-    font-size: 2rem;
+    margin: 12px 0 1em 0;
+    padding: 0;
+    font-size: 2.4rem;
     font-weight: 400;
+    line-height: 1.33;
+    letter-spacing: 0;
     z-index: 0;
+}
+
+/* Leave room for the hero illustration where it shows. */
+@media (min-width: 901px) {
+    .home-template .site-header-content {
+        min-height: 208px;
+    }
 }
 
 .post-full-header .post-full-meta-date {
@@ -731,6 +823,7 @@ a:focus, a:hover {
 .post-full-image {
     background-color: #fff;
     background-repeat: no-repeat;
+    border-radius: var(--card-radius);
 }
 
 .post-full-content {
@@ -806,11 +899,29 @@ figcaption {
 /* ---------------------------------------------------------- */
 
 .read-next-card {
-    background: var(--lightblue) center center;
+    background: var(--pondwater-10) center center;
+    border-radius: var(--card-radius);
+    color: var(--text-primary);
 }
 
 .read-next-card:before {
     background: none;
+    border-radius: var(--card-radius);
+}
+
+.read-next-card-header-title,
+.read-next-card-header-title a,
+.read-next-card-content li a,
+.read-next-card-footer a {
+    color: var(--text-primary);
+}
+
+.read-next-card-content li a {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.read-next-divider svg {
+    stroke: var(--text-primary);
 }
 
 .read-next-card-header-title a:focus {
@@ -830,6 +941,22 @@ figcaption {
 
 .is-hidden {
     display: none;
+}
+
+.progress {
+    color: var(--mandarin-50);
+}
+
+.progress::-webkit-progress-value {
+    background-color: var(--mandarin-50);
+}
+
+.progress::-moz-progress-bar {
+    background-color: var(--mandarin-50);
+}
+
+.progress-bar {
+    background-color: var(--mandarin-50);
 }
 
 .floating-header-atb__button {
@@ -869,18 +996,22 @@ figcaption {
 /* ---------------------------------------------------------- */
 
 .site-footer {
-    background: var(--lightblue);
+    background: var(--pondwater-10);
 }
 
 .site-footer-content,
 .site-footer-content a {
-    color: white;
+    color: var(--text-primary);
 }
 
 .site-footer-content a:hover,
 .site-footer-content a:focus {
-    color: rgba(255,255,255,1);
+    color: var(--text-primary);
     text-decoration: underline;
+}
+
+.site-footer-nav a:before {
+    background: var(--text-primary);
 }
 
 @media (max-width: 650px) {
@@ -898,79 +1029,89 @@ figcaption {
 */
 
 .newsletter {
-    padding-top: 2.5em;
     display: flex;
     flex-direction: column;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    align-items: center;
+    max-width: 1000px;
+    margin: 4rem auto 0;
+    padding: 24px 64px 40px;
+    background: #fcfcfc;
+    border-radius: 32px;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.newsletter__icon {
+    width: 144px;
+    height: 144px;
+    margin-bottom: 16px;
 }
 
 .newsletter__title {
-    font-size: 3rem;
-    text-align: center;
+    margin: 0 0 16px;
+    font-size: 3.2rem;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text-primary);
 }
 
 .newsletter__tagline {
+    margin: 0 0 40px;
     font-size: 1.8rem;
-    text-align: center;
-    font-weight: 400;
-    margin-top: 0;
-    margin-bottom: 1.625em;
+    line-height: 1.4;
+}
+
+.newsletter__tagline a {
+    color: #1074cc;
+}
+
+.newsletter__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 440px;
+    margin-bottom: 16px;
 }
 
 .newsletter__email {
     width: 100%;
-    min-width: 100%;
-    height: 45px;
-    border-radius: 3px;
-    border: 1px solid #e6e6e6;
-    text-align: center;
-    margin-bottom: 1.125em;
-    margin-left: auto;
-    margin-right: auto;
+    height: 48px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    font-size: 1.6rem;
+}
+
+.newsletter__email:focus {
+    outline: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 0 0 2px #1074cc;
 }
 
 .newsletter__submit {
-    text-transform: uppercase;
-    font-size: 14px;
-    height: 45px;
-    letter-spacing: 0.7px;
-    border-radius: 22px;
-    line-height: 37px;
+    height: 48px;
+    padding: 0 28px;
+    border: none;
+    border-radius: 999px;
+    background: #1074cc;
     color: #fff;
-    background-color: var(--ddg-blue);
-    width: 100%;
-    border: 1px solid #4495d4;
+    font-size: 1.6rem;
     font-weight: 600;
-    margin-bottom: 2em;
-    margin-left: auto;
-    margin-right: auto;
+    cursor: pointer;
+}
+
+.newsletter__submit:hover,
+.newsletter__submit:focus {
+    background: #045eb2;
 }
 
 .newsletter__privacy {
-    color: #888;
-    font-size: 1.2rem;
-    text-align: center;
-    line-height: 1.35;
-    margin-bottom: 2em;
-}
-
-.newsletter__illustration--mobile {
-    width: 239px;
-    margin: auto;
-    margin-bottom: 20px;
-}
-
-.newsletter__illustration--desktop {
-    width: 613px;
-    margin: auto;
-    position: absolute;
-    left: 45px;
-    right: 0;
-    margin-top: 10em;
-    display: none;
-    z-index: -1;
+    margin: 0;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.6);
 }
 
 .newsletter__checkbox {
@@ -990,27 +1131,29 @@ figcaption {
     margin-right: 0;
 }
 
-@media (min-width: 470px) {
-    .newsletter__submit {
-        max-width: 250px;
+@media (min-width: 560px) {
+    .newsletter__fields {
+        flex-direction: row;
+    }
+
+    .newsletter__email {
+        flex: 1;
+    }
+
+    .newsletter__title {
+        font-size: 4.4rem;
+        line-height: 1;
+        letter-spacing: -1px;
     }
 
     .newsletter__tagline {
-        max-width: 355px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .newsletter__privacy {
-        max-width: 230px;
-        margin-left: auto;
-        margin-right: auto;
+        font-size: 2rem;
     }
 }
 
-@media (min-width: 765px) {
-    .newsletter__title {
-        font-size: 3.5rem;
+@media (max-width: 559px) {
+    .newsletter {
+        padding: 24px 20px 32px;
     }
 }
 
@@ -1105,6 +1248,11 @@ figcaption {
 .kg-image-card img,
 .kg-gallery-image img {
     height: auto;
+}
+
+/* Full-width images run edge to edge, so only round the contained ones. */
+.kg-image-card:not(.kg-width-full) img {
+    border-radius: var(--card-radius);
 }
 
 .kg-embed-card {
