@@ -6,6 +6,62 @@
    of DuckDuckGo.
 */
 
+/* DuckSans, served from duckduckgo.com so the font files stay out of this repo.
+   Weight ranges match duckduckgo.com's own @font-face rules. */
+@font-face {
+    font-family: 'DuckSansDisplay';
+    src: url('https://duckduckgo.com/static-assets/font/DuckSansDisplay-Regular.woff2') format('woff2'),
+         url('https://duckduckgo.com/static-assets/font/DuckSansDisplay-Regular.woff') format('woff');
+    font-weight: 300 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DuckSansDisplay';
+    src: url('https://duckduckgo.com/static-assets/font/DuckSansDisplay-Medium.woff2') format('woff2'),
+         url('https://duckduckgo.com/static-assets/font/DuckSansDisplay-Medium.woff') format('woff');
+    font-weight: 430;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DuckSansDisplay';
+    src: url('https://duckduckgo.com/static-assets/font/DuckSansDisplay-Bold.woff2') format('woff2'),
+         url('https://duckduckgo.com/static-assets/font/DuckSansDisplay-Bold.woff') format('woff');
+    font-weight: 530 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DuckSansProduct';
+    src: url('https://duckduckgo.com/static-assets/font/DuckSansProduct-Regular.woff2') format('woff2'),
+         url('https://duckduckgo.com/static-assets/font/DuckSansProduct-Regular.woff') format('woff');
+    font-weight: 300 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DuckSansProduct';
+    src: url('https://duckduckgo.com/static-assets/font/DuckSansProduct-Medium.woff2') format('woff2'),
+         url('https://duckduckgo.com/static-assets/font/DuckSansProduct-Medium.woff') format('woff');
+    font-weight: 430;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DuckSansProduct';
+    src: url('https://duckduckgo.com/static-assets/font/DuckSansProduct-Bold.woff2') format('woff2'),
+         url('https://duckduckgo.com/static-assets/font/DuckSansProduct-Bold.woff') format('woff');
+    font-weight: 530 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     /* Colors */
     --lightblue: #60a5da;
@@ -38,12 +94,14 @@
     --post-spacing: 3rem;
     --title-font-size: 3rem;
     --sans-serif: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
+    --font-display: 'DuckSansDisplay', 'DDG_ProximaNova', var(--sans-serif);
+    --font-product: 'DuckSansProduct', 'DDG_ProximaNova', var(--sans-serif);
 
 
     /* Side menu */
     --sidemenu-icon-background: rgba(0,0,0,0.15);
-    --sidemenu-icon-size: 17px;
-    --sidemenu-button-size: 33px;
+    --sidemenu-icon-size: 16px;
+    --sidemenu-button-size: 40px;
     --sidemenu-close-color: #bfbfbf;
     --sidemenu-close-focus-color: #575757;
     --sidemenu-section-color: #666;
@@ -79,8 +137,9 @@
     min-height: 77px;
 }
 
+/* The lockup starts right under the slim header row. */
 .home-template .site-header-content {
-    padding-top: 31px;
+    padding-top: 0;
 }
 
 /* Sits bottom left of the title and touches the bottom of the hero. There's
@@ -101,27 +160,21 @@
     }
 }
 
-/* Home shows the Dax logo centred in the slim header row, 30px from the top
-   to match the design. */
+/* Home: the slim header row sits 30px from the top, and the Dax logo moves
+   into the hero lockup below it. */
 .home-template .side-nav {
     padding-top: 30px;
 }
 
-.home-template .side-nav .side-nav-container {
-    position: relative;
-    min-height: 54px;
+.site-lockup-logo {
+    display: inline-block;
+    margin-bottom: 14px;
 }
 
-.nav-logo-home {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.nav-logo-home-img {
-    width: 54px;
-    height: 54px;
+.site-lockup-logo img {
+    display: block;
+    width: 70px;
+    height: 70px;
 }
 
 /*
@@ -250,10 +303,16 @@
     padding-right: 0;
 }
 
-/* Adjust Twitter icon padding so that the icons
-   look like they're spaced out evenly. */
-.social-link-tw {
-    padding-right: 4px;
+/* Black X icon on a light grey square in the post share bar. */
+.floating-header-share-x {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--text-primary);
+}
+
+.floating-header-share-x:hover,
+.floating-header-share-x:focus {
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
 }
 
 /* 1011-1200px: compress the menu and drop social icons to avoid overflow. */
@@ -444,13 +503,12 @@ a:focus, a:hover {
 */
 
 .side-menu {
-    font-family: georgia;
-    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
     height: var(--sidemenu-button-size);
     width: var(--sidemenu-button-size);
-    text-align: center;
-    padding-top: 3px;
-    padding-left: 1px;
     /* Flex on .side-nav-container vertically centers this; push it to the
        right edge with auto left-margin (replaces the old float:right). */
     margin-left: auto;
@@ -466,6 +524,7 @@ a:focus, a:hover {
     padding: 8px 12px;
     border-radius: 3px;
     color: var(--text-primary);
+    font-family: var(--font-product);
     font-size: 1.4rem;
     font-weight: 400;
     line-height: 20px;
@@ -685,6 +744,7 @@ a:focus, a:hover {
 
 .tag-title {
     margin: 0 0 10px;
+    font-family: var(--font-display);
     font-size: 4.4rem;
     font-weight: 400;
     line-height: 1;
@@ -694,6 +754,7 @@ a:focus, a:hover {
 
 .tag-description {
     margin: 0;
+    font-family: var(--font-display);
     font-size: 2rem;
     font-weight: 400;
     line-height: 1.4;
@@ -770,7 +831,8 @@ body {
 }
 
 .site-title {
-    font-size: 6.4rem;
+    font-family: var(--font-display);
+    font-size: 5.2rem;
     font-weight: 400;
     line-height: 1;
     letter-spacing: -1px;
@@ -778,19 +840,21 @@ body {
 }
 
 .site-description {
-    margin: 12px 0 1em 0;
+    margin: 6px 0 1em 0;
     padding: 0;
-    font-size: 2.4rem;
+    font-family: var(--font-display);
+    font-size: 2rem;
     font-weight: 400;
-    line-height: 1.33;
+    line-height: 1.4;
     letter-spacing: 0;
     z-index: 0;
 }
 
-/* Leave room for the hero illustration where it shows. */
+/* Leave room for the hero illustration where it shows, and keep the hero at
+   the design's 332px. */
 @media (min-width: 901px) {
     .home-template .site-header-content {
-        min-height: 208px;
+        min-height: 220px;
     }
 }
 
@@ -1039,6 +1103,7 @@ figcaption {
     border-radius: 32px;
     text-align: center;
     color: var(--text-primary);
+    font-family: var(--font-product);
 }
 
 .newsletter__icon {
@@ -1049,6 +1114,7 @@ figcaption {
 
 .newsletter__title {
     margin: 0 0 16px;
+    font-family: var(--font-display);
     font-size: 3.2rem;
     font-weight: 400;
     line-height: 1.15;

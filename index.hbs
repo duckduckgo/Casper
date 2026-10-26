@@ -11,6 +11,11 @@ into the {body} of the default.hbs template --}}
         <div class="inner">
             <img class="site-header-illustration" src="{{asset 'hero-illustration.svg'}}" alt="" width="334" height="200" />
             <div class="site-header-content">
+                {{#if @site.logo}}
+                    <a href="https://duckduckgo.com/" class="site-lockup-logo">
+                        <img src="{{@site.logo}}" alt="DuckDuckGo" width="70" height="70" />
+                    </a>
+                {{/if}}
                 <h1 class="site-title">
                     {{@site.title}}
                 </h1>

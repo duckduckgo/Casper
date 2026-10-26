@@ -14,9 +14,9 @@
     </div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this {{> "icons/point"}}</div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
-            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
-            {{> "icons/twitter"}}
+        <a class="floating-header-share-x" aria-label="Share on X" href="https://x.com/intent/post?text={{encode title}}&amp;url={{url absolute="true"}}"
+            onclick="window.open(this.href, 'share-x', 'width=550,height=235');return false;">
+            {{> "icons/x"}}
         </a>
         <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
             onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
