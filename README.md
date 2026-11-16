@@ -37,8 +37,8 @@ Casper styles are compiled using Gulp/PostCSS to polyfill future CSS spec. This 
 From the theme's root directory:
 
 ```bash
-$ yarn install
-$ yarn dev
+$ npm install
+$ npm run dev
 ```
 
 Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
@@ -46,7 +46,7 @@ Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/
 The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which you can then upload to your site.
 
 ```bash
-$ yarn zip
+$ npm run zip
 ```
 
 # Releases
@@ -56,11 +56,11 @@ Releases are automatic on merge to `master`. Use [Conventional Commit](https://w
 # Running the theme tests
 
 ```bash
-yarn install --frozen-lockfile
-yarn build
+npm ci
+npm run build
 # spin up a local Ghost serving this theme on http://localhost:2368
-GHOST_BASE_URL=http://localhost:2368 yarn test:smoke
-GHOST_BASE_URL=http://localhost:2368 yarn test:vrt
+GHOST_BASE_URL=http://localhost:2368 npm run test:smoke
+GHOST_BASE_URL=http://localhost:2368 npm run test:vrt
 ```
 
 The smoke spec covers: theme chrome + post feed render, single-post page,

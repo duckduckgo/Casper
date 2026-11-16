@@ -13,7 +13,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "yarn zip && cp dist/casper.zip dist/casper-v${nextRelease.version}.zip"
+        "prepareCmd": "npm run zip && cp dist/casper.zip dist/casper-v${nextRelease.version}.zip"
       }
     ],
     [

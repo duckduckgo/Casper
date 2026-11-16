@@ -30,24 +30,24 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
-          cache: yarn
+          cache: npm
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       - name: Build theme
-        run: yarn build
+        run: npm run build
 
       - name: Report gscan warnings (non-blocking)
         continue-on-error: true
-        run: yarn test:gscan
+        run: npm run test:gscan
 
       - name: Gate on fatal gscan errors
-        run: yarn test:gscan:fatal
+        run: npm run test:gscan:fatal
 
       - name: Verify zip task succeeds
         if: github.event_name == 'pull_request'
-        run: yarn zip
+        run: npm run zip
 
       - name: Run semantic-release
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'

@@ -1,6 +1,6 @@
 const {test, expect} = require('@playwright/test');
 
-// Refresh baselines locally: yarn test:vrt -- --update-snapshots
+// Refresh baselines locally: npm run test:vrt -- --update-snapshots
 // (Refused in CI when env CI=true - see playwright.config.js)
 
 const MOBILE = {width: 390, height: 844};
